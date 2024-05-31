@@ -50,32 +50,42 @@ class LoginApp:
 
         # añadiendo texto
         div_login_two = CustomTK.CTkLabel(master=self.frame2,
-                                        text="Iniciar sesion",
+                                        text="HOLA!",
                                         font=var.font_text_2)
-        div_login_two.place(x=85, y=115)
+        div_login_two.place(x=50, y=170)
+
+        div_login_three = CustomTK.CTkLabel(master=self.frame2,
+                                            text="Bienvenido de nuevo",
+                                            font=var.font_text)
+        div_login_three.place(x=50,y=190)
 
         # entradas de texto
         self.input_one = CustomTK.CTkEntry(master=self.frame2, width=220,
                                         placeholder_text="Usuario",
-                                        font=("Verdana",16))
+                                        font=("Verdana",16),
+                                        corner_radius=100)
         
-        self.input_one.place(x=50, y=160)
+        self.input_one.place(x=50, y=240)
 
         self.input_two = CustomTK.CTkEntry(master=self.frame2,
-                                        width=220,
+                                        width=220, 
                                         placeholder_text="Contraseña",
                                         show="*",
-                                        font=("Verdana",16))
+                                        font=("Verdana",16),
+                                        corner_radius=100)
         
-        self.input_two.place(x=50, y=200)
+        self.input_two.place(x=50, y=280)
 
         # boton
         button1 = CustomTK.CTkButton(master=self.frame2,
-                                    width=220,
+                                    width=100,
+                                    height=40,
                                     text="Login",
-                                    corner_radius=6)
+                                    corner_radius=100,
+                                    fg_color=var.blue_button,
+                                    font=var.font_text_button)
         
-        button1.place(x=50, y=270)
+        button1.place(x=100, y=350,anchor=tk.W)
 
 
             
