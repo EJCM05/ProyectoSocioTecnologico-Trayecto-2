@@ -31,7 +31,8 @@ class LoginApp:
         
         img_bg = CustomTK.CTkLabel(master=self.frame,
                                     image=img_bg_frame,
-                                    text=" ")
+                                    text=" ",
+                                    bg_color="#B8CEE4")
         img_bg.place(x=0,y=0)
 
         
