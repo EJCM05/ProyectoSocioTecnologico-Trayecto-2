@@ -85,7 +85,7 @@ class LoginApp:
                                     width=100,
                                     height=35,
                                     text="Leer mas!",
-                                    corner_radius=100,
+                                    corner_radius=0,
                                     fg_color=var.blue_button,
                                     bg_color="#02369A",
                                     font=var.font_text_button)
