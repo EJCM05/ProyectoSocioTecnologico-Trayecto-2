@@ -8,87 +8,104 @@ class LoginApp:
         # definicion de aparciencia
         CustomTK.set_appearance_mode("light")
         CustomTK.set_default_color_theme("dark-blue")
-        # creando ventana
+        
+        # creacion de ventana
         self.app = CustomTK.CTk()
-        self.app.geometry("1024x720")
+        self.app.geometry("1240x720")
         self.app.title("Login")
         
         # importando y añadiendo imagenes de background y iconos
         img_bg = ImageTk.PhotoImage(Image.open("imagen/background_light.png"))    
-        img_login_left = CustomTK.CTkImage(Image.open("imagen/interface_control.png"), size=(240,240))
         img_bg_frame = ImageTk.PhotoImage(Image.open("imagen/background_gradient_blue.png"))
+        icono_user = ImageTk.PhotoImage(file="imagen/ico_user.png")
+        icono_password = ImageTk.PhotoImage(file="imagen/ico_password.png")
         
-        # frame principal
+        # ------------------------------Frames--------------------------- 
         self.div_login = CustomTK.CTkLabel(master=self.app, image=img_bg)
-        self.div_login.pack()
-
-        # añadiendo frame left
+        
         self.frame = CustomTK.CTkFrame(master=self.div_login,
                                         width=663,
                                         height=546)
         
-        self.frame.place(relx=0.58, rely=0.5, anchor=tk.E) #posicion del frame
-        
-        img_bg = CustomTK.CTkLabel(master=self.frame,
-                                    image=img_bg_frame,
-                                    text=" ")
-        img_bg.place(x=0,y=0)
-
-        
-        # añadiendo frame right
         self.frame2 = CustomTK.CTkFrame(master=self.div_login,
                                         width=457,
                                         height=546,
-                                        fg_color="#FFFFFF")
+                                        fg_color=var.bg_white)
         
-        self.frame2.place(relx=0.58,rely=0.5,anchor=tk.W) #posicion del frame
-    
-        # # imagen de login user
-        # img_log = CustomTK.CTkImage(Image.open("imagen/user.png"), size=(100,100))
-        # image_label = CustomTK.CTkLabel(master=self.frame2,image=img_log, text=" ")
-        # image_label.place(x=115, y=25)
-
-        # añadiendo texto
+        img_bg = CustomTK.CTkLabel(master=self.frame,
+                                    image=img_bg_frame,
+                                    text=" ",
+                                    bg_color=var.bg_light_blue)
+        
+        
         div_login_two = CustomTK.CTkLabel(master=self.frame2,
-                                        text="HOLA!",
-                                        font=var.font_text_2)
-        div_login_two.place(x=50, y=170)
-
+                                        text="Hola!",
+                                        font=var.font_text_bold
+                                        )
+        
         div_login_three = CustomTK.CTkLabel(master=self.frame2,
                                             text="Bienvenido de nuevo",
-                                            font=var.font_text)
-        div_login_three.place(x=50,y=190)
-
-        # entradas de texto
-        self.input_one = CustomTK.CTkEntry(master=self.frame2, width=220,
+                                            font=var.font_text_regular
+                                            )      
+        
+        self.input_one = CustomTK.CTkEntry(master=self.frame2,
+                                        width=220,
+                                        height=40,
                                         placeholder_text="Usuario",
-                                        font=("Verdana",16),
+                                        font=var.font_text_entry,
                                         corner_radius=100)
         
-        self.input_one.place(x=50, y=240)
-
+        label_ico_user = CustomTK.CTkLabel(master=self.frame2,
+                                            image=icono_user,
+                                            text=" "
+                                            )
+        
         self.input_two = CustomTK.CTkEntry(master=self.frame2,
-                                        width=220, 
+                                        width=220,
+                                        height=40,
                                         placeholder_text="Contraseña",
                                         show="*",
-                                        font=("Verdana",16),
+                                        font=var.font_text_entry,
                                         corner_radius=100)
         
-        self.input_two.place(x=50, y=280)
-
-        # boton
+        label_ico_password = CustomTK.CTkLabel(master=self.frame2,
+                                            image=icono_password,
+                                            text=" "
+                                            )
+        
         button1 = CustomTK.CTkButton(master=self.frame2,
                                     width=100,
-                                    height=40,
+                                    height=35,
                                     text="Login",
                                     corner_radius=100,
                                     fg_color=var.blue_button,
                                     font=var.font_text_button)
         
-        button1.place(x=100, y=350,anchor=tk.W)
-
-
+        button2 = CustomTK.CTkButton(master=self.frame,
+                                    width=100,
+                                    height=35,
+                                    text="Leer mas!",
+                                    corner_radius=0,
+                                    fg_color=var.blue_button,
+                                    bg_color="#02369A",
+                                    font=var.font_text_button)
+        
+        #---------------- posicionamiento-----------------------
             
+        self.div_login.pack()
+        self.frame.place(relx=0.58, rely=0.5, anchor=tk.E) #posicion del frame
+        self.frame2.place(relx=0.58,rely=0.5,anchor=tk.W) #posicion del frame
+        self.input_two.place(x=50, y=290)
+        self.input_one.place(x=50, y=240)
+        div_login_two.place(x=50, y=130)
+        div_login_three.place(x=50,y=175)
+        label_ico_user.place(x=20,y=245)
+        label_ico_password.place(x=20,y=295)
+        img_bg.place(x=0,y=0)
+        button1.place(x=100, y=355,anchor=tk.W)
+        button2.place(x=70, y=325,anchor=tk.W)
+        
+        
     # funcion de bucle
     def run(self):
         self.app.mainloop()
