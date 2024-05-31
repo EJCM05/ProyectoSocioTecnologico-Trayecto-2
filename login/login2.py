@@ -30,7 +30,13 @@ class LoginApp:
         img_bg = CustomTK.CTkLabel(master=self.frame,
                                     image=img_bg_frame,
                                     text=" ",
+<<<<<<< HEAD
+                                    bg_color="#B8CEE4")
+        img_bg.place(x=0,y=0)
+
+=======
                                     bg_color=var.bg_light_blue)
+>>>>>>> main
         
         self.frame2 = CustomTK.CTkFrame(master=self.div_login,
                                         width=457,
@@ -38,6 +44,30 @@ class LoginApp:
                                         fg_color=var.bg_white)
         
         div_login_two = CustomTK.CTkLabel(master=self.frame2,
+<<<<<<< HEAD
+                                        text="Iniciar sesion",
+                                        font=var.font_text_2)
+        div_login_two.place(x=85, y=115)
+
+        # entradas de texto
+        self.input_one = CustomTK.CTkEntry(master=self.frame2, width=220,
+                                        placeholder_text="Usuario",
+                                        font=("Verdana",16))
+        
+        self.input_one.place(x=50, y=160)
+
+        self.input_two = CustomTK.CTkEntry(master=self.frame2,
+                                        width=220,
+                                        placeholder_text="Contraseña",
+                                        show="*",
+                                        font=("Verdana",16))
+        
+        self.input_two.place(x=50, y=200)
+
+        # boton
+        button1 = CustomTK.CTkButton(master=self.frame2,
+                                    width=220,
+=======
                                         text="Hola!",
                                         font=var.font_text_bold
                                         )
