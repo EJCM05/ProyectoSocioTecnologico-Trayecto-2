@@ -9,5 +9,4 @@ black_button = "#000000"
 # ---------variables de fuentes----------------
 
 font_text = ("CantoraOne",16)
-font_text_2 = ("CantoraOne",16)
-font_text_button = ("Candal",16)
+font_text_2 = ("Candal",24)
