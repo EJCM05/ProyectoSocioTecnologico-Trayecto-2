@@ -5,7 +5,7 @@ from PIL import ImageTk, Image
 
 class LoginApp:
     def __init__(self):
-        # definicion de aparciencia
+        # definicion de apariencia
         CustomTK.set_appearance_mode("light")
         CustomTK.set_default_color_theme("dark-blue")
         
@@ -110,6 +110,6 @@ class LoginApp:
     def run(self):
         self.app.mainloop()
 
-# Crear y ejecutar la aplicación
+# Crear y ejecutar aplicación
 app = LoginApp()
 app.run()
