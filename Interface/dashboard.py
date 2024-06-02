@@ -17,31 +17,30 @@ class Dashboard():
         self.img_bg = ImageTk.PhotoImage(Image.open("imagen/background_dashboard.png"))
         
     def CrearFrames(self):
-        self.panel_principal = CustomTK.CTkFrame(master=self.app, width=1100, height=800, fg_color="#ffffff", corner_radius=100)        
-        self.panel_izquierdo = CustomTK.CTkFrame(master=self.app, width=240, height=800, fg_color="#EBEBEB", corner_radius=20)  
-        # posicionamiento   
-        self.panel_izquierdo.grid(column=0, row=0, padx=30,pady=25)
-        self.panel_principal.grid(column=1, row=0, padx=10,pady=25 )
+        self.panel_central = CustomTK.CTkFrame(master=self.app,fg_color=var.bg_gray_light)
+        self.panel_derecho = CustomTK.CTkFrame(master=self.panel_central,width=1000,height=800, fg_color=var.bg_white, corner_radius=100)    
+        self.panel_izquierdo = CustomTK.CTkFrame(master=self.panel_central, width=240, height=800, fg_color=var.bg_gray_light, corner_radius=20)  
+
+        #------------- posicionamiento--------------------------#
+        self.panel_central.pack()
+        self.panel_derecho.grid(column=4, row=0, padx=10,pady=25,columnspan=8)
+        self.panel_izquierdo.grid(column=0, row=0, padx=20,pady=25)
+
+
     
     def CrearLabel(self):
         # labels
         self.bg_izq = CustomTK.CTkLabel(master=self.panel_izquierdo, text=" ", height=800,width=240,image=self.img_bg)
-        self.label1 = CustomTK.CTkLabel(master=self.panel_principal, text="Total de Estudiantes", 
-                                        font=("FontAwesome",30, "bold"), fg_color="#84b6f4", height=100, width=200)        
-        self.label2 = CustomTK.CTkLabel(master=self.panel_principal, text="Total de Secciones", 
-                                        font=("FontAwesome",30, "bold"), fg_color="#84b6f4", height=100, width=200)        
-        self.label3 = CustomTK.CTkLabel(master=self.panel_principal, text="Total de Profesores", 
-                                        font=("FontAwesome",30, "bold"), fg_color="#84b6f4", height=100, width=200)        
-        self.label4 = CustomTK.CTkLabel(master=self.panel_principal, text="Grafico de todas\nlas Estadisticas",
-                                        font=("FontAwesome",30, "bold"), fg_color="#84b6f4", height=250, width=800)  
-        self.titulo = CustomTK.CTkLabel(master=self.panel_principal, text="Panel Principal", font=("consola", 30, "bold" ))        
-        self.sub_titulo = CustomTK.CTkLabel(master=self.panel_principal, text="Bienvenido (Ususario)", font=("consola",10, "bold")) 
+        self.label1 = CustomTK.CTkLabel(master=self.panel_derecho, text="Total de Estudiantes", 
+                                        font=var.font_text_amaranth_medium, fg_color="#84b6f4", height=100, width=200)             
+        self.label4 = CustomTK.CTkLabel(master=self.panel_derecho, text="Grafico de todas\nlas Estadisticas",
+                                        font=var.font_text_amaranth_medium, fg_color="#84b6f4", height=250, width=800)  
+        self.titulo = CustomTK.CTkLabel(master=self.panel_derecho, text="Panel Principal", font=("consola", 30, "bold" ))        
+        self.sub_titulo = CustomTK.CTkLabel(master=self.panel_derecho, text="Bienvenido (Usuario)", font=var.font_text_bold_small) 
         
         # -------------posicionamiento general ----------------#
         
         self.label1.place(x=100, y=150)
-        self.label2.place(x=450, y=150)
-        self.label3.place(x=800, y=150)
         self.label4.place(x=150, y=350)
         self.titulo.place(x=150, y=30)
         self.sub_titulo.place(x=150, y=70)
@@ -70,8 +69,12 @@ class Dashboard():
     def CreacionDeVentana(self):
         # creacion de ventana
         self.app = CustomTK.CTk()
-        self.app.geometry("1024x720")
+        self.app.geometry("1240x720")
         self.app.title("Dashboard")        
+        for i in range(10):
+            self.app.grid_rowconfigure(i, weight=1)
+            self.app.grid_columnconfigure(i, weight=1)
+
 
     def agregar_widgets(self):
         # Agregar Funciones costructoras de nuevos wighets
