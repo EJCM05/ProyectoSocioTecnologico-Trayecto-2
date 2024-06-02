@@ -47,9 +47,9 @@ class Dashboard():
         self.home = CustomTK.CTkButton(master=self.panel_izquierdo,
                                     width=100,
                                     text="Home",
-                                    corner_radius=0,
+                                    corner_radius=100,
                                     hover_color="#006BD7",
-                                    bg_color="#0575E6",
+                                                bg_color="#0463D1",
                                     fg_color=var.blue_button,
                                     font=var.font_text_button)
     
