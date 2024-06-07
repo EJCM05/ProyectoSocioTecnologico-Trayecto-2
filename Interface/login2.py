@@ -126,6 +126,8 @@ class LoginApp:
         self.img_bg_frame = ImageTk.PhotoImage(Image.open("imagen/background_gradient_blue.png"))
         self.icono_user = ImageTk.PhotoImage(file="imagen/ico_user.png")
         self.icono_password = ImageTk.PhotoImage(file="imagen/ico_password.png")
+        self.icono_user_dashboard = ImageTk.PhotoImage(file="imagen/ico_user_dashboard.png")
+        
     
     
     # configurar apariencia
