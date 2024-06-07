@@ -123,12 +123,12 @@ class LoginApp:
     
     
     def izquierda(self):
-        img_bg = CustomTK.CTkLabel(master=self.frame_izquierda,
+        self.img_bg = CustomTK.CTkLabel(master=self.frame_izquierda,
                                     image=self.img_bg_frame,
                                     text=" ",
                                     bg_color=var.bg_light_blue)
         
-        button2 = CustomTK.CTkButton(master=self.frame_izquierda,
+        self.button_leer = CustomTK.CTkButton(master=self.frame_izquierda,
                                     width=100,
                                     height=35,
                                     text="Leer mas!",
@@ -137,8 +137,8 @@ class LoginApp:
                                     bg_color="#02369A",
                                     font=var.font_text_button)
         # -- Posicionamiento --
-        img_bg.place(x=0,y=0)
-        button2.place(x=70, y=325,anchor=tk.W)
+        self.img_bg.place(x=0,y=0)
+        self.button_leer.place(x=70, y=325,anchor=tk.W)
     
     
     # funcion de bucle
