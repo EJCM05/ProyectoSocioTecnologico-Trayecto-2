@@ -1,24 +1,54 @@
-import sqlite3
+# para empezar tenemos que iniciar los servicios en xampp
+# luego iniciar los servicio de apache y mysql
+# posteriormente en el navegador introducimos : localhost/phpmyadmin
 
-# Establecer la conexión con la base de datos
-conexion = sqlite3.connect('bd/bd-rufino.db')
+# eliminar y crear Base de datos desde phpmyadmin
+# eliminar: DROP DATABASE NOMBRE_TABLA
+# crear: CREATE DATABASE NOMBRE_TABLA
 
-# Crear un cursor para ejecutar consultas
-cursor = conexion.cursor()
+# aca es el codigo, reecordar el import
 
-# Ejecutar una consulta
-# cursor.execute("""SELECT E.est_nombre, E.est_apellido, E.est_edad, G.grado, G.seccion, R.repre_nombre, R.repre_apellido, R.repre_edad, R.repre_cedula
-# FROM estudiantes as E
-# INNER JOIN representante as R ON E.id_representante = R.id_representante
-# INNER JOIN grado_rufino as G ON E.id_grado = G.id_grado;""")
-cursor.execute("""SELECT * From Director """)
+import sys
+from tkinter import *
+import mariadb 
 
-# Obtener los resultados de la consulta
-resultados = cursor.fetchall()
+# codigo para conectarse y comprobar la base de datos
 
-# Recorrer los resultados
-for fila in resultados:
-    print(fila)
+try:
+    conexion = mariadb.connect(
+        # todo debe de ir en strings menos el port
+        user = "root", #nombre del usuario con privilegios
+        password = "", #contraseña en caso de tenerla, si no la tiene se deja vacio
+        host = "127.0.0.1", #se agreda la direccion ip del localhost
+        port =3306, #este es el puerto por defecto 
+        database = "colegio"  #nombre de la base de datos
+        
+    )
+#la conexion.variable del nombre de la tabla es obligario
+    cursor = conexion.cursor()    # esto va importante
 
-# Cerrar la conexión
-conexion.close()
+except mariadb.Error as error:
+    print(f"hay un error en la conexion: {error}")
+    sys.exit(1)    #importar la libreria sys
+
+
+def execute():
+    try:
+        # simplemente lo que cambia es la instruccion SQL el resto queda    
+        consulta = cursor.execute("""
+                    SELECT p.primer_nombre, p.segundo_nombre, p.apellido_paterno, p.apellido_materno, p.genero, d.grado_especialidad, g.grado FROM Personal p JOIN Docente d ON p.id_personal = d.id_personal JOIN Grado g ON d.id_grado = g.id_grado;
+                    """)
+        
+        resultado = cursor.fetchall()
+        
+        for row in resultado:
+            print("\t".join(map(str, row)))
+        
+        conexion.commit() 
+    
+    except mariadb.Error as error_registro:
+        print(f"error en el registro {error_registro}")
+
+execute()
+    
+

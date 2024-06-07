@@ -9,6 +9,7 @@ class Dashboard():
         self.ConfigurarcionDeApariencia()
         self.CreacionDeVentana()
         self.ImportacionDeImagenes()
+        self.Plantilla()
         self.count_total()
         self.TextVars()
         self.agregar_widgets()   #esto siempre va de ultimo
@@ -22,22 +23,24 @@ class Dashboard():
         self.bg_yellow = ImageTk.PhotoImage(Image.open("imagen/bg_yellow.png"))
         self.icono_user_dashboard = ImageTk.PhotoImage(file="imagen/ico_user_dashboard.png")
 
-    def CrearFrames(self):
-        # Frames de ventanas
+    def Plantilla(self):
         self.panel_central = CustomTK.CTkFrame(master=self.app,fg_color=var.bg_gray_light)
         self.panel_izquierdo = CustomTK.CTkFrame(master=self.panel_central, width=200, height=656, fg_color=var.bg_gray_light, corner_radius=20)
         self.panel_derecho = CustomTK.CTkFrame(master=self.panel_central,width=750,height=656, fg_color=var.bg_white, corner_radius=38)
-        self.estadistica_frame = CustomTK.CTkFrame(master=self.panel_derecho,height=220,width=690 ,fg_color=var.bg_gray_light,corner_radius=30)
-        self.estadistica_frame_2 = CustomTK.CTkFrame(master=self.panel_derecho,height=320,width=690 ,fg_color=var.bg_gray_light,corner_radius=30)
         self.frame_user = CustomTK.CTkFrame(master=self.panel_derecho,height=50,width=130 ,fg_color=var.bg_gray_light,corner_radius=30)
         # ---------------------------------------------------------------
-        self.panel_central.pack()
-        self.panel_izquierdo.grid(row=0,column=0,padx=0,pady=10)
         self.panel_derecho.grid(row=0,column=1,padx=20,pady=10,rowspan=4)
+        self.panel_izquierdo.grid(row=0,column=0,padx=0,pady=10)
+        self.panel_central.pack()
+        self.frame_user.place(x=585, y=15)
+    
+    def CrearFrames(self):
+        # Frames de ventanas
+        self.estadistica_frame = CustomTK.CTkFrame(master=self.panel_derecho,height=220,width=690 ,fg_color=var.bg_gray_light,corner_radius=30)
+        self.estadistica_frame_2 = CustomTK.CTkFrame(master=self.panel_derecho,height=320,width=690 ,fg_color=var.bg_gray_light,corner_radius=30)
         # ----------------------------------------------------------------
         self.estadistica_frame.place(x=30, y=80)
         self.estadistica_frame_2.place(x=30, y=310)
-        self.frame_user.place(x=585, y=15)
         # ---------------------------------------------------------------
         # Frames personalizados
         self.frame_estadistica_profesor = CustomTK.CTkFrame(master=self.estadistica_frame,width=155,height=128,fg_color=var.bg_gray_light, corner_radius=20)
@@ -221,8 +224,6 @@ class Dashboard():
         self.Configuracion.place(x=100,y=255,anchor=tk.CENTER)
         self.Salir.place(x=100,y=600,anchor=tk.CENTER)
 
-        
-        
         #--------------------------------------------------------------------------------
     def ConfigurarcionDeApariencia(self):
         # definicion de apariencia

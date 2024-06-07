@@ -18,7 +18,7 @@ CREATE TABLE Escuela (
 
 -- Tabla: Personal
 CREATE TABLE Personal (
-    id_personal INT AUTOINCREMENT PRIMARY KEY,
+    id_personal INT AUTO_INCREMENT PRIMARY KEY,
     primer_nombre VARCHAR(50),
     segundo_nombre VARCHAR(50),
     apellido_paterno VARCHAR(50),
@@ -29,7 +29,7 @@ CREATE TABLE Personal (
 
 -- Tabla: Grado
 CREATE TABLE Grado (
-    id_grado INT AUTOINCREMENT PRIMARY KEY,
+    id_grado INT AUTO_INCREMENT PRIMARY KEY,
     grado VARCHAR(40)
 );
 
@@ -52,7 +52,7 @@ CREATE TABLE Administrativos (
 
 -- Tabla: Docente (hereda de Personal)
 CREATE TABLE Docente (
-    id_maestro INT AUTOINCREMENT PRIMARY KEY,
+    id_maestro INT AUTO_INCREMENT PRIMARY KEY,
     id_personal INT,
     id_grado INT,
     grado_especialidad VARCHAR(100),
@@ -62,7 +62,7 @@ CREATE TABLE Docente (
 
 -- Tabla: Representante
 CREATE TABLE Representante (
-    id_representante INT AUTOINCREMENT PRIMARY KEY,
+    id_representante INT AUTO_INCREMENT PRIMARY KEY,
     primer_nombre VARCHAR(50),
     segundo_nombre VARCHAR(50),
     apellido_paterno VARCHAR(50),
@@ -74,7 +74,7 @@ CREATE TABLE Representante (
 
 -- Tabla: Estudiante
 CREATE TABLE Estudiante (
-    id_estudiante INT AUTOINCREMENT PRIMARY KEY,
+    id_estudiante INT AUTO_INCREMENT PRIMARY KEY,
     id_representante INT,
     id_grado INT,
     primer_nombre VARCHAR(50),
