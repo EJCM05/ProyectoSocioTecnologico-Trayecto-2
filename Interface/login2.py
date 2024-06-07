@@ -33,8 +33,9 @@ class LoginApp:
     # metodo para crear la ventana principal
     def crear_ventana_principal(self):
         self.app = CustomTK.CTk()
-        self.app.geometry("1240x720")
+        self.app.geometry("920x600")
         self.app.title("Login")
+        # self.app.resizable(0,0)
     
 
     # importando y añadiendo imagenes de background e iconos
@@ -56,17 +57,17 @@ class LoginApp:
     def parte_central(self):
         # parte izquierda
         self.frame_izquierda = CustomTK.CTkFrame(master=self.div_login,
-                                        width=663,
+                                        width=463,
                                         height=546)
         
         #parte derecha
         self.frame_derecha = CustomTK.CTkFrame(master=self.div_login,
-                                        width=457,
+                                        width=347,
                                         height=546,
                                         fg_color=var.bg_white)
         # -- Posicionamiento --
-        self.frame_izquierda.place(relx=0.58, rely=0.5, anchor=tk.E) #posicion del frame
-        self.frame_derecha.place(relx=0.58,rely=0.5,anchor=tk.W) #posicion del frame
+        self.frame_izquierda.place(relx=0.54, rely=0.5, anchor=tk.E) #posicion del frame
+        self.frame_derecha.place(relx=0.54,rely=0.5,anchor=tk.W) #posicion del frame
     
     
     def derecha(self):
