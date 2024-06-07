@@ -5,7 +5,6 @@
 -Leandro Galavis
 -Angel (apellido)
 
-SELECT E.est_nombre, E.est_apellido, E.est_edad, G.grado, G.seccion, R.repre_nombre, R.repre_apellido, R.repre_edad, R.repre_cedula
-FROM estudiantes as E
-INNER JOIN representante as R ON E.id_representante = R.id_representante
-INNER JOIN grado_rufino as G ON E.id_grado = G.id_grado;
+Consultas:
+
+SELECT p.primer_nombre, p.segundo_nombre, p.apellido_paterno, p.apellido_materno, p.genero, d.grado_especialidad, g.grado FROM Personal p JOIN Docente d ON p.id_personal = d.id_personal JOIN Grado g ON d.id_grado = g.id_grado;
