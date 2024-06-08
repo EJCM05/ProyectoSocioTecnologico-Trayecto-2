@@ -36,9 +36,9 @@ class LoginApp:
     # importando imagenes e iconos
     def importar_img_ico(self):
         # importardo imagen
-        self.icono_user_original = Image.open("imagen/login-usuario-blanco.png")
-        self.logo_inicio_original = Image.open("imagen/login-logo-inicio.png")
-        self.icono_password_original = Image.open("imagen/login-candado-blanco.png")
+        self.icono_user_original = Image.open("imagenes/login-usuario-blanco.png")
+        self.logo_inicio_original = Image.open("imagenes/login-logo-inicio.png")
+        self.icono_password_original = Image.open("imagenes/login-candado-blanco.png")
         
         # ajustando al tamaño deseado. imagen.resize((nuevo_ancho, nuevo_alto), suavizar y mejorar la calidad)
         self.icono_user_ajustada = self.icono_user_original.resize((35, 35), Image.LANCZOS)
@@ -54,11 +54,11 @@ class LoginApp:
     def principal(self):
         # contenedor principal (blanco)
         self.contenedor_blanco = ctk.CTkFrame(master=self.app,
-                                              width=550,
-                                              height=550,
-                                              corner_radius=0,
-                                              fg_color="white",
-                                              )
+                                            width=550,
+                                            height=550,
+                                            corner_radius=0,
+                                            fg_color="white",
+                                            )
         
         # contenedor principal (azul)
         self.contenedor_azul = ctk.CTkFrame(master=self.app,
@@ -89,8 +89,8 @@ class LoginApp:
         
         # logo de inicio
         self.logo = ctk.CTkLabel(master=self.contenedor_blanco,
-                                 image=self.img_logo_inicio,
-                                 text="",
+                                image=self.img_logo_inicio,
+                                text="",
                                 )
         
         # - Posicionamiento -
@@ -102,67 +102,67 @@ class LoginApp:
     def derecha(self):
         #texto bienvenido
         self.texto_bienvenido = ctk.CTkLabel(master=self.contenedor_azul,
-                                             text="Bienvenido!",
-                                             text_color="white",
-                                             font=("Helvetica", 40)
-                                             )
+                                            text="Bienvenido!",
+                                            text_color="white",
+                                            font=("Helvetica", 40)
+                                            )
         
         # texto inicia sesion
         self.texto_inicio_continuar = ctk.CTkLabel(master=self.contenedor_azul,
-                                             text="Inicia sesión para continuar",
-                                             text_color="white",
-                                             font=("Helvetica", 20)
-                                             )
+                                            text="Inicia sesión para continuar",
+                                            text_color="white",
+                                            font=("Helvetica", 20)
+                                            )
         
         # texto usuario
         self.texto_usuario = ctk.CTkLabel(master=self.contenedor_azul,
-                                             text="Usuario:",
-                                             text_color="white",
-                                             font=("Helvetica", 20)
-                                             )
+                                            text="Usuario:",
+                                            text_color="white",
+                                            font=("Helvetica", 20)
+                                            )
         
         # icono de usuario
         self.icono_usuario = ctk.CTkLabel(master=self.contenedor_azul,
-                                      image=self.img_icono_user,
-                                      text="",
-                                      )
+                                    image=self.img_icono_user,
+                                    text="",
+                                    )
         
         # input donde se introduce el usuario
         self.input_usuario = ctk.CTkEntry(master=self.contenedor_azul,
-                                       width=300,
-                                       height=40,
-                                       corner_radius=100
-                                       )
+                                    width=300,
+                                    height=40,
+                                    corner_radius=100
+                                    )
         
         #texto contraseña
         self.texto_contraseña = ctk.CTkLabel(master=self.contenedor_azul,
-                                             text="Contraseña:",
-                                             text_color="white",
-                                             font=("Helvetica", 20)
-                                             )
+                                            text="Contraseña:",
+                                            text_color="white",
+                                            font=("Helvetica", 20)
+                                            )
         
         # icono de contraseña
         self.icono_contraseña = ctk.CTkLabel(master=self.contenedor_azul,
-                                      image=self.img_icono_password,
-                                      text="",
-                                      )
+                                    image=self.img_icono_password,
+                                    text="",
+                                    )
         
         # input donde se introduce la contraseña
         self.input_contraseña = ctk.CTkEntry(master=self.contenedor_azul,
-                                       width=300,
-                                       height=40,
-                                       corner_radius=100,
-                                       show="*"
-                                       )
+                                    width=300,
+                                    height=40,
+                                    corner_radius=100,
+                                    show="*"
+                                    )
         
         # boton de login
         self.boton_login = ctk.CTkButton(master=self.contenedor_azul,
-                                         width=300,
-                                         height=40,
-                                         text="Continuar",
-                                         corner_radius=100,
-                                         fg_color="#E9AD00",
-                                         text_color="black"
+                                        width=300,
+                                        height=40,
+                                        text="Continuar",
+                                        corner_radius=100,
+                                        fg_color="#E9AD00",
+                                        text_color="black"
                                         )
         
         # - Posicionamiento -
