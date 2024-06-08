@@ -1,0 +1,187 @@
+import tkinter as tk
+import customtkinter as ctk
+from PIL import ImageTk, Image
+
+class LoginApp:
+    def __init__(self):
+        # definicion de apariencia
+        self.configurar_apariencia()
+        
+        # creacion de ventana
+        self.crear_ventana_principal()
+        
+        # imagenes e iconos
+        self.importar_img_ico()
+        
+        # cuadro principal
+        self.principal()
+        self.izquierda()
+        self.derecha()
+    
+    
+    # configurar apariencia
+    def configurar_apariencia(self):
+        ctk.set_appearance_mode("light")
+        ctk.set_default_color_theme("dark-blue")
+    
+    
+    # metodo para crear la ventana principal
+    def crear_ventana_principal(self):
+        self.app = ctk.CTk()
+        self.app.geometry("1280x720")
+        self.app.title("Login")
+        self.app.resizable(0,0)
+    
+    
+    # importando imagenes e iconos
+    def importar_img_ico(self):
+        # importardo imagen
+        self.icono_user_original = Image.open("imagen/login-usuario-blanco.png")
+        self.logo_inicio_original = Image.open("imagen/login-logo-inicio.png")
+        self.icono_password_original = Image.open("imagen/login-candado-blanco.png")
+        
+        # ajustando al tamaño deseado. imagen.resize((nuevo_ancho, nuevo_alto), suavizar y mejorar la calidad)
+        self.icono_user_ajustada = self.icono_user_original.resize((35, 35), Image.LANCZOS)
+        self.logo_inicio_ajustada = self.logo_inicio_original.resize((300, 300), Image.LANCZOS)
+        self.icono_password_ajustada = self.icono_password_original.resize((35, 35), Image.LANCZOS)
+        
+        # asignando a la variable que va a ser usada
+        self.img_icono_user = ImageTk.PhotoImage(self.icono_user_ajustada)
+        self.img_logo_inicio = ImageTk.PhotoImage(self.logo_inicio_ajustada)
+        self.img_icono_password = ImageTk.PhotoImage(self.icono_password_ajustada)
+    
+    
+    def principal(self):
+        # contenedor principal (blanco)
+        self.contenedor_blanco = ctk.CTkFrame(master=self.app,
+                                              width=550,
+                                              height=550,
+                                              corner_radius=0,
+                                              fg_color="white",
+                                              )
+        
+        # contenedor principal (azul)
+        self.contenedor_azul = ctk.CTkFrame(master=self.app,
+                                            width=550,
+                                            height=550,
+                                            corner_radius=0,
+                                            fg_color="#005BEA"
+                                            )
+        
+        # - Posicionamiento -
+        self.contenedor_blanco.place(relx=0.5, rely=0.5, anchor="e")
+        self.contenedor_azul.place(relx=0.5, rely=0.5, anchor="w")
+    
+    
+    def izquierda(self):
+        #texto nombre de la escuela
+        self.texto_nombre_escuela_1era_linea = ctk.CTkLabel(master=self.contenedor_blanco,
+                                                text="Escuela Nacional",
+                                                text_color="black",
+                                                font=("Helvetica", 40)
+                                                )
+        
+        self.texto_nombre_escuela_2da_linea = ctk.CTkLabel(master=self.contenedor_blanco,
+                                                text="Rufino Duque Contreras",
+                                                text_color="black",
+                                                font=("Helvetica", 40)
+                                                )
+        
+        # logo de inicio
+        self.logo = ctk.CTkLabel(master=self.contenedor_blanco,
+                                 image=self.img_logo_inicio,
+                                 text="",
+                                )
+        
+        # - Posicionamiento -
+        self.texto_nombre_escuela_1era_linea.place(relx=0.5, rely=0.1, anchor="center")
+        self.texto_nombre_escuela_2da_linea.place(relx=0.5, rely=0.2, anchor="center")
+        self.logo.place(relx=0.5, rely=0.6, anchor="center")
+    
+    
+    def derecha(self):
+        #texto bienvenido
+        self.texto_bienvenido = ctk.CTkLabel(master=self.contenedor_azul,
+                                             text="Bienvenido!",
+                                             text_color="white",
+                                             font=("Helvetica", 40)
+                                             )
+        
+        # texto inicia sesion
+        self.texto_inicio_continuar = ctk.CTkLabel(master=self.contenedor_azul,
+                                             text="Inicia sesión para continuar",
+                                             text_color="white",
+                                             font=("Helvetica", 20)
+                                             )
+        
+        # texto usuario
+        self.texto_usuario = ctk.CTkLabel(master=self.contenedor_azul,
+                                             text="Usuario:",
+                                             text_color="white",
+                                             font=("Helvetica", 20)
+                                             )
+        
+        # icono de usuario
+        self.icono_usuario = ctk.CTkLabel(master=self.contenedor_azul,
+                                      image=self.img_icono_user,
+                                      text="",
+                                      )
+        
+        # input donde se introduce el usuario
+        self.input_usuario = ctk.CTkEntry(master=self.contenedor_azul,
+                                       width=300,
+                                       height=40,
+                                       corner_radius=100
+                                       )
+        
+        #texto contraseña
+        self.texto_contraseña = ctk.CTkLabel(master=self.contenedor_azul,
+                                             text="Contraseña:",
+                                             text_color="white",
+                                             font=("Helvetica", 20)
+                                             )
+        
+        # icono de contraseña
+        self.icono_contraseña = ctk.CTkLabel(master=self.contenedor_azul,
+                                      image=self.img_icono_password,
+                                      text="",
+                                      )
+        
+        # input donde se introduce la contraseña
+        self.input_contraseña = ctk.CTkEntry(master=self.contenedor_azul,
+                                       width=300,
+                                       height=40,
+                                       corner_radius=100,
+                                       show="*"
+                                       )
+        
+        # boton de login
+        self.boton_login = ctk.CTkButton(master=self.contenedor_azul,
+                                         width=300,
+                                         height=40,
+                                         text="Continuar",
+                                         corner_radius=100,
+                                         fg_color="#E9AD00",
+                                         text_color="black"
+                                        )
+        
+        # - Posicionamiento -
+        self.texto_bienvenido.place(relx=0.25, rely=0.15, anchor="w")
+        self.texto_inicio_continuar.place(relx=0.25, rely=0.23, anchor="w")
+        self.texto_usuario.place(relx=0.25, rely=0.43, anchor="w")
+        self.icono_usuario.place(relx=0.18, rely=0.5, anchor="center")
+        self.input_usuario.place(relx=0.5, rely=0.5, anchor="center")
+        self.texto_contraseña.place(relx=0.25, rely=0.63, anchor="w")
+        self.icono_contraseña.place(relx=0.18, rely=0.7, anchor="center")
+        self.input_contraseña.place(relx=0.5, rely=0.7, anchor="center")
+        self.boton_login.place(relx=0.5, rely=0.85, anchor="center")
+    
+    
+    #iniciar la ventana
+    def run(self):
+        self.app.mainloop()
+
+
+# Crear y ejecutar aplicación
+app = LoginApp()
+app.run()
