@@ -1,5 +1,6 @@
 import tkinter as tk
 import customtkinter as ctk
+import variables as var
 from PIL import ImageTk, Image
 
 class LoginApp:
@@ -57,7 +58,9 @@ class LoginApp:
                                             width=550,
                                             height=550,
                                             corner_radius=0,
-                                            fg_color="white",
+                                            fg_color=var.bg_white,
+                                            border_color=var.border_black,
+                                            border_width=1
                                             )
         
         # contenedor principal (azul)
@@ -65,7 +68,9 @@ class LoginApp:
                                             width=550,
                                             height=550,
                                             corner_radius=0,
-                                            fg_color="#005BEA"
+                                            fg_color=var.bg_blue,
+                                            border_color=var.border_black,
+                                            border_width=0.5
                                             )
         
         # - Posicionamiento -
@@ -77,14 +82,14 @@ class LoginApp:
         #texto nombre de la escuela
         self.texto_nombre_escuela_1era_linea = ctk.CTkLabel(master=self.contenedor_blanco,
                                                 text="Escuela Nacional",
-                                                text_color="black",
-                                                font=("Helvetica", 40)
+                                                text_color=var.text_black,
+                                                font=var.Amaranth_large
                                                 )
         
         self.texto_nombre_escuela_2da_linea = ctk.CTkLabel(master=self.contenedor_blanco,
                                                 text="Rufino Duque Contreras",
-                                                text_color="black",
-                                                font=("Helvetica", 40)
+                                                text_color=var.text_black,
+                                                font=var.Amaranth_medium
                                                 )
         
         # logo de inicio
@@ -94,31 +99,31 @@ class LoginApp:
                                 )
         
         # - Posicionamiento -
-        self.texto_nombre_escuela_1era_linea.place(relx=0.5, rely=0.1, anchor="center")
-        self.texto_nombre_escuela_2da_linea.place(relx=0.5, rely=0.2, anchor="center")
-        self.logo.place(relx=0.5, rely=0.6, anchor="center")
+        self.texto_nombre_escuela_1era_linea.place(relx=0.5, rely=0.2, anchor="center")
+        self.texto_nombre_escuela_2da_linea.place(relx=0.5, rely=0.3, anchor="center")
+        self.logo.place(relx=0.5, rely=0.65, anchor="center")
     
     
     def derecha(self):
         #texto bienvenido
         self.texto_bienvenido = ctk.CTkLabel(master=self.contenedor_azul,
                                             text="Bienvenido!",
-                                            text_color="white",
-                                            font=("Helvetica", 40)
+                                            text_color=var.text_white,
+                                            font=var.Amaranth_large
                                             )
         
         # texto inicia sesion
         self.texto_inicio_continuar = ctk.CTkLabel(master=self.contenedor_azul,
                                             text="Inicia sesión para continuar",
-                                            text_color="white",
-                                            font=("Helvetica", 20)
+                                            text_color=var.text_white,
+                                            font=var.Andika_medium
                                             )
         
         # texto usuario
         self.texto_usuario = ctk.CTkLabel(master=self.contenedor_azul,
                                             text="Usuario:",
-                                            text_color="white",
-                                            font=("Helvetica", 20)
+                                            text_color=var.text_white,
+                                            font=var.Amaranth_small
                                             )
         
         # icono de usuario
@@ -131,14 +136,15 @@ class LoginApp:
         self.input_usuario = ctk.CTkEntry(master=self.contenedor_azul,
                                     width=300,
                                     height=40,
-                                    corner_radius=100
+                                    corner_radius=100,
+                                    font=var.Andika_small
                                     )
         
         #texto contraseña
         self.texto_contraseña = ctk.CTkLabel(master=self.contenedor_azul,
                                             text="Contraseña:",
-                                            text_color="white",
-                                            font=("Helvetica", 20)
+                                            text_color=var.text_white,
+                                            font=var.Amaranth_small
                                             )
         
         # icono de contraseña
@@ -152,7 +158,8 @@ class LoginApp:
                                     width=300,
                                     height=40,
                                     corner_radius=100,
-                                    show="*"
+                                    show="*",
+                                    font=var.Andika_small
                                     )
         
         # boton de login
@@ -161,20 +168,21 @@ class LoginApp:
                                         height=40,
                                         text="Continuar",
                                         corner_radius=100,
-                                        fg_color="#E9AD00",
-                                        text_color="black"
+                                        fg_color=var.buttons_color,
+                                        text_color=var.text_black,
+                                        font=var.Amaranth_small
                                         )
         
         # - Posicionamiento -
-        self.texto_bienvenido.place(relx=0.25, rely=0.15, anchor="w")
-        self.texto_inicio_continuar.place(relx=0.25, rely=0.23, anchor="w")
-        self.texto_usuario.place(relx=0.25, rely=0.43, anchor="w")
-        self.icono_usuario.place(relx=0.18, rely=0.5, anchor="center")
-        self.input_usuario.place(relx=0.5, rely=0.5, anchor="center")
-        self.texto_contraseña.place(relx=0.25, rely=0.63, anchor="w")
-        self.icono_contraseña.place(relx=0.18, rely=0.7, anchor="center")
-        self.input_contraseña.place(relx=0.5, rely=0.7, anchor="center")
-        self.boton_login.place(relx=0.5, rely=0.85, anchor="center")
+        self.texto_bienvenido.place(relx=0.22, rely=0.20, anchor="w")
+        self.texto_inicio_continuar.place(relx=0.23, rely=0.30, anchor="w")
+        self.texto_usuario.place(relx=0.25, rely=0.40, anchor="w")
+        self.icono_usuario.place(relx=0.18, rely=0.47, anchor="center")
+        self.input_usuario.place(relx=0.5, rely=0.47, anchor="center")
+        self.texto_contraseña.place(relx=0.25, rely=0.57, anchor="w")
+        self.icono_contraseña.place(relx=0.18, rely=0.64, anchor="center")
+        self.input_contraseña.place(relx=0.5, rely=0.64, anchor="center")
+        self.boton_login.place(relx=0.5, rely=0.77, anchor="center")
     
     
     #iniciar la ventana
