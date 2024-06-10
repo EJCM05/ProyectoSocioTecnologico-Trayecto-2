@@ -7,7 +7,7 @@ fonts.font.add_file("fuentes/Andika.ttf")
 #----------------------------------------------#
                 # fuentes
 Amaranth_large = ("Amaranth", 54) 
-Amaranth_medium_large = ("Amaranth", 36)
+Amaranth_medium_large = ("Amaranth", 32)
 Amaranth_medium = ("Amaranth", 28)
 Amaranth_small = ("Amaranth", 18) 
 Andika_large = ("Andika", 28)
