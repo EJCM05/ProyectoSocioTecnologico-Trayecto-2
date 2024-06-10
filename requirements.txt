@@ -5,3 +5,4 @@ pillow
 pyglet
 datetime
 time
+sqlite3
