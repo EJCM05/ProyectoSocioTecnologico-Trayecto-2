@@ -16,11 +16,11 @@ class Dashboard:
         #datetime
         self.datetime()
         # cuadro principal
+        self.secciones()
         self.panel_izquierdo()
         self.elementos_panel_izquierdo()
         self.panel_superior()
         self.elementos_panel_superior()
-        self.secciones()
     
     
     # configurar apariencia
@@ -164,16 +164,19 @@ class Dashboard:
         self.Hora_fecha.place(relx=0.98,rely=0.5, anchor="e")
         
     def secciones(self):
-        pass
-    
-    
+        self.seccion = ctk.CTkFrame(master=self.app,
+                                    width=1084,
+                                    height=640,
+                                    corner_radius=0,
+                                    fg_color="orange")
+        #------------------posicionamiento----------------------------------#
+        self.seccion.grid(column=1,row=0, sticky="s")
+        
     def datetime(self):
         self.ahora = datetime.datetime.now()
         self.fecha_actual = self.ahora.strftime("%d/%m/%y")
         self.hora_actual = self.ahora.strftime("%I:%M%p")
 
-
-            
     #iniciar la ventana
     def run(self):
         self.app.mainloop()
