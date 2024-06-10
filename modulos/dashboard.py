@@ -27,7 +27,7 @@ class Dashboard:
     def configurar_apariencia(self):
         ctk.set_appearance_mode("light")
         ctk.set_default_color_theme("dark-blue")
-    
+
     
     # metodo para crear la ventana principal
     def crear_ventana_principal(self):
@@ -35,8 +35,8 @@ class Dashboard:
         self.app.geometry("1280x720")
         self.app.title("Login")
         self.app.resizable(0,0)
-    
-    
+        self.app.update_idletasks()
+
     # importando imagenes e iconos
     def importar_img_ico(self):
         # importardo imagen
@@ -121,10 +121,11 @@ class Dashboard:
                                         font=var.Amaranth_small,
                                         fg_color=var.buttons_color,
                                         hover_color=var.hover_buttons_color,
-                                        corner_radius=30
+                                        corner_radius=30,
+                                        command=self.kill
                                         )
         
-        #           posicionamiento
+        #------------------posicionamiento------------------------------------
         self.icono_menu.place(relx=0.25, rely=0.01, anchor="n")
         self.texto_menu.place(relx=0.7,rely=0.030,anchor="n",)
         self.boton_inicio.place(relx=0.5,rely=0.31,anchor="center")
@@ -133,6 +134,8 @@ class Dashboard:
         self.boton_estudiantes.place(relx=0.5,rely=0.49,anchor="center")
         self.boton_perfil.place(relx=0.5,rely=0.55,anchor="center")
         self.boton_salir.place(relx=0.5,rely=0.91,anchor="s")
+        
+        #-------------------------funciones de botones-----------------------
         
     def panel_superior(self):
         self.panel_superior = ctk.CTkFrame(master=self.app,
@@ -167,8 +170,7 @@ class Dashboard:
         self.seccion = ctk.CTkFrame(master=self.app,
                                     width=1084,
                                     height=640,
-                                    corner_radius=0,
-                                    fg_color="orange")
+                                    corner_radius=0)
         #------------------posicionamiento----------------------------------#
         self.seccion.grid(column=1,row=0, sticky="s")
         
@@ -180,8 +182,9 @@ class Dashboard:
     #iniciar la ventana
     def run(self):
         self.app.mainloop()
-
-
+    def kill(self):
+        self.app.destroy()
+    
 # Crear y ejecutar aplicación
 app = Dashboard()
 app.run()
