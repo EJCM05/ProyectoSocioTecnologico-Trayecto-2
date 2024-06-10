@@ -24,7 +24,8 @@ modulos_de_secciones: Incluira los diferentes modulos mas pequeños para el codi
 ## Proceso de instalacion
 1. Clona este repositorio en tu máquina local.
 2. Crea un entorno virtual (opcional pero recomendado).
-3. Instala las dependencias:
+3. Para el uso de las fuentes recuerda instalar manualmente (se encuentran carpeta fuentes)
+4. Instala las dependencias:
 
 ```bash
     pip install -r requirements.txt
