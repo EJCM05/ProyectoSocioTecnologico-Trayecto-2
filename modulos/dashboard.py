@@ -16,7 +16,7 @@ class Dashboard:
         #datetime
         self.datetime()
         # cuadro principal
-        self.secciones()
+        self.area_principal_funcion()
         self.panel_izquierdo()
         self.elementos_panel_izquierdo()
         self.panel_superior()
@@ -37,6 +37,7 @@ class Dashboard:
         self.app.resizable(0,0)
         self.app.update_idletasks()
 
+    
     # importando imagenes e iconos
     def importar_img_ico(self):
         # importardo imagen
@@ -48,7 +49,7 @@ class Dashboard:
         # asignando a la variable que va a ser usada
         self.img_menu = ImageTk.PhotoImage(self.icono_menu_ajustada)
         self.img_usuario = ImageTk.PhotoImage(self.icono_usuario_ajustada)
-        
+    
     
     # incorporacion de frames y widgets
     def panel_izquierdo(self):
@@ -134,9 +135,9 @@ class Dashboard:
         self.boton_estudiantes.place(relx=0.5,rely=0.49,anchor="center")
         self.boton_perfil.place(relx=0.5,rely=0.55,anchor="center")
         self.boton_salir.place(relx=0.5,rely=0.91,anchor="s")
-        
-        #-------------------------funciones de botones-----------------------
-        
+    
+    
+    #-------------------------funciones de botones-----------------------
     def panel_superior(self):
         self.panel_superior = ctk.CTkFrame(master=self.app,
                                     width=1084,
@@ -145,7 +146,8 @@ class Dashboard:
                                     corner_radius=0)
         #------------------posicionamiento----------------------------------#
         self.panel_superior.grid(row=0,column=1,sticky="N")
-        
+    
+    
     def elementos_panel_superior(self):
         self.icono_usuario = ctk.CTkLabel(master=self.panel_superior,
                                 image=self.img_usuario,
@@ -165,26 +167,33 @@ class Dashboard:
         self.icono_usuario.place(relx=0.02, rely=0.5, anchor="w")
         self.texto_usuario.place(relx=0.06, rely=0.55, anchor="w")
         self.Hora_fecha.place(relx=0.98,rely=0.5, anchor="e")
-        
-    def secciones(self):
-        self.seccion = ctk.CTkFrame(master=self.app,
+    
+    
+    def area_principal_funcion(self):
+        self.area_contenido = ctk.CTkFrame(master=self.app,
+                                    fg_color="green",#-------------------------
                                     width=1084,
                                     height=640,
                                     corner_radius=0)
         #------------------posicionamiento----------------------------------#
-        self.seccion.grid(column=1,row=0, sticky="s")
-        
+        self.area_contenido.grid(column=1,row=0, sticky="s")
+    
+    
     def datetime(self):
         self.ahora = datetime.datetime.now()
         self.fecha_actual = self.ahora.strftime("%d/%m/%y")
         self.hora_actual = self.ahora.strftime("%I:%M%p")
 
+    
     #iniciar la ventana
     def run(self):
         self.app.mainloop()
+    
+    
     def kill(self):
         self.app.destroy()
-    
+
+
 # Crear y ejecutar aplicación
 app = Dashboard()
 app.run()
