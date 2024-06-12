@@ -1,6 +1,6 @@
 import tkinter as tk
 import customtkinter as ctk
-import variables as var
+from modulos import variables as var
 from PIL import ImageTk, Image
 
 
@@ -8,15 +8,18 @@ class LoginApp:
     def __init__(self):
         # definicion de apariencia
         self.configurar_apariencia()
+        
         # creacion de ventana
         self.crear_ventana_principal()
+        
         # imagenes e iconos
         self.importar_img_ico()
         # cuadro principal
         self.principal()
         self.izquierda()
         self.derecha()
-        
+    
+    
     # configurar apariencia
     def configurar_apariencia(self):
         ctk.set_appearance_mode("light")
@@ -51,7 +54,7 @@ class LoginApp:
     
     def principal(self):
         # contenedor principal (blanco)
-        self.contenedor_blanco = ctk.CTkFrame(master=self.app,
+        self.contenedor_blanco = ctk.CTkFrame(master=self.master,
                                             width=550,
                                             height=550,
                                             corner_radius=0,
@@ -61,7 +64,7 @@ class LoginApp:
                                             )
         
         # contenedor principal (azul)
-        self.contenedor_azul = ctk.CTkFrame(master=self.app,
+        self.contenedor_azul = ctk.CTkFrame(master=self.master,
                                             width=550,
                                             height=550,
                                             corner_radius=0,
@@ -180,7 +183,12 @@ class LoginApp:
         self.icono_contraseña.place(relx=0.18, rely=0.64, anchor="center")
         self.input_contraseña.place(relx=0.5, rely=0.64, anchor="center")
         self.boton_login.place(relx=0.5, rely=0.77, anchor="center")
-
+    
+    def validacion(self):
+        usuario = self.input_usuario.get()
+        contraseña = self.input_contraseña.get()
+        pass
+        
     #iniciar la ventana
     def run(self):
         self.app.mainloop()
