@@ -1,39 +1,28 @@
 import tkinter as tk
 import customtkinter as ctk
-import variables as var
+from modulos import variables as var
 from PIL import ImageTk, Image
 
 
 class LoginApp:
-    def __init__(self):
-        # definicion de apariencia
-        self.configurar_apariencia()
+    def __init__(self, master):
+        self.master = master
+    
+    
+    def mostrar(self):
+        # Eliminar widgets anteriores en el área de contenido
+        for widget in self.master.winfo_children():
+            widget.destroy()
         
-        # creacion de ventana
-        self.crear_ventana_principal()
-        
-        # imagenes e iconos
+         # imagenes e iconos
         self.importar_img_ico()
         
         # cuadro principal
         self.principal()
         self.izquierda()
         self.derecha()
-    
-    
-    # configurar apariencia
-    def configurar_apariencia(self):
-        ctk.set_appearance_mode("light")
-        ctk.set_default_color_theme("dark-blue")
-    
-    
-    # metodo para crear la ventana principal
-    def crear_ventana_principal(self):
-        self.app = ctk.CTk()
-        self.app.geometry("1280x720")
-        self.app.title("Login")
-        self.app.resizable(0,0)
-    
+
+
     
     # importando imagenes e iconos
     def importar_img_ico(self):
@@ -55,7 +44,7 @@ class LoginApp:
     
     def principal(self):
         # contenedor principal (blanco)
-        self.contenedor_blanco = ctk.CTkFrame(master=self.app,
+        self.contenedor_blanco = ctk.CTkFrame(master=self.master,
                                             width=550,
                                             height=550,
                                             corner_radius=0,
@@ -65,7 +54,7 @@ class LoginApp:
                                             )
         
         # contenedor principal (azul)
-        self.contenedor_azul = ctk.CTkFrame(master=self.app,
+        self.contenedor_azul = ctk.CTkFrame(master=self.master,
                                             width=550,
                                             height=550,
                                             corner_radius=0,
@@ -190,11 +179,3 @@ class LoginApp:
         usuario = self.input_usuario.get()
         contraseña = self.input_contraseña.get()
         pass
-        
-    #iniciar la ventana
-    def run(self):
-        self.app.mainloop()
-
-# Crear y ejecutar aplicación
-app = LoginApp()
-app.run()
