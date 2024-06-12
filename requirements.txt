@@ -1,8 +1,0 @@
-customtkinter
-pandas
-numpy
-pillow
-pyglet
-datetime
-time
-sqlite3
