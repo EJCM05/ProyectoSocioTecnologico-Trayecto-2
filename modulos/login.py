@@ -1,7 +1,9 @@
 import tkinter as tk
 import customtkinter as ctk
 import variables as var
+from controlador import validar_credenciales
 from PIL import ImageTk, Image
+
 
 class LoginApp:
     def __init__(self):
@@ -170,7 +172,8 @@ class LoginApp:
                                         corner_radius=100,
                                         fg_color=var.buttons_color,
                                         text_color=var.text_black,
-                                        font=var.Amaranth_small
+                                        font=var.Amaranth_small,
+                                        command=self.iniciar_sesion
                                         )
         
         # - Posicionamiento -
@@ -184,7 +187,18 @@ class LoginApp:
         self.input_contraseña.place(relx=0.5, rely=0.64, anchor="center")
         self.boton_login.place(relx=0.5, rely=0.77, anchor="center")
     
-    
+    # login.py
+
+    def iniciar_sesion(self):
+        usuario = self.input_usuario.get()
+        contraseña = self.input_contraseña.get()
+        if validar_credenciales(usuario, contraseña):
+        # Redirige al usuario a la siguiente pantalla
+            print("validacion correcta")
+        else:
+        # Muestra un mensaje de error
+            print("validacion incorrecta")
+        
     #iniciar la ventana
     def run(self):
         self.app.mainloop()
