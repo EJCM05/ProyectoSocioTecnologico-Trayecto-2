@@ -1,5 +1,4 @@
 import customtkinter as ctk
-import variables as var
 
 class GradosVentana:
     def __init__(self, master):

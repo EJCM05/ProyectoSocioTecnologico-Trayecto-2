@@ -2,20 +2,24 @@ import tkinter as tk
 import customtkinter as ctk
 import datetime
 import time
-import variables as var
+from modulos import variables as var
 from PIL import ImageTk, Image
-from secciones_modulares.estudiantes.estudiantes import EstudiantesVentana
-from secciones_modulares.grados.grados import GradosVentana
-from secciones_modulares.inicio.inicio import InicioVentana
-from secciones_modulares.perfil.perfil import PerfilVentana
-from secciones_modulares.personal.personal import PersonalVentana
+from modulos.secciones_modulares.estudiantes.estudiantes import EstudiantesVentana
+from modulos.secciones_modulares.grados.grados import GradosVentana
+from modulos.secciones_modulares.inicio.inicio import InicioVentana
+from modulos.secciones_modulares.perfil.perfil import PerfilVentana
+from modulos.secciones_modulares.personal.personal import PersonalVentana
 
 class Dashboard:
-    def __init__(self):
-        # definicion de apariencia
-        self.configurar_apariencia()
-        # creacion de ventana
-        self.crear_ventana_principal()
+    def __init__(self, master):
+        self.master = master
+    
+    
+    def mostrar(self):
+        # Eliminar widgets anteriores en el área de contenido
+        for widget in self.master.winfo_children():
+            widget.destroy()
+        
         # imagenes e iconos
         self.importar_img_ico()
         #datetime
@@ -27,21 +31,6 @@ class Dashboard:
         self.panel_superior()
         self.elementos_panel_superior()
     
-    
-    # configurar apariencia
-    def configurar_apariencia(self):
-        ctk.set_appearance_mode("light")
-        ctk.set_default_color_theme("dark-blue")
-    
-    
-    # metodo para crear la ventana principal
-    def crear_ventana_principal(self):
-        self.app = ctk.CTk()
-        self.app.geometry("1280x720")
-        self.app.title("Login")
-        self.app.resizable(0,0)
-        self.app.update_idletasks()
-
     
     # importando imagenes e iconos
     def importar_img_ico(self):
@@ -58,7 +47,7 @@ class Dashboard:
     
     # incorporacion de frames y widgets
     def panel_izquierdo(self):
-        self.panel_izquierdo = ctk.CTkFrame(master=self.app,
+        self.panel_izquierdo = ctk.CTkFrame(master=self.master,
                                     width=196,
                                     height=720,
                                     fg_color=var.bg_gray,
@@ -156,7 +145,7 @@ class Dashboard:
     
     #-------------------------funciones de botones-----------------------
     def panel_superior(self):
-        self.panel_superior = ctk.CTkFrame(master=self.app,
+        self.panel_superior = ctk.CTkFrame(master=self.master,
                                     width=1084,
                                     height=80,
                                     fg_color=var.bg_blue,
@@ -187,7 +176,7 @@ class Dashboard:
     
     
     def area_principal_funcion(self):
-        self.area_contenido = ctk.CTkFrame(master=self.app,
+        self.area_contenido = ctk.CTkFrame(master=self.master,
                                     width=1084,
                                     height=640,
                                     corner_radius=0)
@@ -227,15 +216,7 @@ class Dashboard:
         self.fecha_actual = self.ahora.strftime("%d/%m/%y")
         self.hora_actual = self.ahora.strftime("%I:%M%p")
     
-    #iniciar la ventana
-    def run(self):
-        self.app.mainloop()
-    
     
     def kill(self):
-        self.app.destroy()
+        self.master.destroy()
 
-
-# Crear y ejecutar aplicación
-app = Dashboard()
-app.run()

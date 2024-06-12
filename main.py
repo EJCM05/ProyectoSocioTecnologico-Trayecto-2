@@ -1,7 +1,8 @@
 import tkinter as tk
 import customtkinter as ctk
 from modulos.login import LoginApp
-#xd
+from modulos.dashboard import Dashboard
+
 class VentanaPrincipal():
     def __init__(self):
         # definicion de apariencia
@@ -25,12 +26,17 @@ class VentanaPrincipal():
         self.app.geometry("1280x720")
         self.app.title("Login")
         self.app.resizable(0,0)
+        #self.app.update_idletasks()
     
     
     def cargar_ventana_login(self):
-        contenido_inicio = LoginApp(self.app)
-        contenido_inicio.mostrar()
+        contenido_login = LoginApp(self.app)
+        contenido_login.mostrar()
     
+    
+    def cargar_ventana_dashboard(self):
+        contenido_dashboard = Dashboard(self.app)
+        contenido_dashboard.mostrar()
     
     #iniciar la ventana
     def run(self):
