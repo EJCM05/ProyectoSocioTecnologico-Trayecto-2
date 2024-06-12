@@ -11,6 +11,6 @@ class EstudiantesVentana:
 
         # Crear un nuevo Label dentro del área de contenido
         self.label = ctk.CTkLabel(master=self.master,
-                                  text="Sección de Estudiantes",
-                                  fg_color="white")
+                                text="Sección de Estudiantes",
+                                fg_color="white")
         self.label.place(relx=0.5, rely=0.5, anchor="center")

@@ -8,19 +8,15 @@ class LoginApp:
     def __init__(self):
         # definicion de apariencia
         self.configurar_apariencia()
-        
         # creacion de ventana
         self.crear_ventana_principal()
-        
         # imagenes e iconos
         self.importar_img_ico()
-        
         # cuadro principal
         self.principal()
         self.izquierda()
         self.derecha()
-    
-    
+        
     # configurar apariencia
     def configurar_apariencia(self):
         ctk.set_appearance_mode("light")
@@ -171,8 +167,7 @@ class LoginApp:
                                         corner_radius=100,
                                         fg_color=var.buttons_color,
                                         text_color=var.text_black,
-                                        font=var.Amaranth_small,
-                                        command=self.validacion
+                                        font=var.Amaranth_small
                                         )
         
         # - Posicionamiento -
@@ -185,12 +180,7 @@ class LoginApp:
         self.icono_contraseña.place(relx=0.18, rely=0.64, anchor="center")
         self.input_contraseña.place(relx=0.5, rely=0.64, anchor="center")
         self.boton_login.place(relx=0.5, rely=0.77, anchor="center")
-    
-    def validacion(self):
-        usuario = self.input_usuario.get()
-        contraseña = self.input_contraseña.get()
-        pass
-        
+
     #iniciar la ventana
     def run(self):
         self.app.mainloop()

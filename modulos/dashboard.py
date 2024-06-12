@@ -221,7 +221,6 @@ class Dashboard:
         contenido_personal = PersonalVentana(self.area_contenido)
         contenido_personal.mostrar()
     
-    
     def datetime(self):
         self.ahora = datetime.datetime.now()
         self.fecha_actual = self.ahora.strftime("%d/%m/%y")
