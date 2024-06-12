@@ -2,7 +2,7 @@ import tkinter as tk
 import customtkinter as ctk
 from modulos import variables as var
 from PIL import ImageTk, Image
-
+#xd
 
 class LoginApp:
     def __init__(self, master):

@@ -1,7 +1,7 @@
 import tkinter as tk
 import customtkinter as ctk
 from modulos.login import LoginApp
-
+#xd
 class VentanaPrincipal():
     def __init__(self):
         # definicion de apariencia
