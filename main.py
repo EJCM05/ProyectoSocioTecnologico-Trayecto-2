@@ -1,10 +1,14 @@
-import datetime
-import time
+# main.py
+from login import LoginApp
+from dashboard import Dashboard
 
-def obtener_fecha_hora_actual():
-        ahora = datetime.datetime.now()
-        fecha_formateada = ahora.strftime("%d/%m/%y %I:%M%p")
-        print(fecha_formateada)
-        # time.sleep(1)  # Espera 1 segundo antes de actualizar nuevamente
 
-obtener_fecha_hora_actual()
+def main():
+        login_app = LoginApp()
+        usuario_autenticado = login_app.run()  # Suponiendo que run devuelve True si la autenticación es exitosa
+if usuario_autenticado:
+        dashboard = Dashboard()
+        dashboard.run()
+
+if _name_ == "_main_":
+        main()

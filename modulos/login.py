@@ -186,13 +186,14 @@ class LoginApp:
         self.input_contraseña.place(relx=0.5, rely=0.64, anchor="center")
         self.boton_login.place(relx=0.5, rely=0.77, anchor="center")
     
-    # validacion
     def validacion(self):
+        usuario = self.input_usuario.get()
+        contraseña = self.input_contraseña.get()
         pass
+        
     #iniciar la ventana
     def run(self):
         self.app.mainloop()
-
 
 # Crear y ejecutar aplicación
 app = LoginApp()
