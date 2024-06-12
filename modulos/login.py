@@ -1,7 +1,7 @@
 import tkinter as tk
 import customtkinter as ctk
-from modulos import variables as var
 from PIL import ImageTk, Image
+from modulos import variables as var
 
 
 class LoginApp:
