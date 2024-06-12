@@ -4,6 +4,11 @@ import datetime
 import time
 import variables as var
 from PIL import ImageTk, Image
+from secciones_modulares.estudiantes.estudiantes import EstudiantesVentana
+from secciones_modulares.grados.grados import GradosVentana
+from secciones_modulares.inicio.inicio import InicioVentana
+from secciones_modulares.perfil.perfil import PerfilVentana
+from secciones_modulares.personal.personal import PersonalVentana
 
 class Dashboard:
     def __init__(self):
@@ -27,7 +32,7 @@ class Dashboard:
     def configurar_apariencia(self):
         ctk.set_appearance_mode("light")
         ctk.set_default_color_theme("dark-blue")
-
+    
     
     # metodo para crear la ventana principal
     def crear_ventana_principal(self):
@@ -69,11 +74,13 @@ class Dashboard:
                                 image=self.img_menu,
                                 text="",
                                 )
+        
         # texto de menu
         self.texto_menu = ctk.CTkLabel(master=self.panel_izquierdo,
                                     text="Menu",
                                     font=var.Amaranth_medium_large,
-                                    text_color=var.text_white)
+                                    text_color=var.text_white
+                                    )
         
         # botones del menu
         self.boton_inicio = ctk.CTkButton(master=self.panel_izquierdo,
@@ -82,40 +89,50 @@ class Dashboard:
                                         font=var.Andika_small,
                                         hover_color=var.bg_blue,
                                         fg_color=var.bg_gray,
-                                        anchor="sw"
+                                        anchor="sw",
+                                        command=self.cargar_ventana_inicio
                                         )
+        
         self.boton_grados = ctk.CTkButton(master=self.panel_izquierdo,
                                         text="Grados",
                                         width=185,
                                         font=var.Andika_small,
                                         hover_color=var.bg_blue,
                                         fg_color=var.bg_gray,
-                                        anchor="sw"
+                                        anchor="sw",
+                                        command=self.cargar_ventana_grados
                                         )
+        
         self.boton_personal = ctk.CTkButton(master=self.panel_izquierdo,
                                         text="Personal",
                                         width=185,
                                         font=var.Andika_small,
                                         hover_color=var.bg_blue,
                                         fg_color=var.bg_gray,
-                                        anchor="sw"
+                                        anchor="sw",
+                                        command=self.cargar_ventana_personal
                                         )
+        
         self.boton_estudiantes = ctk.CTkButton(master=self.panel_izquierdo,
                                         text="Estudiantes",
                                         width=185,
                                         font=var.Andika_small,
                                         hover_color=var.bg_blue,
                                         fg_color=var.bg_gray,
-                                        anchor="sw"
+                                        anchor="sw",
+                                        command=self.cargar_ventana_estudiantes
                                         )
+        
         self.boton_perfil = ctk.CTkButton(master=self.panel_izquierdo,
                                         text="Perfil",
                                         width=185,
                                         font=var.Andika_small,
                                         hover_color=var.bg_blue,
                                         fg_color=var.bg_gray,
-                                        anchor="sw"
+                                        anchor="sw",
+                                        command=self.cargar_ventana_perfil
                                         )
+        
         self.boton_salir = ctk.CTkButton(master=self.panel_izquierdo,
                                         text="Salir",
                                         width=160,
@@ -171,19 +188,44 @@ class Dashboard:
     
     def area_principal_funcion(self):
         self.area_contenido = ctk.CTkFrame(master=self.app,
-                                    fg_color="green",#-------------------------
                                     width=1084,
                                     height=640,
                                     corner_radius=0)
+        self.cargar_ventana_inicio()
         #------------------posicionamiento----------------------------------#
         self.area_contenido.grid(column=1,row=0, sticky="s")
+    
+    
+    #funcionalidad de los botones
+    def cargar_ventana_estudiantes(self):
+        contenido_estudiantes = EstudiantesVentana(self.area_contenido)
+        contenido_estudiantes.mostrar()
+    
+    
+    def cargar_ventana_grados(self):
+        contenido_grados = GradosVentana(self.area_contenido)
+        contenido_grados.mostrar()
+    
+    
+    def cargar_ventana_inicio(self):
+        contenido_inicio = InicioVentana(self.area_contenido)
+        contenido_inicio.mostrar()
+    
+    
+    def cargar_ventana_perfil(self):
+        contenido_perfil = PerfilVentana(self.area_contenido)
+        contenido_perfil.mostrar()
+    
+    
+    def cargar_ventana_personal(self):
+        contenido_personal = PersonalVentana(self.area_contenido)
+        contenido_personal.mostrar()
     
     
     def datetime(self):
         self.ahora = datetime.datetime.now()
         self.fecha_actual = self.ahora.strftime("%d/%m/%y")
         self.hora_actual = self.ahora.strftime("%I:%M%p")
-
     
     #iniciar la ventana
     def run(self):
