@@ -12,6 +12,7 @@ class VentanaPrincipal():
         self.crear_ventana_principal()
         
         self.cargar_ventana_login()
+        self.cargar_ventana_dashboard()
     
     
     # configurar apariencia
