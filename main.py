@@ -1,7 +1,6 @@
 import tkinter as tk
 import customtkinter as ctk
 from modulos.login import LoginApp
-from modulos.dashboard import Dashboard
 
 class VentanaPrincipal():
     def __init__(self):
@@ -10,9 +9,8 @@ class VentanaPrincipal():
         
         # creacion de ventana
         self.crear_ventana_principal()
-        
+        self.contenido_login = LoginApp(self.app)
         self.cargar_ventana_login()
-        self.cargar_ventana_dashboard()
     
     
     # configurar apariencia
@@ -31,13 +29,8 @@ class VentanaPrincipal():
     
     
     def cargar_ventana_login(self):
-        contenido_login = LoginApp(self.app)
-        contenido_login.mostrar()
+        self.contenido_login.mostrar()
     
-    
-    def cargar_ventana_dashboard(self):
-        contenido_dashboard = Dashboard(self.app)
-        contenido_dashboard.mostrar()
     
     #iniciar la ventana
     def run(self):

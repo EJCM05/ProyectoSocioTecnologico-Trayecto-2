@@ -2,11 +2,12 @@ import tkinter as tk
 import customtkinter as ctk
 from modulos import variables as var
 from PIL import ImageTk, Image
-#xd
+from modulos.dashboard import Dashboard
 
 class LoginApp:
     def __init__(self, master):
         self.master = master
+        self.contenido_dashboard = Dashboard(self.master)
     
     
     def mostrar(self):
@@ -175,7 +176,15 @@ class LoginApp:
         self.input_contraseña.place(relx=0.5, rely=0.64, anchor="center")
         self.boton_login.place(relx=0.5, rely=0.77, anchor="center")
     
+    
     def validacion(self):
         usuario = self.input_usuario.get()
         contraseña = self.input_contraseña.get()
-        pass
+        if usuario == "xd" and contraseña == "xd":
+            self.cargar_ventana_dashboard()
+        else:
+            print("contraseña error")
+
+    
+    def cargar_ventana_dashboard(self):
+        self.contenido_dashboard.mostrar()
