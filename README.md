@@ -45,6 +45,10 @@ Ejecuta main.py para iniciar la aplicación.
 Inicia Sesion con tu Usuario y Contraseña definido. 
 (Las contraseñas son Otorgadas por Personal administrativo)
 
+## Correccion de errores
+En caso de emergencia rompa el vidrio
+Problema solucionado, (creo)
+
 ### Integrantes:
 -Eber Colmenares
 -Anthony Mora
