@@ -7,7 +7,7 @@ conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
 cursor = conn.cursor()
 
 # Ejemplo de consulta de datos (reemplaza 'nombre_tabla' con el nombre real de tu tabla)
-consulta_sql = "SELECT * FROM Ingreso"
+consulta_sql = "SELECT * FROM Estudiante WHERE id_grado = 2"
 
 try:
     cursor.execute(consulta_sql)
