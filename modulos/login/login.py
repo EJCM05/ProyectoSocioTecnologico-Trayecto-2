@@ -1,6 +1,6 @@
 import tkinter as tk
 import customtkinter as ctk
-from modulos import variables as var
+from modulos.variables import variables as var
 from PIL import ImageTk, Image
 from modulos.dashboard.dashboard import Dashboard
 
