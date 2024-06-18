@@ -1,11 +1,11 @@
 import customtkinter as ctk
 from modulos.variables import variables as var
 
-
 class GradosVentana:
     def __init__(self, master):
         self.master = master
 
+    
     def mostrar(self):
         # Eliminar widgets anteriores en el área de contenido
         for widget in self.master.winfo_children():
@@ -22,7 +22,7 @@ class GradosVentana:
                                            font=var.Amaranth_medium
                                            )
         
-        self.texto_seleccion.place(relx=0.5, rely=0.1, anchor="center")
+        self.texto_seleccion.place(relx=0.5, rely=0.06, anchor="center")
     
     
     def botones_seleccion_grado(self):

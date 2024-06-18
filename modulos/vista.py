@@ -12,6 +12,11 @@ class Vista():
         self.cargar_ventana_login()
     
     
+    #Establece el controlador de esta vista
+    def set_controlador(self, controlador):
+        self.controlador = controlador
+    
+    
     # configurar apariencia
     def configurar_apariencia(self):
         ctk.set_appearance_mode("light")
