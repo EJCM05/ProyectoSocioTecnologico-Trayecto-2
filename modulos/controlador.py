@@ -1,4 +1,4 @@
-from conexion_db import Modelo
+from modulos.modelo import Modelo
 
 class Controlador():
     def __init__(self, modelo):

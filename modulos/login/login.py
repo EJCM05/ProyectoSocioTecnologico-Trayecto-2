@@ -1,13 +1,12 @@
 import tkinter as tk
 import customtkinter as ctk
-from modulos import variables as var
+from modulos.variables import variables as var
 from PIL import ImageTk, Image
-from modulos.dashboard import Dashboard
+from modulos.dashboard.dashboard import Dashboard
 
 class LoginApp:
     def __init__(self, master):
         self.master = master
-        self.contenido_dashboard = Dashboard(self.master)
     
     
     def mostrar(self):
@@ -187,4 +186,5 @@ class LoginApp:
 
     
     def cargar_ventana_dashboard(self):
+        self.contenido_dashboard = Dashboard(self.master)
         self.contenido_dashboard.mostrar()
