@@ -2,7 +2,7 @@ import tkinter as tk
 import customtkinter as ctk
 import datetime
 import time
-from modulos import variables as var
+import variables as var
 from PIL import ImageTk, Image
 from modulos.secciones_modulares.estudiantes.estudiantes import EstudiantesVentana
 from modulos.secciones_modulares.grados.grados import GradosVentana
