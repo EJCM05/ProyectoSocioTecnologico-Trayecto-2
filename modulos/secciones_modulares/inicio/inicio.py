@@ -18,7 +18,7 @@ class InicioVentana:
         self.texto_estadisticas = ctk.CTkLabel(master=self.master,
                                            text="Estadisticas Generales",
                                            text_color=var.text_black,
-                                           font=var.Amaranth_medium
+                                           font=var.Andika_large
                                            )
         
         self.texto_estadisticas.place(relx=0.5, rely=0.06, anchor="center")
@@ -27,35 +27,35 @@ class InicioVentana:
     def texto_datos_generales(self):
         self.texto_estudiantes = self.crear_rectangulo_texto(nombre_texto="Estudiante",
                                                             dato_texto="10",
-                                                            color_frame="green",
+                                                            color_frame=var.est_color_blue,
                                                             posicion_x=0.1,
                                                             posicion_y=0.2
                                                             )
         
         self.texto_docentes = self.crear_rectangulo_texto(nombre_texto="Docentes",
                                                          dato_texto="10",
-                                                         color_frame="green",
+                                                         color_frame=var.est_color_gray,
                                                          posicion_x=0.3,
                                                          posicion_y=0.2
                                                          )
         
         self.texto_obreros = self.crear_rectangulo_texto(nombre_texto="Obreros",
                                                         dato_texto="10",
-                                                        color_frame="green",
+                                                        color_frame=var.est_color_pink,
                                                         posicion_x=0.5,
                                                         posicion_y=0.2
                                                         )
         
         self.texto_aulas = self.crear_rectangulo_texto(nombre_texto="Aulas",
                                                       dato_texto="10",
-                                                      color_frame="green",
+                                                      color_frame=var.est_color_orange,
                                                       posicion_x=0.7,
                                                       posicion_y=0.2
                                                       )
         
         self.texto_especialistas = self.crear_rectangulo_texto(nombre_texto="Especialistas",
                                                               dato_texto="10",
-                                                              color_frame="green",
+                                                              color_frame=var.est_color_grayBlack,
                                                               posicion_x=0.9,
                                                               posicion_y=0.2
                                                               )

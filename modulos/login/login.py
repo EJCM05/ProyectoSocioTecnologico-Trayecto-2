@@ -186,6 +186,7 @@ class LoginApp:
             print("contraseña error")
         
         """
+    def validacion(self):
         if self.controlador.Validate_login(username,password) == True:
             self.cargar_ventana_dashboard()
             print("Inicio de sesión exitoso.")

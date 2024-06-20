@@ -50,7 +50,7 @@ class SubGradosVentana:
         self.texto_seleccion = ctk.CTkLabel(master=self.master,
                                            text=self.nombre_grado,
                                            text_color=var.text_black,
-                                           font=var.Amaranth_medium
+                                           font=var.Andika_large
                                            )
         
         self.texto_seleccion.place(relx=0.5, rely=0.06, anchor="center")
@@ -90,9 +90,10 @@ class SubGradosVentana:
                              text="Descargar Matricula",
                              width=180,
                              height=50,
-                             font=var.Amaranth_small,
-                             fg_color=var.buttons_color,
-                             hover_color=var.hover_buttons_color,
+                             font=var.Andika_small,
+                             text_color=var.text_white,
+                             fg_color=var.btn_blue,
+                             hover_color=var.hover_button_blue,
                              corner_radius=10,
                              command=lambda: descargar_pdf(nombre_archivo=self.nombre_archivo)
                              )

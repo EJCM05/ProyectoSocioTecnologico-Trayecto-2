@@ -23,4 +23,29 @@ bg_blue = "#005BEA"
 bg_gray = "#525967"
 buttons_color = "#CA9600" 
 hover_buttons_color = "#E9AD00"
+hover_button_blue = "#0043AC"
+
+# colores label estadisticas
+est_color_blue = "#005BEA"
+est_color_gray = "#707070"
+est_color_pink = "#A471C2"
+est_color_orange = "#D79362"
+est_color_grayBlack = "#525967"
+
+# colores button grados
+
+btn_gray = "#525967"
+btn_pink = "#DB5E5E"
+btn_beige = "#D79362"
+btn_gold = "#A58D12"
+
+btn_blue = "#005BEA"
+btn_red_black = "#833636"
+btn_purple = "#663C9B"
+btn_green = "#5CA131"
+btn_lila = "#308193"
+btn_blueosc = "#283F7B"
+
+
+
 #----------------------------------------------#

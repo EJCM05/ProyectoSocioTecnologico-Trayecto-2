@@ -69,7 +69,7 @@ class GradosVentana:
         self.texto_seleccion = ctk.CTkLabel(master=self.master,
                                            text="Selecciona un Grado",
                                            text_color=var.text_black,
-                                           font=var.Amaranth_medium
+                                           font=var.Andika_large
                                            )
         
         self.texto_seleccion.place(relx=0.5, rely=0.06, anchor="center")
@@ -78,70 +78,70 @@ class GradosVentana:
     def botones_seleccion_grado(self):
         self.boton_simoncito = self.crear_botones_grado(texto="Simoncito",
                                                         comando=lambda: self.cargar_ventana_sub_grados(nombre_grado="Simoncito",nombre_archivo="simoncito"),
-                                                        color_boton=var.buttons_color,
+                                                        color_boton=var.btn_gray,
                                                         posicion_x=0.15,
                                                         posicion_y=0.45
                                                        )
         
         self.boton_inicial_a = self.crear_botones_grado(texto="Inicial A",
                                                         comando=lambda: self.cargar_ventana_sub_grados(nombre_grado="Inicial A", nombre_archivo="inicial_a"),
-                                                        color_boton=var.buttons_color,
+                                                        color_boton=var.btn_pink,
                                                         posicion_x=0.35,
                                                         posicion_y=0.45
                                                        )
         
         self.boton_inicial_b = self.crear_botones_grado(texto="Inicial B",
                                                         comando=lambda: self.cargar_ventana_sub_grados(nombre_grado="Inicial B", nombre_archivo="inicial_b"),
-                                                        color_boton=var.buttons_color,
+                                                        color_boton=var.btn_beige,
                                                         posicion_x=0.15,
                                                         posicion_y=0.65
                                                        )
         
         self.boton_inicial_c = self.crear_botones_grado(texto="Inicial C",
                                                         comando=lambda: self.cargar_ventana_sub_grados(nombre_grado="Inicial C", nombre_archivo="inicial_c"),
-                                                        color_boton=var.buttons_color,
+                                                        color_boton=var.btn_gold,
                                                         posicion_x=0.35,
                                                         posicion_y=0.65
                                                        )
         
         self.boton_1er_grado = self.crear_botones_grado(texto="1er Grado",
                                                         comando=lambda: self.cargar_ventana_sub_grados(nombre_grado="1er Grado", nombre_archivo="1er_grado"),
-                                                        color_boton=var.buttons_color,
+                                                        color_boton=var.btn_blue,
                                                         posicion_x=0.65,
                                                         posicion_y=0.35
                                                        )
         
         self.boton_2do_grado = self.crear_botones_grado(texto="2do Grado",
                                                         comando=lambda: self.cargar_ventana_sub_grados(nombre_grado="2do Grado", nombre_archivo="2do_grado"),
-                                                        color_boton=var.buttons_color,
+                                                        color_boton=var.btn_red_black,
                                                         posicion_x=0.65,
                                                         posicion_y=0.55
                                                        )
         
         self.boton_3er_grado = self.crear_botones_grado(texto="3er Grado",
                                                         comando=lambda: self.cargar_ventana_sub_grados(nombre_grado="3er Grado", nombre_archivo="3er_grado"),
-                                                        color_boton=var.buttons_color,
+                                                        color_boton=var.btn_purple,
                                                         posicion_x=0.65,
                                                         posicion_y=0.75
                                                        )
         
         self.boton_4to_grado = self.crear_botones_grado(texto="4to Grado",
                                                         comando=lambda: self.cargar_ventana_sub_grados(nombre_grado="4to Grado", nombre_archivo="4to_grado"),
-                                                        color_boton=var.buttons_color,
+                                                        color_boton=var.btn_green,
                                                         posicion_x=0.85,
                                                         posicion_y=0.35
                                                        )
         
         self.boton_5to_grado = self.crear_botones_grado(texto="5to Grado",
                                                         comando=lambda: self.cargar_ventana_sub_grados(nombre_grado="5to Grado", nombre_archivo="5to_grado"),
-                                                        color_boton=var.buttons_color,
+                                                        color_boton=var.btn_lila,
                                                         posicion_x=0.85,
                                                         posicion_y=0.55
                                                        )
         
         self.boton_6to_grado = self.crear_botones_grado(texto="6to Grado",
                                                         comando=lambda: self.cargar_ventana_sub_grados(nombre_grado="6to Grado", nombre_archivo="6to_grado"),
-                                                        color_boton=var.buttons_color,
+                                                        color_boton=var.btn_blueosc,
                                                         posicion_x=0.85,
                                                         posicion_y=0.75
                                                        )
