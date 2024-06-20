@@ -1,20 +1,21 @@
 import tkinter as tk
 import customtkinter as ctk
 from modulos.variables import variables as var
+from modulos.controlador import controlador
 from PIL import ImageTk, Image
 from modulos.dashboard.dashboard import Dashboard
 
 class LoginApp:
-    def __init__(self, master):
+    def __init__(self,master):
         self.master = master
-    
+        self.controlador = controlador
     
     def mostrar(self):
         # Eliminar widgets anteriores en el área de contenido
         for widget in self.master.winfo_children():
             widget.destroy()
         
-         # imagenes e iconos
+        # imagenes e iconos
         self.importar_img_ico()
         
         # cuadro principal
@@ -174,17 +175,17 @@ class LoginApp:
         self.icono_contraseña.place(relx=0.18, rely=0.64, anchor="center")
         self.input_contraseña.place(relx=0.5, rely=0.64, anchor="center")
         self.boton_login.place(relx=0.5, rely=0.77, anchor="center")
-    
-    
+        
+    # validacion aca
     def validacion(self):
-        usuario = self.input_usuario.get()
-        contraseña = self.input_contraseña.get()
-        if usuario == "xd" and contraseña == "xd":
+        username = self.input_usuario.get()
+        password = self.input_contraseña.get()
+        if self.controlador.Validate_login(username,password) == True:
             self.cargar_ventana_dashboard()
+            print("Inicio de sesión exitoso.")
         else:
-            print("contraseña error")
+            print("Nombre de usuario o contraseña incorrectos.")
 
-    
     def cargar_ventana_dashboard(self):
         self.contenido_dashboard = Dashboard(self.master)
         self.contenido_dashboard.mostrar()

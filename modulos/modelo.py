@@ -19,6 +19,17 @@ class Modelo():
         info = cursor.fetchall()
         con.close()
         return info
+    
+    def Validate_login(self, username, password):
+        con = self.conectar()
+        cursor = con.cursor()
+        consulta_sql = "SELECT * FROM Ingreso WHERE usuario=? AND contrasena=?"  # consulta_sql aquí
+        cursor.execute(consulta_sql, (username, password))  # Pasar los parámetros como una tupla
+        info = cursor.fetchall()
+        con.close()
+        return len(info) > 0  # Retorna True si se encontraron coincidencias, False si no
+
+    
 
 modelo = Modelo()  # Crear una instancia de la clase
-modelo.SelectAll_usuarios()  # Llamar al método
+#modelo.Validate_login()  # Llamar al método
