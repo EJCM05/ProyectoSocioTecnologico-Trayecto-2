@@ -1,7 +1,8 @@
 import customtkinter as ctk
 from modulos.variables import variables as var
+from modulos.secciones_modulares.estudiantes.sub_estudiantes.sub_crear_estudiantes.datos_representante import DatosRepresentanteVentana
 
-class CrearEstudianteVentana:
+class CrearEstudianteVentana():
     def __init__(self, master):
         self.master = master
     
@@ -26,11 +27,201 @@ class CrearEstudianteVentana:
     
     
     def area_input(self):
+        #contenedor principal de los inputs
         self.contenedor_input = ctk.CTkFrame(master=self.master,
-                                 width=400,
-                                 height=500,
-                                 corner_radius=20,
-                                 fg_color=var.bg_blue
+                                 width=450,
+                                 height=550,
+                                 corner_radius=40,
+                                 fg_color=var.btn_gray
                                  )
-        
         self.contenedor_input.place(relx=0.5, rely=0.1, anchor="n")
+        
+        
+        validacion_numeros = self.master.register(self.solo_numeros)
+        validacion_letras = self.master.register(self.solo_letras)
+        
+        self.input_nombres_estudiante = ctk.CTkEntry(master=self.contenedor_input,
+                                    width=330,
+                                    height=40,
+                                    corner_radius=100,
+                                    font=var.Andika_small,
+                                    validate="key",
+                                    validatecommand=(validacion_letras, '%S')
+                                    )
+        self.input_nombres_estudiante.place(relx=0.5, rely=0.14, anchor="center")
+        
+        self.input_apellidos_estudiante = ctk.CTkEntry(master=self.contenedor_input,
+                                    width=330,
+                                    height=40,
+                                    corner_radius=100,
+                                    font=var.Andika_small,
+                                    validate="key",
+                                    validatecommand=(validacion_letras, '%S')
+                                    )
+        self.input_apellidos_estudiante.place(relx=0.5, rely=0.30, anchor="center")
+
+        self.input_cedula_estudiante = ctk.CTkEntry(master=self.contenedor_input,
+                                    width=330,
+                                    height=40,
+                                    corner_radius=100,
+                                    font=var.Andika_small,
+                                    validate="key",
+                                    validatecommand=(validacion_numeros, '%S')
+                                    )
+        self.input_cedula_estudiante.place(relx=0.5, rely=0.46, anchor="center")
+        
+        #LISTA para opciones del input desplegable
+        # Se llama al metodo lista_str para pasar los valores numeros a str
+        lista_dias = list(range(1, 32))
+        lista_dias = self.lista_str(lista_dias)
+        lista_meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+        lista_años = list(range(2000, 2025))
+        lista_años = self.lista_str(lista_años)
+        lista_genero = ["Masculino", "Femenino"]
+        
+        self.input_dia_nacimiento_estudiante = ctk.CTkComboBox(self.contenedor_input,
+                                state="readonly",
+                                values=lista_dias,
+                                width=80,
+                                height=40
+                               )
+        self.input_dia_nacimiento_estudiante.set(lista_dias[0])
+        self.input_dia_nacimiento_estudiante.place(relx=0.26, rely=0.62, anchor="center")
+        
+        self.input_mes_nacimiento_estudiante = ctk.CTkComboBox(self.contenedor_input,
+                                state="readonly",
+                                values=lista_meses,
+                                width=125,
+                                height=40
+                               )
+        self.input_mes_nacimiento_estudiante.set(lista_meses[0])
+        self.input_mes_nacimiento_estudiante.place(relx=0.5, rely=0.62, anchor="center")
+        
+        self.input_año_nacimiento_estudiante = ctk.CTkComboBox(self.contenedor_input,
+                                state="readonly",
+                                values=lista_años,
+                                width=80,
+                                height=40
+                               )
+        self.input_año_nacimiento_estudiante.set(lista_años[-1])
+        self.input_año_nacimiento_estudiante.place(relx=0.74, rely=0.62, anchor="center")
+        
+        self.input_genero_estudiante = ctk.CTkComboBox(self.contenedor_input,
+                                state="readonly",
+                                values=lista_genero,
+                                width=280,
+                                height=40
+                               )
+        self.input_genero_estudiante.set(lista_genero[0])
+        self.input_genero_estudiante.place(relx=0.5, rely=0.78, anchor="center")
+        
+        
+        #------boton continuar------
+        self.boton_continuar = self.crear_botones_estudiantes(texto="Continuar",
+                                                        comando=self.verificar_espacios,
+                                                        color_boton=var.buttons_color,
+                                                        posicion_x=0.5,
+                                                        posicion_y=0.87
+                                                       )
+        
+        #------texto------
+        self.texto_nombres = self.crear_texto(posicion_x=0.18,
+                                              posicion_y=0.07,
+                                              texto="Nombres:"
+                                             )
+
+        self.texto_apellidos = self.crear_texto(posicion_x=0.18,
+                                              posicion_y=0.23,
+                                              texto="Apellidos:"
+                                             )
+        
+        self.texto_cedula = self.crear_texto(posicion_x=0.18,
+                                              posicion_y=0.39,
+                                              texto="Cedula:"
+                                             )
+        
+        self.texto_fecha = self.crear_texto(posicion_x=0.18,
+                                              posicion_y=0.55,
+                                              texto="Fecha de Nacimeinto:"
+                                             )
+        
+        self.texto_genero = self.crear_texto(posicion_x=0.18,
+                                              posicion_y=0.71,
+                                              texto="Genero:"
+                                             )
+    
+    
+    def verificar_espacios(self):
+        nombres = self.input_nombres_estudiante.get()
+        apellidos = self.input_apellidos_estudiante.get()
+        cedula = self.input_cedula_estudiante.get()
+
+        # Verificar si hay espacios vacíos
+        if not nombres.strip() or not apellidos.strip() or not cedula.strip():
+            print("Hay campos vacíos. Por favor, ingrese todos los datos.")
+
+        # Verificar si todos los campos comienzan con una letra y cedula con numero
+        elif nombres[0].isalpha() and apellidos[0].isalpha() and cedula[0].isdigit():
+            self.continuar()  # Ejecutar self.continuar() si todo está correcto
+
+        else:
+            print("Los campos deben comenzar con una letra/numero")
+    
+    
+    def continuar(self):
+        ventana_representante = DatosRepresentanteVentana(self.master)
+        nombres = self.input_nombres_estudiante.get()
+        apellidos = self.input_apellidos_estudiante.get()
+        cedula = self.input_cedula_estudiante.get()
+        dia_nacimiento = self.input_dia_nacimiento_estudiante.get()
+        mes_nacimiento = self.input_mes_nacimiento_estudiante.get()
+        año_nacimiento = self.input_año_nacimiento_estudiante.get()
+        genero = self.input_genero_estudiante.get()
+        print(nombres)
+        print(apellidos)
+        print(cedula)
+        print(dia_nacimiento)
+        print(mes_nacimiento)
+        print(año_nacimiento)
+        print(genero)
+        ventana_representante.mostrar()
+    
+    
+    def solo_numeros(self, char):
+        return char.isdigit() # solo numeros
+    
+    
+    def solo_letras(self, char):
+        return char.isalpha() or char.isspace()  # Permitir letras y espacios en blanco
+    
+    
+    #Metodo para crear texto
+    def crear_texto(self, posicion_x, posicion_y, texto):
+        palabras = ctk.CTkLabel(master=self.contenedor_input,
+                                            text=texto,
+                                            text_color=var.text_white,
+                                            font=var.Amaranth_small
+                                            )
+        palabras.place(relx=posicion_x, rely=posicion_y, anchor="w")
+    
+    
+    def lista_str(self, lista):
+        opciones_str = [str(opcion) for opcion in lista]
+        return opciones_str
+    
+    
+    #Metodo para crear botones
+    def crear_botones_estudiantes(self, texto, comando, color_boton, posicion_x, posicion_y):
+        boton = ctk.CTkButton(master=self.master,
+                             text=texto,
+                             width=330,
+                             height=40,
+                             font=var.Amaranth_small,
+                             fg_color=color_boton,
+                             hover_color=var.btn_gold,
+                             corner_radius=30,
+                             command=comando,
+                             bg_color=var.btn_gray
+                             )
+        
+        boton.place(relx=posicion_x, rely=posicion_y, anchor="center")
