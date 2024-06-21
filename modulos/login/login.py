@@ -2,20 +2,21 @@ import sqlite3
 import tkinter as tk
 import customtkinter as ctk
 from modulos.variables import variables as var
+from modulos.controlador import controlador
 from PIL import ImageTk, Image
 from modulos.dashboard.dashboard import Dashboard
 
 class LoginApp:
-    def __init__(self, master):
+    def __init__(self,master):
         self.master = master
-    
+        self.controlador = controlador
     
     def mostrar(self):
         # Eliminar widgets anteriores en el área de contenido
         for widget in self.master.winfo_children():
             widget.destroy()
         
-         # imagenes e iconos
+        # imagenes e iconos
         self.importar_img_ico()
         
         # cuadro principal

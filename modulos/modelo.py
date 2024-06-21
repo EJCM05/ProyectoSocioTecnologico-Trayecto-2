@@ -25,4 +25,4 @@ class Modelo():
         print(info)
 
 modelo = Modelo()  # Crear una instancia de la clase
-modelo.SelectAll_usuarios()  # Llamar al método
+#modelo.Validate_login()  # Llamar al método
