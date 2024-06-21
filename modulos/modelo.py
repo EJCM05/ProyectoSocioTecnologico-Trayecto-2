@@ -14,22 +14,15 @@ class Modelo():
     def SelectAll_usuarios(self):
         con = self.conectar()
         cursor = con.cursor()
-        consulta_sql = "SELECT * FROM Ingreso" #consulta_sql aqui
+        consulta_sql = """SELECT E.primer_nombre, E.segundo_nombre, E.primer_apellido,
+                          E.segundo_apellido, E.fecha_nacimiento, G.grado_nombre, R.primer_nombre, R.primer_apellido, R.cedula, R.genero
+                          FROM Estudiante as E
+                          JOIN Grado as G ON G.id_grado = E.id_grado
+                          JOIN Representante as R ON E.id_representante = R.id_representante""" #consulta_sql aqui
         cursor.execute(consulta_sql)
         info = cursor.fetchall()
         con.close()
-        return info
-    
-    def Validate_login(self, username, password):
-        con = self.conectar()
-        cursor = con.cursor()
-        consulta_sql = "SELECT * FROM Ingreso WHERE usuario=? AND contrasena=?"  # consulta_sql aquí
-        cursor.execute(consulta_sql, (username, password))  # Pasar los parámetros como una tupla
-        info = cursor.fetchall()
-        con.close()
-        return len(info) > 0  # Retorna True si se encontraron coincidencias, False si no
-
-    
+        print(info)
 
 modelo = Modelo()  # Crear una instancia de la clase
 #modelo.Validate_login()  # Llamar al método

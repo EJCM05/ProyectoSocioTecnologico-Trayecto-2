@@ -1,3 +1,4 @@
+import sqlite3
 import tkinter as tk
 import customtkinter as ctk
 from modulos.variables import variables as var
@@ -175,23 +176,26 @@ class LoginApp:
         self.icono_contraseña.place(relx=0.18, rely=0.64, anchor="center")
         self.input_contraseña.place(relx=0.5, rely=0.64, anchor="center")
         self.boton_login.place(relx=0.5, rely=0.77, anchor="center")
-        
-    # validacion aca
+    
     def validacion(self):
-        username = self.input_usuario.get()
-        password = self.input_contraseña.get()
-        if username == "xd" and password == "xd":
+      username = self.input_usuario.get()
+      password = self.input_contraseña.get()
+    
+      conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+      cursor = conn.cursor()
+      cursor.execute('''
+                     SELECT * FROM Ingreso 
+                     ''')
+      result = cursor.fetchall()
+      # print(result)
+      conn.close()
+      
+      for usuario in result:
+        if usuario[0]==username:
+          if usuario[1]==password:
             self.cargar_ventana_dashboard()
         else:
-            print("contraseña error")
-        
-        """
-    def validacion(self):
-        if self.controlador.Validate_login(username,password) == True:
-            self.cargar_ventana_dashboard()
-            print("Inicio de sesión exitoso.")
-        else:
-            print("Nombre de usuario o contraseña incorrectos.")"""
+          print("Error", "Usuario o contraseña incorrectos")
 
     def cargar_ventana_dashboard(self):
         self.contenido_dashboard = Dashboard(self.master)
