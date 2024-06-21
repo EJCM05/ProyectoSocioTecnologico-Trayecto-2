@@ -129,7 +129,8 @@ class LoginApp:
                                     width=300,
                                     height=40,
                                     corner_radius=100,
-                                    font=var.Andika_small
+                                    font=var.Andika_small,
+                                    placeholder_text="Ingrese un usuario"
                                     )
         
         #texto contraseña
@@ -151,7 +152,8 @@ class LoginApp:
                                     height=40,
                                     corner_radius=100,
                                     show="*",
-                                    font=var.Andika_small
+                                    font=var.Andika_small,
+                                    placeholder_text="Ingrese una contraseña"
                                     )
         
         # boton de login
