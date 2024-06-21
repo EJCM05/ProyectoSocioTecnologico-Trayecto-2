@@ -13,6 +13,7 @@ Amaranth_small = ("Amaranth", 18)
 Andika_large = ("Andika", 28)
 Andika_medium = ("Andika", 24)
 Andika_small = ("Andika", 18)
+Andika_small_ultra = ("Andika", 14)
 #----------------------------------------------#
                 # colores
 text_black = "#000000"
@@ -46,6 +47,8 @@ btn_green = "#5CA131"
 btn_lila = "#308193"
 btn_blueosc = "#283F7B"
 
+#colores registro de alumnos
+button_blue = "#0372E7"
 
 
 #----------------------------------------------#

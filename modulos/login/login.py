@@ -178,24 +178,24 @@ class LoginApp:
         self.boton_login.place(relx=0.5, rely=0.77, anchor="center")
     
     def validacion(self):
-      username = self.input_usuario.get()
-      password = self.input_contraseña.get()
-    
-      conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
-      cursor = conn.cursor()
-      cursor.execute('''
-                     SELECT * FROM Ingreso 
-                     ''')
-      result = cursor.fetchall()
-      # print(result)
-      conn.close()
-      
-      for usuario in result:
-        if usuario[0]==username:
-          if usuario[1]==password:
+        username = self.input_usuario.get()
+        password = self.input_contraseña.get()
+
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        cursor = conn.cursor()
+
+        # Consulta SQL para verificar las credenciales
+        cursor.execute('SELECT * FROM Ingreso WHERE usuario=? AND contrasena=?', (username, password))
+        result = cursor.fetchone()
+
+        conn.close()
+
+        if result:
+            # Credenciales válidas: carga la ventana del panel de control
             self.cargar_ventana_dashboard()
         else:
-          print("Error", "Usuario o contraseña incorrectos")
+            # Credenciales incorrectas: muestra un mensaje de error
+            print("Error: Usuario o contraseña incorrectos")
 
     def cargar_ventana_dashboard(self):
         self.contenido_dashboard = Dashboard(self.master)
