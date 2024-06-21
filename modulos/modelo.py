@@ -20,9 +20,9 @@ class Modelo():
                           JOIN Grado as G ON G.id_grado = E.id_grado
                           JOIN Representante as R ON E.id_representante = R.id_representante""" #consulta_sql aqui
         cursor.execute(consulta_sql)
-        info = cursor.fetchall()
+        # info = cursor.fetchall() registro de tuplas
         con.close()
-        print(info)
+        # print(info) ver el registro de tuplas
 
 modelo = Modelo()  # Crear una instancia de la clase
 #modelo.Validate_login()  # Llamar al método
