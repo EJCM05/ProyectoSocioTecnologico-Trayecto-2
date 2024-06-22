@@ -27,7 +27,7 @@ def obtener_lista_estudiantes(id_grado):
     c = conn.cursor()
 
     # Insertar valores en la tabla
-    c.execute(f"SELECT cedula, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento FROM Estudiante WHERE id_grado = {id_grado}")
+    c.execute(f"SELECT cedula, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, genero FROM Estudiante WHERE id_grado = {id_grado}")
     result = c.fetchall()
 
     lista_prueba = []
@@ -37,7 +37,8 @@ def obtener_lista_estudiantes(id_grado):
         nombre = f"{element[1]} {element[2]} {element[3]} {element[4]}"
         edad = str(calcular_edad(element[5]))
         fecha_nacimiento = str(element[5])
-        lista = (cedula, nombre, edad, fecha_nacimiento, "")
+        genero = element[6]
+        lista = (cedula, nombre, edad, fecha_nacimiento, genero)
         lista_prueba.append(lista)
 
     # Confirmar los cambios y cerrar la conexión
