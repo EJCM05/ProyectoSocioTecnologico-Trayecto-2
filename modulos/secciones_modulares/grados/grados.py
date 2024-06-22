@@ -21,91 +21,46 @@ def calcular_edad(fecha_nacimiento):
     
     return edad
 
-def lista_grado_simoncito():
-  # Conectarse a la base de datos
-  conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
-  c = conn.cursor()
+def obtener_lista_estudiantes(id_grado):
+    # Conectarse a la base de datos
+    conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+    c = conn.cursor()
 
-  # Insertar valores en la tabla
-  c.execute("SELECT cedula, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento FROM Estudiante WHERE id_grado = 1")
-  result = c.fetchall()
+    # Insertar valores en la tabla
+    c.execute(f"SELECT cedula, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento FROM Estudiante WHERE id_grado = {id_grado}")
+    result = c.fetchall()
 
-  lista_prueba_1 = []
+    lista_prueba = []
+    
+    for element in result:
+        cedula = str(element[0])
+        nombre = f"{element[1]} {element[2]} {element[3]} {element[4]}"
+        edad = str(calcular_edad(element[5]))
+        fecha_nacimiento = str(element[5])
+        lista = (cedula, nombre, edad, fecha_nacimiento, "")
+        lista_prueba.append(lista)
 
-  for element in result:
-    cedula = str(element[0])
-    nombre = f"{element[1]} {element[2]} {element[3]} {element[4]}"
-    edad = str(calcular_edad(element[5]))
-    fecha_nacimiento = str(element[5])
-    lista = (cedula, nombre, edad, fecha_nacimiento, "")
-    lista_prueba_1.append(lista)
-
-  # Confirmar los cambios y cerrar la conexión
-  conn.commit()
-  conn.close()
-  
-  return lista_prueba_1
-
-def lista_grado_inicial_a():
-  # Conectarse a la base de datos
-  conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
-  c = conn.cursor()
-
-  # Insertar valores en la tabla
-  c.execute("SELECT cedula, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento FROM Estudiante WHERE id_grado = 2")
-  result = c.fetchall()
-
-  lista_prueba_2 = [
-      ("1", "Oswaldo Antonio Urdaneta Moncada", "7", "2000/02/10",""),]
-
-  for element in result:
-    cedula = str(element[0])
-    nombre = f"{element[1]} {element[2]} {element[3]} {element[4]}"
-    edad = str(calcular_edad(element[5]))
-    fecha_nacimiento = str(element[5])
-    lista = (cedula, nombre, edad, fecha_nacimiento, "")
-    lista_prueba_2.append(lista)
-
-  # Confirmar los cambios y cerrar la conexión
-  conn.commit()
-  conn.close()
-  
-  return lista_prueba_2
-
-lista_prueba_3 = [
-    ("3", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
-lista_prueba_4 = [
-    ("4", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
-lista_prueba_5 = [
-    ("5", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
-lista_prueba_6 = [
-    ("6", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
-lista_prueba_7 = [
-    ("7", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
-lista_prueba_8 = [
-    ("8", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
-lista_prueba_9 = [
-    ("9", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
-lista_prueba_10 = [
-    ("10", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),
-    ("10", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),
-    ("10", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000","")]
+    # Confirmar los cambios y cerrar la conexión
+    conn.commit()
+    conn.close()
+    
+    return lista_prueba
 
 
 class GradosVentana:
     def __init__(self, master):
         self.master = master
         #cuando se cargue la ventana de grados se crean todos los pdf necesarios
-        self.creacion_pdf(nombre="simoncito", lista=lista_grado_simoncito())
-        self.creacion_pdf(nombre="inicial_a", lista=lista_grado_inicial_a())
-        self.creacion_pdf(nombre="inicial_b", lista=lista_prueba_3)
-        self.creacion_pdf(nombre="inicial_c", lista=lista_prueba_4)
-        self.creacion_pdf(nombre="1er_grado", lista=lista_prueba_5)
-        self.creacion_pdf(nombre="2do_grado", lista=lista_prueba_6)
-        self.creacion_pdf(nombre="3er_grado", lista=lista_prueba_7)
-        self.creacion_pdf(nombre="4to_grado", lista=lista_prueba_8)
-        self.creacion_pdf(nombre="5to_grado", lista=lista_prueba_9)
-        self.creacion_pdf(nombre="6to_grado", lista=lista_prueba_10)
+        self.creacion_pdf(nombre="simoncito", lista=obtener_lista_estudiantes(id_grado=1))
+        self.creacion_pdf(nombre="inicial_a", lista=obtener_lista_estudiantes(id_grado=2))
+        self.creacion_pdf(nombre="inicial_b", lista=obtener_lista_estudiantes(id_grado=3))
+        self.creacion_pdf(nombre="inicial_c", lista=obtener_lista_estudiantes(id_grado=4))
+        self.creacion_pdf(nombre="1er_grado", lista=obtener_lista_estudiantes(id_grado=5))
+        self.creacion_pdf(nombre="2do_grado", lista=obtener_lista_estudiantes(id_grado=6))
+        self.creacion_pdf(nombre="3er_grado", lista=obtener_lista_estudiantes(id_grado=7))
+        self.creacion_pdf(nombre="4to_grado", lista=obtener_lista_estudiantes(id_grado=8))
+        self.creacion_pdf(nombre="5to_grado", lista=obtener_lista_estudiantes(id_grado=9))
+        self.creacion_pdf(nombre="6to_grado", lista=obtener_lista_estudiantes(id_grado=10))
     
     
     def creacion_pdf(self, nombre, lista):
