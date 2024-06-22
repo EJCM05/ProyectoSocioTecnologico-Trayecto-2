@@ -2,11 +2,76 @@ import customtkinter as ctk
 from modulos.variables import variables as var
 from modulos.secciones_modulares.grados.sub_grados.sub_grados import SubGradosVentana
 from modulos.crear_descargar_pdf.crear_pdf import CrearPDF
+import sqlite3
+from datetime import datetime, date
 
-lista_prueba_1 = [
-    ("1", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
-lista_prueba_2 = [
-    ("2", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
+def calcular_edad(fecha_nacimiento):
+    año, mes, dia = fecha_nacimiento.split("/")
+    año = int(año)
+    mes = int(mes)
+    dia = int(dia)
+    
+    fecha_nacimiento = date(año, mes, dia)
+    
+    # Obtener la fecha actual
+    hoy = date.today()
+    
+    # Calcular la edad en años
+    edad = hoy.year - fecha_nacimiento.year - ((hoy.month, hoy.day) < (fecha_nacimiento.month, fecha_nacimiento.day))
+    
+    return edad
+
+def lista_grado_simoncito():
+  # Conectarse a la base de datos
+  conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+  c = conn.cursor()
+
+  # Insertar valores en la tabla
+  c.execute("SELECT cedula, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento FROM Estudiante WHERE id_grado = 1")
+  result = c.fetchall()
+
+  lista_prueba_1 = []
+
+  for element in result:
+    cedula = str(element[0])
+    nombre = f"{element[1]} {element[2]} {element[3]} {element[4]}"
+    edad = str(calcular_edad(element[5]))
+    fecha_nacimiento = str(element[5])
+    lista = (cedula, nombre, edad, fecha_nacimiento, "")
+    lista_prueba_1.append(lista)
+
+  # Confirmar los cambios y cerrar la conexión
+  conn.commit()
+  conn.close()
+  
+  return lista_prueba_1
+
+def lista_grado_inicial_a():
+  # Conectarse a la base de datos
+  conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+  c = conn.cursor()
+
+  # Insertar valores en la tabla
+  c.execute("SELECT cedula, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento FROM Estudiante WHERE id_grado = 2")
+  result = c.fetchall()
+
+  lista_prueba_2 = [
+      ("1", "Oswaldo Antonio Urdaneta Moncada", "7", "2000/02/10",""),]
+
+  for element in result:
+    cedula = str(element[0])
+    nombre = f"{element[1]} {element[2]} {element[3]} {element[4]}"
+    edad = str(calcular_edad(element[5]))
+    fecha_nacimiento = str(element[5])
+    lista = (cedula, nombre, edad, fecha_nacimiento, "")
+    lista_prueba_2.append(lista)
+
+  # Confirmar los cambios y cerrar la conexión
+  conn.commit()
+  conn.close()
+  
+  return lista_prueba_2
+
 lista_prueba_3 = [
     ("3", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
 lista_prueba_4 = [
@@ -31,8 +96,8 @@ class GradosVentana:
     def __init__(self, master):
         self.master = master
         #cuando se cargue la ventana de grados se crean todos los pdf necesarios
-        self.creacion_pdf(nombre="simoncito", lista=lista_prueba_1)
-        self.creacion_pdf(nombre="inicial_a", lista=lista_prueba_2)
+        self.creacion_pdf(nombre="simoncito", lista=lista_grado_simoncito())
+        self.creacion_pdf(nombre="inicial_a", lista=lista_grado_inicial_a())
         self.creacion_pdf(nombre="inicial_b", lista=lista_prueba_3)
         self.creacion_pdf(nombre="inicial_c", lista=lista_prueba_4)
         self.creacion_pdf(nombre="1er_grado", lista=lista_prueba_5)
