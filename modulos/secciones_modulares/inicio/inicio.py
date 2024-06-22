@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from modulos.variables import variables as var
+import sqlite3
 
 class InicioVentana:
     def __init__(self, master):
@@ -12,6 +13,7 @@ class InicioVentana:
         
         self.texto_titulo()
         self.texto_datos_generales()
+        self.obtener_lista_grados()
     
     
     def texto_titulo(self):
@@ -26,7 +28,7 @@ class InicioVentana:
     
     def texto_datos_generales(self):
         self.texto_estudiantes = self.crear_rectangulo_texto(nombre_texto="Estudiante",
-                                                            dato_texto="10",
+                                                            dato_texto=self.sumar_estudiante_lista(),
                                                             color_frame=var.est_color_blue,
                                                             posicion_x=0.1,
                                                             posicion_y=0.2
@@ -84,3 +86,33 @@ class InicioVentana:
         contenedor.place(relx=posicion_x, rely=posicion_y, anchor="center")
         texto_nombre.place(relx=0.5, rely=0.32, anchor="center")
         texto_dato.place(relx=0.5, rely=0.68, anchor="center")
+
+    def obtener_lista_grados(self):
+        # Conectarse a la base de datos
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        c = conn.cursor()
+
+        # Insertar valores en la tabla
+        c.execute(f"SELECT id_grado, COUNT(*) AS cantidad_estudiantes FROM Estudiante GROUP BY id_grado;")
+        result = c.fetchall()
+        
+        lista = []
+        
+        for element in result:
+          lista.append(element[1])
+          
+        print(lista)
+
+        # Confirmar los cambios y cerrar la conexión
+        conn.commit()
+        conn.close()
+        return lista
+        
+    def sumar_estudiante_lista(self):
+      lista = self.obtener_lista_grados()
+      
+      # Usamos la función sum para sumar todos los elementos de la lista
+      suma_total = sum(lista)
+
+      return suma_total
+ 

@@ -20,7 +20,7 @@ class CrearPDF:
         self.pdf.cell(9, 1, "Nombres y Apellidos", border=1, align='C', fill=0)
         self.pdf.cell(2, 1, "Edad", border=1, align='C', fill=0)
         self.pdf.cell(6, 1, "Fecha Nacimiento", border=1, align='C', fill=0)
-        self.pdf.cell(0, 1, "", border=1, align='C', fill=0, ln=1)
+        self.pdf.cell(0, 1, "Genero", border=1, align='C', fill=0, ln=1)
 
         # Agregar los datos de la lista al PDF
         for valor in self.lista_de_datos:
