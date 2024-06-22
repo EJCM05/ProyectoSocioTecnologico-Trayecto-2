@@ -4,27 +4,27 @@ from modulos.secciones_modulares.grados.sub_grados.sub_grados import SubGradosVe
 from modulos.crear_descargar_pdf.crear_pdf import CrearPDF
 
 lista_prueba_1 = [
-    ("1", "Oswaldo Antonio Urdaneta Moncada", "7", "San Felipe","Barrio Sucre, parta alta, via el sendero"),]
+    ("1", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
 lista_prueba_2 = [
-    ("2", "Oswaldo Antonio Urdaneta Moncada", "7", "San Felipe","Barrio Sucre, parta alta, via el sendero"),]
+    ("2", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
 lista_prueba_3 = [
-    ("3", "Oswaldo Antonio Urdaneta Moncada", "7", "San Felipe","Barrio Sucre, parta alta, via el sendero"),]
+    ("3", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
 lista_prueba_4 = [
-    ("4", "Oswaldo Antonio Urdaneta Moncada", "7", "San Felipe","Barrio Sucre, parta alta, via el sendero"),]
+    ("4", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
 lista_prueba_5 = [
-    ("5", "Oswaldo Antonio Urdaneta Moncada", "7", "San Felipe","Barrio Sucre, parta alta, via el sendero"),]
+    ("5", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
 lista_prueba_6 = [
-    ("6", "Oswaldo Antonio Urdaneta Moncada", "7", "San Felipe","Barrio Sucre, parta alta, via el sendero"),]
+    ("6", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
 lista_prueba_7 = [
-    ("7", "Oswaldo Antonio Urdaneta Moncada", "7", "San Felipe","Barrio Sucre, parta alta, via el sendero"),]
+    ("7", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
 lista_prueba_8 = [
-    ("8", "Oswaldo Antonio Urdaneta Moncada", "7", "San Felipe","Barrio Sucre, parta alta, via el sendero"),]
+    ("8", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
 lista_prueba_9 = [
-    ("9", "Oswaldo Antonio Urdaneta Moncada", "7", "San Felipe","Barrio Sucre, parta alta, via el sendero"),]
+    ("9", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),]
 lista_prueba_10 = [
-    ("10", "Oswaldo Antonio Urdaneta Moncada", "7", "San Felipe","Barrio Sucre, parta alta, via el sendero"),
-    ("10", "Oswaldo Antonio Urdaneta Moncada", "7", "San Felipe","Barrio Sucre, parta alta, via el sendero"),
-    ("10", "Oswaldo Antonio Urdaneta Moncada", "7", "San Felipe","Barrio Sucre, parta alta, via el sendero")]
+    ("10", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),
+    ("10", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000",""),
+    ("10", "Oswaldo Antonio Urdaneta Moncada", "7", "10/Febrero/2000","")]
 
 
 class GradosVentana:
