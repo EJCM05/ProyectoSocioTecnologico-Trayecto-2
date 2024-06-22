@@ -4,6 +4,7 @@ import customtkinter as ctk
 from modulos.variables import variables as var
 from modulos.secciones_modulares.estudiantes.sub_estudiantes.crear_estudiante import CrearEstudianteVentana
 from modulos.secciones_modulares.estudiantes.sub_estudiantes.modificar_estudiante import ModificarEstudianteVentana
+from modulos.secciones_modulares.estudiantes.sub_estudiantes.eliminar_estudiante import eliminar_estudiante
 
 class EstudiantesVentana:
     def __init__(self, master):
@@ -25,8 +26,8 @@ class EstudiantesVentana:
         self.contenido_ventana_crear_estudiante.mostrar()
 
     
-    def cargar_ventana_modificar_estudiante(self):
-        self.contenido_ventana_modificar_estudiante = ModificarEstudianteVentana(self.master)
+    def cargar_ventana_modificar_estudiante(self, cedula):
+        self.contenido_ventana_modificar_estudiante = ModificarEstudianteVentana(self.master, cedula)
         self.contenido_ventana_modificar_estudiante.mostrar()
     
     
@@ -54,10 +55,16 @@ class EstudiantesVentana:
                                                         posicion_y=0.30
                                                        )
         self.boton_modificar_estudiante = self.crear_botones(texto="Modificar Estudiante",
-                                                        comando=lambda: self.cargar_ventana_modificar_estudiante(),
+                                                        comando=lambda: self.cargar_ventana_modificar_estudiante(self.input_buscar_estudiantes.get()),
                                                         color_boton=var.button_blue,
                                                         posicion_x=0.8,
                                                         posicion_y=0.20
+                                                       )
+        self.boton_eliminar_estudiante = self.crear_botones(texto="Eliminar Estudiante",
+                                                        comando=lambda: eliminar_estudiante(),
+                                                        color_boton=var.button_blue,
+                                                        posicion_x=0.8,
+                                                        posicion_y=0.9
                                                        )
 
     # input de estudiantes

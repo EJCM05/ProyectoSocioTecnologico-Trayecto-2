@@ -5,8 +5,9 @@ from CTkMessagebox import CTkMessagebox
 import sqlite3
 
 class ModificarEstudianteVentana():
-    def __init__(self, master):
+    def __init__(self, master, cedula):
         self.master = master
+        self.cedula_a_modificar = cedula
     
     
     def mostrar(self):
@@ -41,7 +42,8 @@ class ModificarEstudianteVentana():
         #Variables para colocar a los entry
         nombre_estudiante = ctk.StringVar(value="angel david")
         apellido_estudiante = ctk.StringVar(value="vivas perez")
-        cedula_estudiante = ctk.StringVar(value="30442932")
+        #cedula estudiante no hay necedidad de buscarlo en la BD
+        cedula_estudiante = ctk.StringVar(value=self.cedula_a_modificar)
         dia_nacimiento = "12"
         mes_nacimiento = "Enero"
         año_nacimiento = "2004"
