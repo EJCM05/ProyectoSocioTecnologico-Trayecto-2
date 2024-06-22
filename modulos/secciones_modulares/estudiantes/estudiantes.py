@@ -61,7 +61,7 @@ class EstudiantesVentana:
                                                         posicion_y=0.20
                                                        )
         self.boton_eliminar_estudiante = self.crear_botones(texto="Eliminar Estudiante",
-                                                        comando=lambda: eliminar_estudiante(),
+                                                        comando=lambda: eliminar_estudiante(self.input_buscar_estudiantes.get()),
                                                         color_boton=var.button_blue,
                                                         posicion_x=0.8,
                                                         posicion_y=0.9
