@@ -2,6 +2,7 @@ import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from modulos.variables import variables as var
 from modulos.secciones_modulares.inicio.inicio import InicioVentana
+import sqlite3
 
 class GradoRegistrarVentana():
     def __init__(self, master):
@@ -67,7 +68,49 @@ class GradoRegistrarVentana():
     def continuar(self):
         ventana_estudiantes = InicioVentana(self.master)
         grado = self.input_grado_estudiante.get()
-        print(grado)
+        
+        if grado == "Simoncito":
+          opcion = 1
+        elif grado == "Inicial A":
+          opcion = 2
+        elif grado == "Inicial B":
+          opcion = 3
+        elif grado == "Inicial C":
+          opcion = 4
+        elif grado == "1er Grado":
+          opcion = 5
+        elif grado == "2do Grado":
+          opcion = 6
+        elif grado == "3er Grado":
+          opcion = 7
+        elif grado == "4to Grado":
+          opcion = 8
+        elif grado == "5to Grado":
+          opcion = 9
+        elif grado == "6to Grado":
+          opcion = 10
+          
+        # OBTENER ID DEL ULTIMO ESTUDIANTE
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        c = conn.cursor()
+          
+        c.execute("SELECT id_estudiante FROM Estudiante ORDER BY id_estudiante DESC LIMIT 1")
+        ultimo_elemento = c.fetchone()
+          
+        # Confirmar los cambios y cerrar la conexión
+        conn.commit()
+        conn.close()
+          
+        # ACTUALIZAR EL ID DEL REPRESENTANTE EN LA TABLA DEL ESTUDIANTE
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        c = conn.cursor()
+          
+        c.execute("UPDATE Estudiante SET id_grado = ? WHERE id_estudiante = ?", (opcion, ultimo_elemento[0]))
+          
+        # Confirmar los cambios y cerrar la conexión
+        conn.commit()
+        conn.close()
+
         texto_emergente = "Estudiante registrado correctamente"
         CTkMessagebox(title="Información", message=texto_emergente)
         ventana_estudiantes.mostrar()

@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from modulos.variables import variables as var
 from modulos.secciones_modulares.estudiantes.sub_estudiantes.sub_crear_estudiantes.datos_representante import DatosRepresentanteVentana
+import sqlite3
 
 class CrearEstudianteVentana():
     def __init__(self, master):
@@ -169,22 +170,37 @@ class CrearEstudianteVentana():
     
     
     def continuar(self):
-        ventana_representante = DatosRepresentanteVentana(self.master)
-        nombres = self.input_nombres_estudiante.get()
-        apellidos = self.input_apellidos_estudiante.get()
-        cedula = self.input_cedula_estudiante.get()
-        dia_nacimiento = self.input_dia_nacimiento_estudiante.get()
-        mes_nacimiento = self.input_mes_nacimiento_estudiante.get()
-        año_nacimiento = self.input_año_nacimiento_estudiante.get()
-        genero = self.input_genero_estudiante.get()
-        print(nombres)
-        print(apellidos)
-        print(cedula)
-        print(dia_nacimiento)
-        print(mes_nacimiento)
-        print(año_nacimiento)
-        print(genero)
-        ventana_representante.mostrar()
+      nombres = self.input_nombres_estudiante.get()
+      
+      nombre_1, nombre_2 = nombres.split()
+      
+      apellidos = self.input_apellidos_estudiante.get()
+      
+      apellido_1, apellido_2 = apellidos.split()
+      
+      cedula = self.input_cedula_estudiante.get()
+      dia_nacimiento = self.input_dia_nacimiento_estudiante.get()
+      mes_nacimiento = self.input_mes_nacimiento_estudiante.get()
+      año_nacimiento = self.input_año_nacimiento_estudiante.get()
+      
+      fecha_nacimiento = f"{dia_nacimiento}/{mes_nacimiento}/{año_nacimiento}"
+      
+      genero = self.input_genero_estudiante.get()
+      
+      # Conectarse a la base de datos
+      conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+      c = conn.cursor()
+
+      # Insertar valores en la tabla
+      c.execute("INSERT INTO Estudiante (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, fecha_nacimiento, genero) VALUES (?, ?, ?, ?, ?, ?, ?)", (nombre_1, nombre_2, apellido_1, apellido_2, cedula, fecha_nacimiento, genero))
+
+      # Confirmar los cambios y cerrar la conexión
+      conn.commit()
+      conn.close()
+      
+      ventana_representante = DatosRepresentanteVentana(self.master)
+          
+      ventana_representante.mostrar()
     
     
     def solo_numeros(self, char):

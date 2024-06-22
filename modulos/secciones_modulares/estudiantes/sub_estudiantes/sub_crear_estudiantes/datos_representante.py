@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import sqlite3
 from modulos.variables import variables as var
 from modulos.secciones_modulares.estudiantes.sub_estudiantes.sub_crear_estudiantes.grado_registrar import GradoRegistrarVentana
 
@@ -179,17 +180,52 @@ class DatosRepresentanteVentana():
     def continuar(self):
         ventana_grados_registar = GradoRegistrarVentana(self.master)
         nombres = self.input_nombres_representante.get()
+        
+        nombre_1, nombre_2 = nombres.split()
+        
         apellidos = self.input_apellidos_representante.get()
+        
+        apellido_1, apellido_2 = apellidos.split()
+        
         cedula = self.input_cedula_representante.get()
         correo = self.input_correo_representante.get()
         telefono = self.input_telefono_representante.get()
         direccion = self.input_direcion_representante.get()
-        print(nombres)
-        print(apellidos)
-        print(cedula)
-        print(correo)
-        print(telefono)
-        print(direccion)
+        
+        # INSERTAR DATOS DEL REPRESENTANTE
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        c = conn.cursor()
+
+        # Insertar valores en la tabla
+        c.execute("INSERT INTO Representante (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, correo, telefono, direccion) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (nombre_1, nombre_2, apellido_1, apellido_2, cedula, correo, telefono, direccion))
+
+        representante_id = c.lastrowid
+          
+        # Confirmar los cambios y cerrar la conexión
+        conn.commit()
+        conn.close()
+          
+        # OBTENER ID DEL ULTIMO ESTUDIANTE
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        c = conn.cursor()
+          
+        c.execute("SELECT id_estudiante FROM Estudiante ORDER BY id_estudiante DESC LIMIT 1")
+        ultimo_elemento = c.fetchone()
+          
+        # Confirmar los cambios y cerrar la conexión
+        conn.commit()
+        conn.close()
+          
+        # ACTUALIZAR EL ID DEL REPRESENTANTE EN LA TABLA DEL ESTUDIANTE
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        c = conn.cursor()
+          
+        c.execute("UPDATE Estudiante SET id_representante = ? WHERE id_estudiante = ?", (representante_id, ultimo_elemento[0]))
+          
+        # Confirmar los cambios y cerrar la conexión
+        conn.commit()
+        conn.close()
+        
         ventana_grados_registar.mostrar()
     
     
