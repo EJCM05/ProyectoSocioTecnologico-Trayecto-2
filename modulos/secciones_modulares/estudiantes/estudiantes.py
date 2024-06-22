@@ -63,6 +63,11 @@ class EstudiantesVentana:
     # texto estudiantes
     def texto_seleccion_estudiantes(self):
         # variables: nombres Apellidos Cedula Edad fecha 
+        self.texto_Datos_del_estudiante = self.crear_texto(texto="Datos Del Estudiante",
+                                                        posicion_x=0.19,
+                                                        posicion_y=0.50,
+                                                        fuente=var.Amaranth_medium
+                                                       )
         self.texto_Numeral = self.crear_texto(texto="#",
                                                         posicion_x=0.085,
                                                         posicion_y=0.58,
@@ -151,7 +156,7 @@ class EstudiantesVentana:
     def crear_botones(self, texto, comando, color_boton, posicion_x, posicion_y):
         boton = ctk.CTkButton(master=self.master,
                              text=texto,
-                             width=100,
+                             width=130,
                              height=40,
                              font=var.Andika_small_ultra,
                              fg_color=color_boton,
