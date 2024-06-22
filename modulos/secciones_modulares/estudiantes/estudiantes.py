@@ -62,47 +62,80 @@ class EstudiantesVentana:
     
     # texto estudiantes
     def texto_seleccion_estudiantes(self):
-        self.texto_datos_de_alumnos = self.crear_texto(texto="Datos del Estudiante",
-                                                        posicion_x=0.19,
-                                                        posicion_y=0.5,
-                                                        fuente=var.Amaranth_medium
-                                                       )
-        # datos # nombre Apellido Cedula Edad 
+        # variables: nombres Apellidos Cedula Edad fecha 
         self.texto_Numeral = self.crear_texto(texto="#",
                                                         posicion_x=0.085,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small
                                                        )
-        self.texto_Numeral = self.crear_texto(texto="Nombres",
+        self.texto_nombres = self.crear_texto(texto="Nombres",
                                                         posicion_x=0.18,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
-        self.texto_Numeral = self.crear_texto(texto="Apellidos",
+        self.texto_apellidos = self.crear_texto(texto="Apellidos",
                                                         posicion_x=0.34,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
-        self.texto_Numeral = self.crear_texto(texto="Cedula",
+        self.texto_cedula = self.crear_texto(texto="Cedula",
                                                         posicion_x=0.48,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
-        self.texto_Numeral = self.crear_texto(texto="Edad",
+        self.texto_edad = self.crear_texto(texto="Edad",
                                                         posicion_x=0.60,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
-        self.texto_Numeral = self.crear_texto(texto="Fecha de nacimiento",
+        self.texto_fecha = self.crear_texto(texto="Fecha de nacimiento",
                                                         posicion_x=0.74,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
-        self.texto_Numeral = self.crear_texto(texto="Acciones",
+        self.texto_acciones = self.crear_texto(texto="Acciones",
+                                                        posicion_x=0.88,
+                                                        posicion_y=0.58,
+                                                        fuente=var.Amaranth_small             
+                                                       )
+    def variables_seleccion_estudiantes(self,identificador,nombres,apellidos,cedula,edad,fecha):
+        # datos # nombre Apellido Cedula Edad 
+        self.var_id = self.crear_texto(texto=f"{identificador}",
+                                                        posicion_x=0.085,
+                                                        posicion_y=0.58,
+                                                        fuente=var.Amaranth_small
+                                                       )
+        self.var_nombres = self.crear_texto(texto=f"{nombres}",
+                                                        posicion_x=0.18,
+                                                        posicion_y=0.58,
+                                                        fuente=var.Amaranth_small             
+                                                       )
+        self.var_apellidos = self.crear_texto(texto=f"{apellidos}",
+                                                        posicion_x=0.34,
+                                                        posicion_y=0.58,
+                                                        fuente=var.Amaranth_small             
+                                                       )
+        self.var_cedula = self.crear_texto(texto=f"{cedula}",
+                                                        posicion_x=0.48,
+                                                        posicion_y=0.58,
+                                                        fuente=var.Amaranth_small             
+                                                       )
+        self.var_edad = self.crear_texto(texto=f"{edad}",
+                                                        posicion_x=0.60,
+                                                        posicion_y=0.58,
+                                                        fuente=var.Amaranth_small             
+                                                       )
+        self.var_fecha = self.crear_texto(texto=f"{fecha}",
                                                         posicion_x=0.74,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
+        self.var_acciones = self.crear_texto(texto="Acciones",
+                                                        posicion_x=0.88,
+                                                        posicion_y=0.58,
+                                                        fuente=var.Amaranth_small             
+                                                       )
+    
     # Metodos  de creacion generales
     #Metodo para crear texto
     def crear_texto(self, posicion_x, posicion_y, texto,fuente):

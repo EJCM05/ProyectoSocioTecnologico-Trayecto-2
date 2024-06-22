@@ -27,7 +27,7 @@ class Modelo():
         info = cursor.fetchall()
         con.close()
         print(info)
-
+        
 modelo = Modelo()  # Crear una instancia de la clase
 modelo.SelectAll_usuarios()
 
