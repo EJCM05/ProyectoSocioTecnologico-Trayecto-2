@@ -3,6 +3,7 @@ from tkinter import ttk
 import customtkinter as ctk
 from modulos.variables import variables as var
 from modulos.secciones_modulares.estudiantes.sub_estudiantes.crear_estudiante import CrearEstudianteVentana
+from modulos.secciones_modulares.estudiantes.sub_estudiantes.modificar_estudiante import ModificarEstudianteVentana
 
 class EstudiantesVentana:
     def __init__(self, master):
@@ -22,6 +23,12 @@ class EstudiantesVentana:
     def cargar_ventana_crear_estudiante(self):
         self.contenido_ventana_crear_estudiante = CrearEstudianteVentana(master=self.master)
         self.contenido_ventana_crear_estudiante.mostrar()
+
+    
+    def cargar_ventana_modificar_estudiante(self):
+        self.contenido_ventana_modificar_estudiante = ModificarEstudianteVentana(self.master)
+        self.contenido_ventana_modificar_estudiante.mostrar()
+    
     
     def texto_titulo(self):
         self.texto_seleccion = ctk.CTkLabel(master=self.master,
@@ -45,6 +52,12 @@ class EstudiantesVentana:
                                                         color_boton=var.button_blue,
                                                         posicion_x=0.35,
                                                         posicion_y=0.30
+                                                       )
+        self.boton_modificar_estudiante = self.crear_botones(texto="Modificar Estudiante",
+                                                        comando=lambda: self.cargar_ventana_modificar_estudiante(),
+                                                        color_boton=var.button_blue,
+                                                        posicion_x=0.8,
+                                                        posicion_y=0.20
                                                        )
 
     # input de estudiantes
