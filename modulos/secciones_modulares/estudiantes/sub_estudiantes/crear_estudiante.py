@@ -181,9 +181,35 @@ class CrearEstudianteVentana():
       cedula = self.input_cedula_estudiante.get()
       dia_nacimiento = self.input_dia_nacimiento_estudiante.get()
       mes_nacimiento = self.input_mes_nacimiento_estudiante.get()
+      
+      if mes_nacimiento == "Enero":
+        opcion = 1
+      elif mes_nacimiento == "Febrero":
+        opcion = 2
+      elif mes_nacimiento == "Marzo":
+        opcion = 3
+      elif mes_nacimiento == "Abril":
+        opcion = 4
+      elif mes_nacimiento == "Mayo":
+        opcion = 5
+      elif mes_nacimiento == "Junio":
+        opcion = 6
+      elif mes_nacimiento == "Julio":
+        opcion = 7
+      elif mes_nacimiento == "Agosto":
+        opcion = 8
+      elif mes_nacimiento == "Septiembre":
+        opcion = 9
+      elif mes_nacimiento == "Octubre":
+        opcion = 10
+      elif mes_nacimiento == "Noviembre":
+        opcion = 11
+      elif mes_nacimiento == "Diciembre":
+        opcion = 12
+      
       año_nacimiento = self.input_año_nacimiento_estudiante.get()
       
-      fecha_nacimiento = f"{dia_nacimiento}/{mes_nacimiento}/{año_nacimiento}"
+      fecha_nacimiento = f"{año_nacimiento}/{opcion}/{dia_nacimiento}"
       
       genero = self.input_genero_estudiante.get()
       
