@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from modulos.vista import Vistadoc
+from modulos.vista import Vista
 from modulos.controlador import Controlador
 from modulos.modelo import Modelo
 

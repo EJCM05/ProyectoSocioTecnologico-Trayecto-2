@@ -5,6 +5,7 @@ from modulos.variables import variables as var
 from modulos.secciones_modulares.estudiantes.sub_estudiantes.crear_estudiante import CrearEstudianteVentana
 from modulos.secciones_modulares.estudiantes.sub_estudiantes.modificar_estudiante import ModificarEstudianteVentana
 from modulos.secciones_modulares.estudiantes.sub_estudiantes.eliminar_estudiante import eliminar_estudiante
+from modulos.secciones_modulares.estudiantes.sub_estudiantes.modificar_representante import ModificarRepresentanteVentana
 
 class EstudiantesVentana:
     def __init__(self, master):
@@ -26,6 +27,11 @@ class EstudiantesVentana:
     def cargar_ventana_modificar_estudiante(self, cedula):
         self.contenido_ventana_modificar_estudiante = ModificarEstudianteVentana(self.master, cedula)
         self.contenido_ventana_modificar_estudiante.mostrar()
+    
+    
+    def cargar_ventana_modificar_representante(self, cedula):
+        self.contenido_ventana_modificar_representante = ModificarRepresentanteVentana(self.master, cedula)
+        self.contenido_ventana_modificar_representante.mostrar()
     
     
     def texto_titulo(self):
@@ -53,9 +59,9 @@ class EstudiantesVentana:
                                                        )
         self.boton_modificar_representante = self.crear_botones(texto="Modificar Representante",
                                                         color_boton=var.button_blue,
-                                                        comando=None,
+                                                        comando=lambda: self.cargar_ventana_modificar_representante(self.input_buscar_estudiantes.get()),
                                                         posicion_x=0.8,
-                                                        posicion_y=0.5
+                                                        posicion_y=0.8
                                                        )
 
     # input de estudiantes
