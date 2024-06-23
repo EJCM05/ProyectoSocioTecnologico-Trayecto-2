@@ -5,8 +5,9 @@ from modulos.secciones_modulares.inicio.inicio import InicioVentana
 import sqlite3
 
 class ModificarGradoVentana():
-    def __init__(self, master):
+    def __init__(self, master, cedula):
         self.master = master
+        self.cedula = cedula
     
     
     def mostrar(self):

@@ -291,7 +291,7 @@ class ModificarEstudianteVentana():
       conn.commit()
       conn.close()
       
-      ventana = ModificarGradoVentana(self.master)
+      ventana = ModificarGradoVentana(self.master, self.cedula_a_modificar)
       ventana.mostrar()
     
     
