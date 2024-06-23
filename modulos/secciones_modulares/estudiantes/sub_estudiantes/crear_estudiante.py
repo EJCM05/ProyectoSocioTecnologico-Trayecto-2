@@ -2,6 +2,7 @@ import customtkinter as ctk
 from modulos.variables import variables as var
 from modulos.secciones_modulares.estudiantes.sub_estudiantes.sub_crear_estudiantes.datos_representante import DatosRepresentanteVentana
 import sqlite3
+from CTkMessagebox import CTkMessagebox
 
 class CrearEstudianteVentana():
     def __init__(self, master):
@@ -170,15 +171,20 @@ class CrearEstudianteVentana():
     
     
     def continuar(self):
+      #-------------------------aqui
+      self.cedula = self.input_cedula_estudiante.get()
+      if self.cedula == "1234":
+          texto_emergente = "Estudiante Ya Registrado"
+          CTkMessagebox(title="Información", message=texto_emergente)
+      else:
+          self.continuar_registro()
+    
+    
+    def continuar_registro(self):
       nombres = self.input_nombres_estudiante.get()
-      
       nombre_1, nombre_2 = nombres.split()
-      
       apellidos = self.input_apellidos_estudiante.get()
-      
       apellido_1, apellido_2 = apellidos.split()
-      
-      cedula = self.input_cedula_estudiante.get()
       dia_nacimiento = self.input_dia_nacimiento_estudiante.get()
       mes_nacimiento = self.input_mes_nacimiento_estudiante.get()
       
@@ -218,7 +224,7 @@ class CrearEstudianteVentana():
       c = conn.cursor()
 
       # Insertar valores en la tabla
-      c.execute("INSERT INTO Estudiante (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, fecha_nacimiento, genero) VALUES (?, ?, ?, ?, ?, ?, ?)", (nombre_1, nombre_2, apellido_1, apellido_2, cedula, fecha_nacimiento, genero))
+      c.execute("INSERT INTO Estudiante (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, fecha_nacimiento, genero) VALUES (?, ?, ?, ?, ?, ?, ?)", (nombre_1, nombre_2, apellido_1, apellido_2, self.cedula, fecha_nacimiento, genero))
 
       # Confirmar los cambios y cerrar la conexión
       conn.commit()
