@@ -2,6 +2,7 @@ import customtkinter as ctk
 import sqlite3
 from modulos.variables import variables as var
 from modulos.secciones_modulares.estudiantes.sub_estudiantes.sub_crear_estudiantes.grado_registrar import GradoRegistrarVentana
+from CTkMessagebox import CTkMessagebox
 
 class DatosRepresentanteVentana():
     def __init__(self, master):
@@ -178,16 +179,22 @@ class DatosRepresentanteVentana():
     
     
     def continuar(self):
-        ventana_grados_registar = GradoRegistrarVentana(self.master)
+        #-------------------------aqui
+        self.cedula = self.input_cedula_representante.get()
+        if self.cedula == "1234":
+            texto_emergente = "Representante Ya Registrado"
+            CTkMessagebox(title="Información", message=texto_emergente)
+            ventana_grados_registar = GradoRegistrarVentana(self.master)
+            ventana_grados_registar.mostrar()
+        else:
+            self.continuar_registro()
+    
+    
+    def continuar_registro(self):
         nombres = self.input_nombres_representante.get()
-        
         nombre_1, nombre_2 = nombres.split()
-        
         apellidos = self.input_apellidos_representante.get()
-        
         apellido_1, apellido_2 = apellidos.split()
-        
-        cedula = self.input_cedula_representante.get()
         correo = self.input_correo_representante.get()
         telefono = self.input_telefono_representante.get()
         direccion = self.input_direcion_representante.get()
@@ -197,7 +204,7 @@ class DatosRepresentanteVentana():
         c = conn.cursor()
 
         # Insertar valores en la tabla
-        c.execute("INSERT INTO Representante (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, correo, telefono, direccion) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (nombre_1, nombre_2, apellido_1, apellido_2, cedula, correo, telefono, direccion))
+        c.execute("INSERT INTO Representante (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, correo, telefono, direccion) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (nombre_1, nombre_2, apellido_1, apellido_2, self.cedula, correo, telefono, direccion))
 
         representante_id = c.lastrowid
           
@@ -225,7 +232,7 @@ class DatosRepresentanteVentana():
         # Confirmar los cambios y cerrar la conexión
         conn.commit()
         conn.close()
-        
+        ventana_grados_registar = GradoRegistrarVentana(self.master)
         ventana_grados_registar.mostrar()
     
     
