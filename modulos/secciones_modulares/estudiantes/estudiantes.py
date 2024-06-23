@@ -14,12 +14,9 @@ class EstudiantesVentana:
         # Eliminar widgets anteriores en el área de contenido
         for widget in self.master.winfo_children():
             widget.destroy()
-        
         self.texto_titulo()
         self.botones_seleccion_estudiantes()
         self.input_seleccion_estudiantes()
-        self.texto_seleccion_estudiantes()
-        self.consulta()
     
     def cargar_ventana_crear_estudiante(self):
         self.contenido_ventana_crear_estudiante = CrearEstudianteVentana(master=self.master)
@@ -58,19 +55,7 @@ class EstudiantesVentana:
                                                         color_boton=var.button_blue,
                                                         comando=None,
                                                         posicion_x=0.8,
-                                                        posicion_y=0.8
-                                                       )
-        self.boton_modificar_estudiante = self.crear_botones(texto="Modificar Estudiante",
-                                                        comando=lambda: self.cargar_ventana_modificar_estudiante(self.input_buscar_estudiantes.get()),
-                                                        color_boton=var.button_blue,
-                                                        posicion_x=0.8,
-                                                        posicion_y=0.20
-                                                       )
-        self.boton_eliminar_estudiante = self.crear_botones(texto="Eliminar Estudiante",
-                                                        comando=lambda: eliminar_estudiante(self.input_buscar_estudiantes.get()),
-                                                        color_boton=var.button_blue,
-                                                        posicion_x=0.8,
-                                                        posicion_y=0.9
+                                                        posicion_y=0.5
                                                        )
 
     # input de estudiantes
@@ -95,7 +80,7 @@ class EstudiantesVentana:
                                                         fuente=var.Amaranth_medium
                                                        )
         self.texto_Numeral = self.crear_texto(texto="#",
-                                                        posicion_x=0.085,
+                                                        posicion_x=0.083,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small
                                                        )
@@ -114,12 +99,12 @@ class EstudiantesVentana:
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
-        self.texto_edad = self.crear_texto(texto="Edad",
+        self.texto_edad = self.crear_texto(texto="Genero",
                                                         posicion_x=0.60,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
-        self.texto_fecha = self.crear_texto(texto="Fecha de nacimiento",
+        self.texto_fecha = self.crear_texto(texto="Fecha De Nacimiento",
                                                         posicion_x=0.74,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
@@ -129,41 +114,50 @@ class EstudiantesVentana:
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
-    def variables_seleccion_estudiantes(self,identificador,nombres,apellidos,cedula,edad,fecha):
+        self.boton_modificar_estudiante = self.crear_boton_simple(texto="Editar",
+                                                        comando=lambda: self.cargar_ventana_modificar_estudiante(self.input_buscar_estudiantes.get()),
+                                                        color_boton=var.button_transparent,
+                                                        color_text=var.text_blue,
+                                                        posicion_x=0.88,
+                                                        posicion_y=0.68
+                                                       )
+        self.boton_eliminar_estudiante = self.crear_boton_simple(texto="Borrar",
+                                                        comando=lambda: eliminar_estudiante(self.input_buscar_estudiantes.get()),
+                                                        color_boton=var.button_transparent,
+                                                        color_text=var.text_blue,
+                                                        posicion_x=0.93,
+                                                        posicion_y=0.68
+                                                       )
+    def variables_seleccion_estudiantes(self,identificador,nombres,apellidos,cedula,genero,fecha):
         # datos # nombre Apellido Cedula Edad 
         self.var_id = self.crear_texto(texto=f"{identificador}",
                                                         posicion_x=0.085,
-                                                        posicion_y=0.58,
+                                                        posicion_y=0.68,
                                                         fuente=var.Amaranth_small
                                                        )
         self.var_nombres = self.crear_texto(texto=f"{nombres}",
                                                         posicion_x=0.18,
-                                                        posicion_y=0.58,
+                                                        posicion_y=0.68,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_apellidos = self.crear_texto(texto=f"{apellidos}",
                                                         posicion_x=0.34,
-                                                        posicion_y=0.58,
+                                                        posicion_y=0.68,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_cedula = self.crear_texto(texto=f"{cedula}",
                                                         posicion_x=0.48,
-                                                        posicion_y=0.58,
+                                                        posicion_y=0.68,
                                                         fuente=var.Amaranth_small             
                                                        )
-        self.var_edad = self.crear_texto(texto=f"{edad}",
+        self.var_edad = self.crear_texto(texto=f"{genero}",
                                                         posicion_x=0.60,
-                                                        posicion_y=0.58,
+                                                        posicion_y=0.68,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_fecha = self.crear_texto(texto=f"{fecha}",
                                                         posicion_x=0.74,
-                                                        posicion_y=0.58,
-                                                        fuente=var.Amaranth_small             
-                                                       )
-        self.var_acciones = self.crear_texto(texto="Acciones",
-                                                        posicion_x=0.88,
-                                                        posicion_y=0.58,
+                                                        posicion_y=0.68,
                                                         fuente=var.Amaranth_small             
                                                        )
     
@@ -192,10 +186,28 @@ class EstudiantesVentana:
                              )
         
         boton.place(relx=posicion_x, rely=posicion_y,anchor="center")
+    
+    def crear_boton_simple(self, texto,color_text, comando, color_boton, posicion_x, posicion_y):
+        boton = ctk.CTkButton(master=self.master,
+                             text=texto,
+                             width=20,
+                             height=20,
+                             font=var.Andika_small_ultra,
+                             fg_color=color_boton,
+                             text_color=color_text,
+                             hover_color=var.hover_button_transparent,
+                             corner_radius=5,
+                             command=comando
+                             )
+        
+        boton.place(relx=posicion_x, rely=posicion_y,anchor="center")
         
         
     # logica de consulta 
     
     def consulta(self):
         cedula = self.input_buscar_estudiantes.get()
-        print(cedula)
+        if cedula == "1234":
+            self.texto_seleccion_estudiantes()
+        else:
+            print("estudiante no registrado")
