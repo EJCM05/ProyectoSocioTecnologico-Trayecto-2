@@ -33,8 +33,45 @@ class ModificarGradoVentana():
         #LISTA para opciones del input desplegable
         lista_grados = ["Simoncito", "Inicial A", "Inicial B", "Inicial C", "1er Grado", "2do Grado", "3er Grado", "4to Grado", "5to Grado", "6to Grado"]
         
+        # Conectarse a la base de datos
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        c = conn.cursor()
+
+        # Insertar valores en la tabla
+        c.execute(f"SELECT id_grado FROM Estudiante WHERE cedula = {self.cedula};")
+
+        info = c.fetchall()
+
+        for element in info:
+          grado = info[0][0]
+        
+        # Confirmar los cambios y cerrar la conexión
+        conn.commit()
+        conn.close()
+        
+        if grado == 1:
+            opcion = "Simoncito"
+        elif grado == 2:
+            opcion = "Inicial A"
+        elif grado == 3:
+            opcion = "Inicial B"
+        elif grado == 4:
+            opcion = "Inicial C"
+        elif grado == 5:
+            opcion = "1er Grado"
+        elif grado == 6:
+            opcion = "2do Grado"
+        elif grado == 7:
+            opcion = "3er Grado"
+        elif grado == 8:
+            opcion = "4to Grado"
+        elif grado == 9:
+            opcion = "5to Grado"
+        elif grado == 10:
+            opcion = "6to Grado"
+        
         #---------------aqui modifica ANTHONY
-        grado_viejo = lista_grados[1]
+        grado_viejo = opcion
         
         #contenedor principal de los inputs
         self.contenedor_input = ctk.CTkFrame(master=self.master,
@@ -94,22 +131,11 @@ class ModificarGradoVentana():
         elif grado == "6to Grado":
           opcion = 10
           
-        # OBTENER ID DEL ULTIMO ESTUDIANTE
-        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
-        c = conn.cursor()
-          
-        c.execute("SELECT id_estudiante FROM Estudiante ORDER BY id_estudiante DESC LIMIT 1")
-        ultimo_elemento = c.fetchone()
-          
-        # Confirmar los cambios y cerrar la conexión
-        conn.commit()
-        conn.close()
-          
         # ACTUALIZAR EL ID DEL REPRESENTANTE EN LA TABLA DEL ESTUDIANTE
         conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
         c = conn.cursor()
           
-        c.execute("UPDATE Estudiante SET id_grado = ? WHERE id_estudiante = ?", (opcion, ultimo_elemento[0]))
+        c.execute("UPDATE Estudiante SET id_grado = ? WHERE cedula = ?", (opcion, self.cedula))
           
         # Confirmar los cambios y cerrar la conexión
         conn.commit()
