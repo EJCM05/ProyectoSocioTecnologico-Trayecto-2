@@ -45,11 +45,17 @@ class EstudiantesVentana:
         
     # botones de estudiantes
     def botones_seleccion_estudiantes(self):
+        self.texto_Datos_del_estudiante = self.crear_texto(texto="Ingrese La Cedula",
+                                                        posicion_x=0.08,
+                                                        posicion_y=0.24,
+                                                        fuente=var.Andika_small
+                                                       )
+        
         self.boton_crear_estudiante = self.crear_botones(texto="Registrar Estudiante",
                                                         comando=lambda: self.cargar_ventana_crear_estudiante(),
                                                         color_boton=var.button_blue,
                                                         posicion_x=0.150,
-                                                        posicion_y=0.20
+                                                        posicion_y=0.15
                                                        )
         self.boton_ver_resultados = self.crear_botones(texto="Buscar Estudiante",
                                                         comando=self.consulta,
@@ -59,12 +65,14 @@ class EstudiantesVentana:
                                                        )
     # input de estudiantes
     def input_seleccion_estudiantes(self):
+        validacion_numeros = self.master.register(self.solo_numeros)
         self.input_buscar_estudiantes = ctk.CTkEntry(master=self.master,
                                             width=200,
                                             height=40,
                                             text_color=var.text_black,
                                             font=var.Andika_small_ultra,
-                                            placeholder_text="Buscar por Cedula"
+                                            validate="key",
+                                            validatecommand=(validacion_numeros,'%S')
                                             )
         self.input_buscar_estudiantes.place(relx=0.080, rely=0.30,anchor="w")
 
@@ -272,6 +280,7 @@ class EstudiantesVentana:
             self.variables_seleccion_representantes()
         else:
             print("estudiante no registrado")
-            
-# Llamada a la función con valores específicos
+    
+    def solo_numeros(self, char):
+        return char.isdigit() # solo numeros
 
