@@ -179,9 +179,28 @@ class DatosRepresentanteVentana():
     
     
     def continuar(self):
+        # Conectarse a la base de datos
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        c = conn.cursor()
+
+        # Insertar valores en la tabla
+        c.execute(f"SELECT cedula FROM Representante")
+        info = c.fetchall()
+        print(info)
+        
+        lista = []
+        for tupla in info:
+          lista.append(str(tupla[0]))
+          
+        print(lista)
+        
+        # Confirmar los cambios y cerrar la conexión
+        conn.commit()
+        conn.close()
+      
         #-------------------------aqui
         self.cedula = self.input_cedula_representante.get()
-        if self.cedula == "1234":
+        if self.cedula in lista:
             texto_emergente = "Representante Ya Registrado"
             CTkMessagebox(title="Información", message=texto_emergente)
             ventana_grados_registar = GradoRegistrarVentana(self.master)
