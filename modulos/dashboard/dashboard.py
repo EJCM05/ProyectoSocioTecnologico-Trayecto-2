@@ -11,9 +11,9 @@ from modulos.secciones_modulares.perfil.perfil import PerfilVentana
 from modulos.secciones_modulares.personal.personal import PersonalVentana
 
 class Dashboard:
-    def __init__(self, master):
+    def __init__(self, master, cargo):
         self.master = master
-    
+        self.cargo = cargo
     
     def mostrar(self):
         # Eliminar widgets anteriores en el área de contenido
@@ -160,7 +160,7 @@ class Dashboard:
                                 text="",
                                 )
         self.texto_usuario = ctk.CTkLabel(master=self.panel_superior,
-                                text=f"Bienvenido {"Cargo"} - {"Usuario"}",
+                                text=f"Bienvenido {self.cargo[1]} - {self.cargo[0]}",
                                 text_color=var.text_white,
                                 font=var.Amaranth_small
                                 )
