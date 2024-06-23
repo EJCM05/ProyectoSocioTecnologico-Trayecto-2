@@ -7,6 +7,7 @@ class SubPersonalVentana:
     def __init__(self, master, nombre_personal):
         self.master = master
         self.nombre_personal = nombre_personal
+        self.decidir_personal()
     
     
     def mostrar(self):
@@ -18,16 +19,26 @@ class SubPersonalVentana:
         self.botones_personal()
     
     
+    def decidir_personal(self):
+        if self.nombre_personal == "Obrero":
+            self.tipo_personal = 1
+        elif self.nombre_personal == "Docente":
+            self.tipo_personal = 2
+        elif self.nombre_personal == "Especialista":
+            self.tipo_personal = 3
+    
+    
     def cargar_ventana_crar_personal(self, nombre_personal):
         self.contenido_crear_personal = CrearPersonalVentana(master=self.master,
                                                      nombre_personal = nombre_personal,
+                                                     tipo_personal=self.tipo_personal
                                                     )
         self.contenido_crear_personal.mostrar()
     
     
     def cargar_ventana_ver_lista_personal(self, nombre_personal):
         self.contenido_ver_lista_personal = VerListaPersonalVentana(master=self.master,
-                                                     nombre_personal = nombre_personal,
+                                                     nombre_personal = nombre_personal
                                                     )
         self.contenido_ver_lista_personal.pdf_a_img(nombre_archivo=self.nombre_personal)
         self.contenido_ver_lista_personal.mostrar()
