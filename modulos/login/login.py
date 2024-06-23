@@ -201,16 +201,20 @@ class LoginApp:
 
     def pasar_cargo(self, usuario):
         usuario = usuario
-        
-        if usuario == "docIB":
-          id_grado = 3
-        
+
         conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
         cursor = conn.cursor()
 
+        if usuario == "docIB":
+          id_grado = 3
+          query = f'SELECT g.grado_nombre, p.primer_nombre  FROM Docente as d INNER JOIN Grado as g on g.id_grado = d.id_grado INNER JOIN personal as p on p.id_personal = d.id_personal WHERE g.id_grado = {id_grado}'
+          cursor.execute(query)
+          
+        elif usuario == "admin":
+          cursor.execute(f"SELECT * FROM Ingreso WHERE usuario = 'admin'")
+
         # Consulta SQL para verificar las credenciales
-        cursor.execute(f'SELECT g.grado_nombre, p.primer_nombre  FROM Docente as d INNER JOIN Grado as g on g.id_grado = d.id_grado INNER JOIN personal as p on p.id_personal = d.id_personal WHERE g.id_grado = {id_grado}')
-        result = cursor.fetchone()
+        result = cursor.fetchall()
         print(result)
         
         conn.close()
