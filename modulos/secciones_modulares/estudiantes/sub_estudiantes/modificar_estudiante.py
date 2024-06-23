@@ -61,7 +61,6 @@ class ModificarEstudianteVentana():
       
       return lista
 
-    
     def mostrar(self):
         # Eliminar widgets anteriores en el área de contenido
         for widget in self.master.winfo_children():
@@ -69,7 +68,6 @@ class ModificarEstudianteVentana():
         
         self.texto_titulo()
         self.area_input()
-    
     
     def texto_titulo(self):
         self.texto_seleccion = ctk.CTkLabel(master=self.master,
@@ -295,7 +293,6 @@ class ModificarEstudianteVentana():
       CTkMessagebox(title="Información", message=texto_emergente)
       ventana_inicio = InicioVentana(self.master)
       ventana_inicio.mostrar()
-    
     
     def solo_numeros(self, char):
         return char.isdigit() # solo numeros

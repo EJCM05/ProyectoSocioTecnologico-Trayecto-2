@@ -1,9 +1,19 @@
 from CTkMessagebox import CTkMessagebox
+import sqlite3
 
 def eliminar_estudiante(cedula):
     print(cedula)
-    print("Hola Anthony")
-    print("Aqui va lo logica pa")
+    
+    # Conectarse a la base de datos
+    conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+    c = conn.cursor()
+
+    # Insertar valores en la tabla
+    c.execute(f"DELETE FROM Estudiante WHERE cedula = {cedula}")
+
+    # Confirmar los cambios y cerrar la conexión
+    conn.commit()
+    conn.close()
     
     #No eliminar
     texto_emergente = "Estudiante Eliminado Correctamente"

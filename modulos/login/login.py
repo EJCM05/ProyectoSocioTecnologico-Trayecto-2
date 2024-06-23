@@ -189,7 +189,7 @@ class LoginApp:
         # Consulta SQL para verificar las credenciales
         cursor.execute('SELECT * FROM Ingreso WHERE usuario=? AND contrasena=?', (username, password))
         result = cursor.fetchone()
-
+        
         conn.close()
 
         if result:
@@ -199,6 +199,25 @@ class LoginApp:
             # Credenciales incorrectas: muestra un mensaje de error
             print("Error: Usuario o contraseña incorrectos")
 
+    def pasar_cargo(self, usuario):
+        usuario = usuario
+        
+        if usuario == "docIB":
+          id_grado = 3
+        
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        cursor = conn.cursor()
+
+        # Consulta SQL para verificar las credenciales
+        cursor.execute(f'SELECT g.grado_nombre, p.primer_nombre  FROM Docente as d INNER JOIN Grado as g on g.id_grado = d.id_grado INNER JOIN personal as p on p.id_personal = d.id_personal WHERE g.id_grado = {id_grado}')
+        result = cursor.fetchone()
+        print(result)
+        
+        conn.close()
+          
+        return result
+
     def cargar_ventana_dashboard(self):
-        self.contenido_dashboard = Dashboard(self.master)
+      
+        self.contenido_dashboard = Dashboard(self.master, self.pasar_cargo(self.input_usuario.get()))
         self.contenido_dashboard.mostrar()
