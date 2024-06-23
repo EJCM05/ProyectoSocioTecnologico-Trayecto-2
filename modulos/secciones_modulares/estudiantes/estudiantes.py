@@ -54,6 +54,12 @@ class EstudiantesVentana:
                                                         posicion_x=0.35,
                                                         posicion_y=0.30
                                                        )
+        self.boton_modificar_representante = self.crear_botones(texto="Modificar Representante",
+                                                        color_boton=var.button_blue,
+                                                        comando=None,
+                                                        posicion_x=0.8,
+                                                        posicion_y=0.8
+                                                       )
         self.boton_modificar_estudiante = self.crear_botones(texto="Modificar Estudiante",
                                                         comando=lambda: self.cargar_ventana_modificar_estudiante(self.input_buscar_estudiantes.get()),
                                                         color_boton=var.button_blue,
