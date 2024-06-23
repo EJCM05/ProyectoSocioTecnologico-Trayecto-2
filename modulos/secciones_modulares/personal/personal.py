@@ -71,9 +71,9 @@ class PersonalVentana:
         self.botones_seleccion_personal()
     
     
-    def cargar_ventana_sub_personal(self, nombre_personal, nombre_archivo):
+    def cargar_ventana_sub_personal(self, nombre_personal):
         self.contenido_sub_personal = SubPersonalVentana(master=self.master,
-                                                     nombre_personal = nombre_personal,
+                                                     nombre_personal = nombre_personal
                                                     )
         self.contenido_sub_personal.mostrar()
     
@@ -90,19 +90,19 @@ class PersonalVentana:
     
     def botones_seleccion_personal(self):
         self.boton_obrero = self.crear_botones_personal(texto="Obrero",
-                                                        comando=lambda: self.cargar_ventana_sub_personal(nombre_personal="Obrero", nombre_archivo="obrero"),
+                                                        comando=lambda: self.cargar_ventana_sub_personal(nombre_personal="Obrero"),
                                                         color_boton=var.btn_gold,
                                                         posicion_x=0.2,
                                                         posicion_y=0.5
                                                        )
         self.boton_docente = self.crear_botones_personal(texto="Docente",
-                                                        comando=lambda: self.cargar_ventana_sub_personal(nombre_personal="Docente", nombre_archivo="docente"),
+                                                        comando=lambda: self.cargar_ventana_sub_personal(nombre_personal="Docente"),
                                                         color_boton=var.btn_green,
                                                         posicion_x=0.5,
                                                         posicion_y=0.5
                                                        )
         self.boton_especialista = self.crear_botones_personal(texto="Especialista",
-                                                        comando=lambda: self.cargar_ventana_sub_personal(nombre_personal="Especialista", nombre_archivo="especialista"),
+                                                        comando=lambda: self.cargar_ventana_sub_personal(nombre_personal="Especialista"),
                                                         color_boton=var.btn_blueosc,
                                                         posicion_x=0.8,
                                                         posicion_y=0.5

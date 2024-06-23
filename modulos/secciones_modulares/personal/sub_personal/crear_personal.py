@@ -1,8 +1,7 @@
 import customtkinter as ctk
 from modulos.variables import variables as var
-from modulos.secciones_modulares.personal.sub_personal.crear_personal import CrearPersonalVentana
 
-class SubPersonalVentana:
+class CrearPersonalVentana:
     def __init__(self, master, nombre_personal):
         self.master = master
         self.nombre_personal = nombre_personal
@@ -17,13 +16,6 @@ class SubPersonalVentana:
         self.botones_personal()
     
     
-    def cargar_ventana_crar_personal(self, nombre_personal):
-        self.contenido_crear_personal = CrearPersonalVentana(master=self.master,
-                                                     nombre_personal = nombre_personal,
-                                                    )
-        self.contenido_crear_personal.mostrar()
-    
-    
     def texto_titulo(self):
         self.texto_seleccion = ctk.CTkLabel(master=self.master,
                                            text=f"Personal {self.nombre_personal}",
@@ -35,11 +27,11 @@ class SubPersonalVentana:
     
     
     def botones_personal(self):
-        self.boton_crear_personal = self.crear_botones_personal(texto="Registrar Personal",
-                                                        comando=lambda: self.cargar_ventana_crar_personal(nombre_personal=self.nombre_personal),
+        self.boton_decargar_pdf= self.crear_botones_personal(texto="Descargar Lista",
+                                                        comando=lambda: print("crear xd"),
                                                         color_boton=var.button_blue,
-                                                        posicion_x=0.15,
-                                                        posicion_y=0.15
+                                                        posicion_x=0.5,
+                                                        posicion_y=0.5
                                                        )
     
     
