@@ -1,6 +1,6 @@
 import customtkinter as ctk
 from modulos.variables import variables as var
-from modulos.secciones_modulares.inicio.inicio import InicioVentana
+from modulos.secciones_modulares.estudiantes.sub_estudiantes.sub_modificar_estudiante.modificar_grado import ModificarGradoVentana
 from CTkMessagebox import CTkMessagebox
 import sqlite3
 
@@ -61,6 +61,7 @@ class ModificarEstudianteVentana():
       
       return lista
 
+    
     def mostrar(self):
         # Eliminar widgets anteriores en el área de contenido
         for widget in self.master.winfo_children():
@@ -68,6 +69,7 @@ class ModificarEstudianteVentana():
         
         self.texto_titulo()
         self.area_input()
+    
     
     def texto_titulo(self):
         self.texto_seleccion = ctk.CTkLabel(master=self.master,
@@ -289,10 +291,9 @@ class ModificarEstudianteVentana():
       conn.commit()
       conn.close()
       
-      texto_emergente = "Estudiante Modificado correctamente"
-      CTkMessagebox(title="Información", message=texto_emergente)
-      ventana_inicio = InicioVentana(self.master)
-      ventana_inicio.mostrar()
+      ventana = ModificarGradoVentana(self.master)
+      ventana.mostrar()
+    
     
     def solo_numeros(self, char):
         return char.isdigit() # solo numeros
