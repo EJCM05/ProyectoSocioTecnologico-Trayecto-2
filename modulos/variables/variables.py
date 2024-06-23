@@ -18,6 +18,7 @@ Andika_small_ultra = ("Andika", 14)
                 # colores
 text_black = "#000000"
 text_white = "#FFFFFF"
+text_blue = "#007CFF"
 border_black = "#000000"
 bg_white = "#FFFFFF"
 bg_blue = "#005BEA"
@@ -25,6 +26,7 @@ bg_gray = "#525967"
 buttons_color = "#CA9600" 
 hover_buttons_color = "#E9AD00"
 hover_button_blue = "#0043AC"
+hover_button_transparent = "#CDCDCD"
 
 # colores label estadisticas
 est_color_blue = "#005BEA"
@@ -49,6 +51,6 @@ btn_blueosc = "#283F7B"
 
 #colores registro de alumnos
 button_blue = "#0372E7"
-
+button_transparent = "#E5E5E5"
 
 #----------------------------------------------#
