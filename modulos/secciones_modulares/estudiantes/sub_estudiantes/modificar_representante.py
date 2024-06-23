@@ -31,16 +31,43 @@ class ModificarRepresentanteVentana():
         self.texto_seleccion.place(relx=0.5, rely=0.06, anchor="center")
     
     
+    def obtener_info_estudiante(self):
+      # Conectarse a la base de datos
+      conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+      c = conn.cursor()
+
+      # Insertar valores en la tabla
+      c.execute(f"SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, correo, telefono, direccion FROM Representante WHERE cedula = {self.cedula_a_modificar};")
+
+      info = c.fetchall()
+
+      for tupla in info:
+        nombres = f"{tupla[0]} {tupla[1]}"
+        apellidos = f"{tupla[2]} {tupla[3]}"
+        cedula = tupla[4]
+        correo = tupla[5]
+        telefono = tupla[6]
+        direccion = tupla[7]
+
+      lista = [nombres, apellidos, cedula, correo, telefono, direccion]
+
+      # Confirmar los cambios y cerrar la conexión
+      conn.commit()
+      conn.close()
+      
+      return lista
+    
     def area_input_principal(self):
-        lista = ["angel david", "vivas perez", "correo@gmail.com", "00000", "calle 3 casa999"]
+        lista = self.obtener_info_estudiante()
+      
         #Variables para colocar a los entry
         self.nombre_representante = ctk.StringVar(value=lista[0])
         self.apellido_representante = ctk.StringVar(value=lista[1])
         #cedula representante no hay necedidad de buscarlo en la BD
         self.cedula_representante = ctk.StringVar(value=self.cedula_a_modificar)
-        self.correo_representante = ctk.StringVar(value=lista[2])
-        self.telefono_representante = ctk.StringVar(value=lista[3])
-        self.direccion_representante = ctk.StringVar(value=lista[4])
+        self.correo_representante = ctk.StringVar(value=lista[3])
+        self.telefono_representante = ctk.StringVar(value=lista[4])
+        self.direccion_representante = ctk.StringVar(value=lista[5])
         
         #contenedor principal de los inputs
         self.contenedor_input_izquierda = ctk.CTkFrame(master=self.master,
@@ -209,36 +236,13 @@ class ModificarRepresentanteVentana():
         telefono = self.input_telefono_representante.get()
         direccion = self.input_direcion_representante.get()
         
-        # INSERTAR DATOS DEL REPRESENTANTE
+        # Conectarse a la base de datos
         conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
         c = conn.cursor()
 
         # Insertar valores en la tabla
-        c.execute("INSERT INTO Representante (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, correo, telefono, direccion) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (nombre_1, nombre_2, apellido_1, apellido_2, cedula, correo, telefono, direccion))
-
-        representante_id = c.lastrowid
-          
-        # Confirmar los cambios y cerrar la conexión
-        conn.commit()
-        conn.close()
-          
-        # OBTENER ID DEL ULTIMO ESTUDIANTE
-        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
-        c = conn.cursor()
-          
-        c.execute("SELECT id_estudiante FROM Estudiante ORDER BY id_estudiante DESC LIMIT 1")
-        ultimo_elemento = c.fetchone()
-          
-        # Confirmar los cambios y cerrar la conexión
-        conn.commit()
-        conn.close()
-          
-        # ACTUALIZAR EL ID DEL REPRESENTANTE EN LA TABLA DEL ESTUDIANTE
-        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
-        c = conn.cursor()
-          
-        c.execute("UPDATE Estudiante SET id_representante = ? WHERE id_estudiante = ?", (representante_id, ultimo_elemento[0]))
-          
+        c.execute("""UPDATE Representante SET primer_nombre = ?, segundo_nombre = ?, primer_apellido = ?, segundo_apellido = ?, cedula = ?, correo = ?, telefono = ?, direccion = ? WHERE cedula = ?;""",(nombre_1, nombre_2, apellido_1, apellido_2, cedula, correo, telefono, direccion, self.cedula_a_modificar))
+        
         # Confirmar los cambios y cerrar la conexión
         conn.commit()
         conn.close()

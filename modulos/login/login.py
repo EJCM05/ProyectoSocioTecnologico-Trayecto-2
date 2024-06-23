@@ -215,7 +215,7 @@ class LoginApp:
 
         # Consulta SQL para verificar las credenciales
         result = cursor.fetchall()
-        print(result)
+        # print(result)
         
         conn.close()
           

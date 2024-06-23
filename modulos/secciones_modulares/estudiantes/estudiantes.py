@@ -150,7 +150,6 @@ class EstudiantesVentana:
         # Insertar valores en la tabla
         c.execute(f"SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, fecha_nacimiento, genero FROM Estudiante WHERE cedula = {cedula}")
         info = c.fetchall()
-        print(info)
         
         for element in info:
           nombres = f"{element[0]} {element[1]}"
@@ -222,8 +221,6 @@ class EstudiantesVentana:
           correo = element[5]
           direccion = element[6]
           telefono = element[7]
-
-        print(nombres, apellidos, cedula, correo, direccion)
 
         # Confirmar los cambios y cerrar la conexión
         conn.commit()
