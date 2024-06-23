@@ -16,6 +16,7 @@ class EstudiantesVentana:
         # Eliminar widgets anteriores en el área de contenido
         for widget in self.master.winfo_children():
             widget.destroy()
+        self.frame_texto_blanco()
         self.texto_titulo()
         self.botones_seleccion_estudiantes()
         self.input_seleccion_estudiantes()
@@ -34,9 +35,16 @@ class EstudiantesVentana:
         self.contenido_ventana_modificar_representante = ModificarRepresentanteVentana(self.master, cedula)
         self.contenido_ventana_modificar_representante.mostrar()
     
-    
+    def frame_texto_blanco(self):
+        self.frame_fondo_blanco = ctk.CTkFrame(master=self.master,
+                                               width=1087,
+                                               height=640,
+                                                )
+        self.frame_fondo_blanco.place(relx=0.5,rely=0.5,anchor="center")
+        
+        
     def texto_titulo(self):
-        self.texto_seleccion = ctk.CTkLabel(master=self.master,
+        self.texto_seleccion = ctk.CTkLabel(master=self.frame_fondo_blanco,
                                            text="Estudiantes",
                                            text_color=var.text_black,
                                            font=var.Andika_large
@@ -274,7 +282,7 @@ class EstudiantesVentana:
         self.boton_modificar_representante = self.crear_boton_simple(texto="Editar",
                                                         color_boton=var.button_transparent,
                                                         color_text=var.text_blue,
-                                                        comando=lambda: self.cargar_ventana_modificar_representante(self.input_buscar_estudiantes.get()),
+                                                        comando=lambda: self.cargar_ventana_modificar_representante(cedula),
                                                         posicion_x=0.91,
                                                         posicion_y=0.89
                                                        )
@@ -310,7 +318,7 @@ class EstudiantesVentana:
     # Metodos  de creacion generales
     #Metodo para crear texto
     def crear_texto(self, posicion_x, posicion_y, texto,fuente):
-        palabras = ctk.CTkLabel(master=self.master,
+        palabras = ctk.CTkLabel(master=self.frame_fondo_blanco,
                                             text=texto,
                                             text_color=var.text_black,
                                             font=fuente
@@ -320,7 +328,7 @@ class EstudiantesVentana:
         
     #Metodo para crear botones
     def crear_botones(self, texto, comando, color_boton, posicion_x, posicion_y):
-        boton = ctk.CTkButton(master=self.master,
+        boton = ctk.CTkButton(master=self.frame_fondo_blanco,
                              text=texto,
                              width=130,
                              height=40,
@@ -334,7 +342,7 @@ class EstudiantesVentana:
         boton.place(relx=posicion_x, rely=posicion_y,anchor="center")
     
     def crear_boton_simple(self, texto,color_text, comando, color_boton, posicion_x, posicion_y):
-        boton = ctk.CTkButton(master=self.master,
+        boton = ctk.CTkButton(master=self.frame_fondo_blanco,
                              text=texto,
                              width=20,
                              height=20,
