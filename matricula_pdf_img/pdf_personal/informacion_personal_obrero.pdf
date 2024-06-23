@@ -38,7 +38,11 @@ endobj
 6 0 obj
 <<
 /Producer (PyFPDF 1.7.2 http://pyfpdf.googlecode.com/)
-/CreationDate (D:20240623151040)
+<<<<<<< HEAD
+/CreationDate (D:20240623161151)
+=======
+/CreationDate (D:20240623161449)
+>>>>>>> b1126b999c69b9c3a0daba0f44306601ca4e45fd
 >>
 endobj
 7 0 obj

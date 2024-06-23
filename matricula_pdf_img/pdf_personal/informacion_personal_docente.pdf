@@ -6,10 +6,10 @@
 /Contents 4 0 R>>
 endobj
 4 0 obj
-<</Filter /FlateDecode /Length 443>>
+<</Filter /FlateDecode /Length 364>>
 stream
-xœ}ÒÍnÓ@Àñ{žbŽôÀdf×ûu¤Ð"Z!áXì-,ò²›"Þžub7±W‘rˆ“ßìþ3¾î•¿»Ûö÷¬‘ò'¸ËwÂ¢TÀ¬
-c²ƒ÷J£vÐøé7’³áKÂ!)ÈKx÷¥yj»Ú±m |]ß6¾‚OmšçpùïŸ&ŠõDR¨Ò–(ÓÄÓ§ÓDN(É4ò8ðc(•ŸXÎMöŠ•Ž-–ˆà…)mý£=üƒBUÅ²í'R:ö|®S…˜1y.Å»Ò—‘)‰êâj†ìÊp„"›÷¡øåá1Õ¬cŠ×Nžµ<{Ö¡ãU*g‡?÷ÒûšÐ½*co2YoõV§ÞÊC°d!—½GäzoN5Ï”*íGÚß”Cõ:ô}„âPÄç›¸,?âåÓ-ç'”zÙ}ºâÕîŠ’ g;k÷¤öd–Å'i£8£²3©ö}q¨b³ŠžY´›K>F—Œ”GÃký„l,9Ô4S|óóØ|xh;/ñÅ¯ö|Tß®}F…XÕïv½6+HìåžW­GçíÖgçaÙú?Éz
+xœuÒËRƒ0€á}Ÿâ,uáiNBnK/­£‹Ž3òé‚í8¾½Á6m¡í–Àw’Ÿpx1”~f9Ì—¤1È×°ÈgÜ @¤8rÚH$wR¡²Ð9x‡ø`³á%n‘IÈ+¸y	ë¶kŠÒ·*WÃ›ëú65<µ¥wù×À§‰ü|"“(ã
+	qâîiš¨â3µøøèªm]$–2B.ã¶ùá”!7#eÕ6ëáî¿]]ûªí)¬BsÜ×®ÀDÌˆ†<§â¢*ªDdR <9šfÈÌ™aòld,]ùYÀ*Öl|Œ×&OqJ=cÑÒY*k†Ÿ{ê=»àºƒ²ïÍ´FR×zË]oi‡ÅÁà$ˆ‹iï=r¹7Å‚ŠFJïG¼E¨†êë{å¶ôïƒŸ–ßãWÊÇSŽw(Ô´{:âÅî’EA²ÆÌ™œ3=-ž¤+Å	¥IMÑ—ÛÚ‡Cô?£Ì8
 endstream
 endobj
 1 0 obj
@@ -39,7 +39,11 @@ endobj
 6 0 obj
 <<
 /Producer (PyFPDF 1.7.2 http://pyfpdf.googlecode.com/)
-/CreationDate (D:20240623151040)
+<<<<<<< HEAD
+/CreationDate (D:20240623161151)
+=======
+/CreationDate (D:20240623161449)
+>>>>>>> b1126b999c69b9c3a0daba0f44306601ca4e45fd
 >>
 endobj
 7 0 obj
@@ -53,13 +57,13 @@ endobj
 xref
 0 8
 0000000000 65535 f 
-0000000600 00000 n 
-0000000784 00000 n 
+0000000521 00000 n 
+0000000705 00000 n 
 0000000009 00000 n 
 0000000087 00000 n 
-0000000688 00000 n 
-0000000888 00000 n 
-0000000997 00000 n 
+0000000609 00000 n 
+0000000809 00000 n 
+0000000918 00000 n 
 trailer
 <<
 /Size 8
@@ -67,5 +71,5 @@ trailer
 /Info 6 0 R
 >>
 startxref
-1100
+1021
 %%EOF

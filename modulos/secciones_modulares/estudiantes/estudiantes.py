@@ -16,7 +16,6 @@ class EstudiantesVentana:
         # Eliminar widgets anteriores en el área de contenido
         for widget in self.master.winfo_children():
             widget.destroy()
-        self.frame_texto_blanco()
         self.texto_titulo()
         self.botones_seleccion_estudiantes()
         self.input_seleccion_estudiantes()
@@ -37,18 +36,18 @@ class EstudiantesVentana:
     
     def frame_texto_blanco(self):
         self.frame_fondo_blanco = ctk.CTkFrame(master=self.master,
-                                               width=1087,
-                                               height=640,
-                                               fg_color=var.bg_gray_light
+                                               width=1000,
+                                               height=350,
+                                               fg_color="white",
+                                               corner_radius=20
                                                 )
-        self.frame_fondo_blanco.place(relx=0.5,rely=0.5,anchor="center")
+        self.frame_fondo_blanco.place(relx=0.5,rely=0.7,anchor="center")
         
         
     def texto_titulo(self):
         self.texto_seleccion = ctk.CTkLabel(master=self.master,
                                            text="Estudiantes",
                                            text_color=var.text_black,
-                                           fg_color=var.bg_gray_light,
                                            font=var.Andika_large
                                            )
         
@@ -56,11 +55,12 @@ class EstudiantesVentana:
         
     # botones de estudiantes
     def botones_seleccion_estudiantes(self):
-        self.texto_Datos_del_estudiante = self.crear_texto(texto="Ingrese La Cedula",
-                                                        posicion_x=0.08,
-                                                        posicion_y=0.24,
-                                                        fuente=var.Andika_small
-                                                       )
+        self.texto_Datos_del_estudiante = ctk.CTkLabel(master=self.master,
+                                           text="Ingrese La Cedula",
+                                           text_color=var.text_black,
+                                           font=var.Andika_small
+                                           )
+        self.texto_Datos_del_estudiante.place(relx=0.15, rely=0.24, anchor="center")
         
         self.boton_crear_estudiante = self.crear_botones(texto="Registrar Estudiante",
                                                         comando=lambda: self.cargar_ventana_crear_estudiante(),
@@ -86,7 +86,6 @@ class EstudiantesVentana:
                                             validatecommand=(validacion_numeros,'%S')
                                             )
         self.input_buscar_estudiantes.place(relx=0.080, rely=0.30,anchor="w")
-
     
     
     # texto estudiantes
@@ -152,6 +151,7 @@ class EstudiantesVentana:
         # Insertar valores en la tabla
         c.execute(f"SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, fecha_nacimiento, genero FROM Estudiante WHERE cedula = {cedula}")
         info = c.fetchall()
+        print(info)
         
         for element in info:
           nombres = f"{element[0]} {element[1]}"
@@ -213,16 +213,19 @@ class EstudiantesVentana:
         c = conn.cursor()
 
         # Insertar valores en la tabla
-        c.execute(f"SELECT R.primer_nombre, R.segundo_nombre, R.primer_apellido, R.segundo_apellido, R.cedula, R.correo, R.direccion, R.telefono FROM Estudiante as E INNER JOIN Representante as R ON R.id_representante = E.id_representante WHERE E.cedula = {cedula};")
+        c.execute(f"SELECT R.primer_nombre, R.segundo_nombre, R.primer_apellido, R.segundo_apellido, R.cedula, R.correo, R.telefono, R.direccion FROM Estudiante as E INNER JOIN Representante as R ON R.id_representante = E.id_representante WHERE E.cedula = {cedula};")
         info = c.fetchall()
+        print(info)
         
         for element in info:
           nombres = f"{element[0]} {element[1]}"
           apellidos = f"{element[2]} {element[3]}"
           cedula = element[4]
           correo = element[5]
-          direccion = element[6]
-          telefono = element[7]
+          telefono = element[6]
+          direccion = element[7]
+
+        print(nombres, apellidos, cedula, correo, telefono, direccion)
 
         # Confirmar los cambios y cerrar la conexión
         conn.commit()
@@ -231,11 +234,11 @@ class EstudiantesVentana:
         # datos # nombre Apellido Cedula Edad 
         lista_datos_representante = (
             # identificador="123",
-            nombres,
-            apellidos,
-            cedula,
-            correo,
-            direccion
+            "Juan Jose",
+            "Pérez Marruecos",
+            "12345678",
+            "juanjoseperez@hotmail.com",
+            "Unidad vecinal"
         )
         # self.var_id = self.crear_texto(texto=f"{identificador}",
         #                                                 posicion_x=0.085,
@@ -316,17 +319,18 @@ class EstudiantesVentana:
     # Metodos  de creacion generales
     #Metodo para crear texto
     def crear_texto(self, posicion_x, posicion_y, texto,fuente):
-        palabras = ctk.CTkLabel(master=self.frame_fondo_blanco,
+        palabras = ctk.CTkLabel(master=self.master,
                                             text=texto,
                                             text_color=var.text_black,
-                                            font=fuente
+                                            font=fuente,
+                                            fg_color="white"
                                             )
         palabras.place(relx=posicion_x, rely=posicion_y,anchor="w")
 
         
     #Metodo para crear botones
     def crear_botones(self, texto, comando, color_boton, posicion_x, posicion_y):
-        boton = ctk.CTkButton(master=self.frame_fondo_blanco,
+        boton = ctk.CTkButton(master=self.master,
                              text=texto,
                              width=130,
                              height=40,
@@ -340,7 +344,7 @@ class EstudiantesVentana:
         boton.place(relx=posicion_x, rely=posicion_y,anchor="center")
     
     def crear_boton_simple(self, texto,color_text, comando, color_boton, posicion_x, posicion_y):
-        boton = ctk.CTkButton(master=self.frame_fondo_blanco,
+        boton = ctk.CTkButton(master=self.master,
                              text=texto,
                              width=20,
                              height=20,
@@ -358,6 +362,7 @@ class EstudiantesVentana:
     # logica de consulta 
     
     def consulta(self):
+        self.frame_texto_blanco()
         cedula = self.input_buscar_estudiantes.get()
         cedula = int(cedula)
         
@@ -378,6 +383,9 @@ class EstudiantesVentana:
         for element in info:
           lista_cedulas.append(element[0])
         
+        print(cedula)
+        print(lista_cedulas)
+        
         if cedula in lista_cedulas:
             self.texto_seleccion_estudiantes()
             self.variables_seleccion_estudiantes()
@@ -387,4 +395,3 @@ class EstudiantesVentana:
     
     def solo_numeros(self, char):
         return char.isdigit() # solo numeros
-
