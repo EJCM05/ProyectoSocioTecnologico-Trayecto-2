@@ -39,7 +39,7 @@ class EstudiantesVentana:
         self.frame_fondo_blanco = ctk.CTkFrame(master=self.master,
                                                width=1087,
                                                height=640,
-                                               fg_color="#FFFFFF"
+                                               fg_color=var.bg_gray_light
                                                 )
         self.frame_fondo_blanco.place(relx=0.5,rely=0.5,anchor="center")
         
@@ -48,7 +48,7 @@ class EstudiantesVentana:
         self.texto_seleccion = ctk.CTkLabel(master=self.master,
                                            text="Estudiantes",
                                            text_color=var.text_black,
-                                           fg_color="#FFFFFF",
+                                           fg_color=var.bg_gray_light,
                                            font=var.Andika_large
                                            )
         
