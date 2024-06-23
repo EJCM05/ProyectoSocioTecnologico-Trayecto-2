@@ -18,7 +18,7 @@ class CrearPersonalVentana:
     
     def texto_titulo(self):
         self.texto_seleccion = ctk.CTkLabel(master=self.master,
-                                           text=f"Personal {self.nombre_personal}",
+                                           text=f"Registrar Personal {self.nombre_personal}",
                                            text_color=var.text_black,
                                            font=var.Andika_large
                                            )
@@ -27,12 +27,7 @@ class CrearPersonalVentana:
     
     
     def botones_personal(self):
-        self.boton_decargar_pdf= self.crear_botones_personal(texto="Descargar Lista",
-                                                        comando=lambda: print("crear xd"),
-                                                        color_boton=var.button_blue,
-                                                        posicion_x=0.5,
-                                                        posicion_y=0.5
-                                                       )
+        pass
     
     
     def crear_botones_personal(self, texto, comando, color_boton, posicion_x, posicion_y):
