@@ -100,8 +100,6 @@ class InicioVentana:
         
         for element in result:
           lista.append(element[1])
-          
-        print(lista)
 
         # Confirmar los cambios y cerrar la conexión
         conn.commit()

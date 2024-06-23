@@ -152,7 +152,6 @@ class EstudiantesVentana:
         # Insertar valores en la tabla
         c.execute(f"SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, fecha_nacimiento, genero FROM Estudiante WHERE cedula = {cedula}")
         info = c.fetchall()
-        print(info)
         
         for element in info:
           nombres = f"{element[0]} {element[1]}"
@@ -214,19 +213,16 @@ class EstudiantesVentana:
         c = conn.cursor()
 
         # Insertar valores en la tabla
-        c.execute(f"SELECT R.primer_nombre, R.segundo_nombre, R.primer_apellido, R.segundo_apellido, R.cedula, R.correo, R.telefono, R.direccion FROM Estudiante as E INNER JOIN Representante as R ON R.id_representante = E.id_representante WHERE E.cedula = {cedula};")
+        c.execute(f"SELECT R.primer_nombre, R.segundo_nombre, R.primer_apellido, R.segundo_apellido, R.cedula, R.correo, R.direccion, R.telefono FROM Estudiante as E INNER JOIN Representante as R ON R.id_representante = E.id_representante WHERE E.cedula = {cedula};")
         info = c.fetchall()
-        print(info)
         
         for element in info:
           nombres = f"{element[0]} {element[1]}"
           apellidos = f"{element[2]} {element[3]}"
           cedula = element[4]
           correo = element[5]
-          telefono = element[6]
-          direccion = element[7]
-
-        print(nombres, apellidos, cedula, correo, telefono, direccion)
+          direccion = element[6]
+          telefono = element[7]
 
         # Confirmar los cambios y cerrar la conexión
         conn.commit()
@@ -235,11 +231,11 @@ class EstudiantesVentana:
         # datos # nombre Apellido Cedula Edad 
         lista_datos_representante = (
             # identificador="123",
-            "Juan Jose",
-            "Pérez Marruecos",
-            "12345678",
-            "juanjoseperez@hotmail.com",
-            "Unidad vecinal"
+            nombres,
+            apellidos,
+            cedula,
+            correo,
+            direccion
         )
         # self.var_id = self.crear_texto(texto=f"{identificador}",
         #                                                 posicion_x=0.085,
@@ -381,9 +377,6 @@ class EstudiantesVentana:
         
         for element in info:
           lista_cedulas.append(element[0])
-        
-        print(cedula)
-        print(lista_cedulas)
         
         if cedula in lista_cedulas:
             self.texto_seleccion_estudiantes()
