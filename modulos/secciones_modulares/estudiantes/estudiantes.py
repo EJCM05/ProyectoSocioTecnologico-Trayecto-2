@@ -103,17 +103,17 @@ class EstudiantesVentana:
                                                         fuente=var.Amaranth_small             
                                                        )
         self.texto_edad = self.crear_texto(texto="Genero",
-                                                        posicion_x=0.49,
+                                                        posicion_x=0.48,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.texto_fecha = self.crear_texto(texto="Fecha De Nacimiento",
-                                                        posicion_x=0.59,
+                                                        posicion_x=0.57,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.texto_acciones = self.crear_texto(texto="Acciones",
-                                                        posicion_x=0.77,
+                                                        posicion_x=0.79,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
@@ -121,28 +121,15 @@ class EstudiantesVentana:
                                                         comando=lambda: self.cargar_ventana_modificar_estudiante(self.input_buscar_estudiantes.get()),
                                                         color_boton=var.button_transparent,
                                                         color_text=var.text_blue,
-                                                        posicion_x=0.80,
-                                                        posicion_y=0.68
+                                                        posicion_x=0.81,
+                                                        posicion_y=0.64
                                                        )
         self.boton_eliminar_estudiante = self.crear_boton_simple(texto="Borrar",
                                                         comando=lambda: eliminar_estudiante(self.input_buscar_estudiantes.get()),
                                                         color_boton=var.button_transparent,
                                                         color_text=var.text_blue,
                                                         posicion_x=0.86,
-                                                        posicion_y=0.68
-                                                       )
-        
-        self.boton_modificar_representante = self.crear_boton_simple(texto="Editar",
-                                                        color_boton=var.button_transparent,
-                                                        color_text=var.text_blue,
-                                                        comando=lambda: self.cargar_ventana_modificar_representante(self.input_buscar_estudiantes.get()),
-                                                        posicion_x=0.80,
-                                                        posicion_y=0.85
-                                                       )
-        self.texto_Datos_del_estudiante = self.crear_texto(texto="Datos Del Representante",
-                                                        posicion_x=0.12,
-                                                        posicion_y=0.76,
-                                                        fuente=var.Amaranth_medium_small
+                                                        posicion_y=0.64
                                                        )
         
     def variables_seleccion_estudiantes(self):
@@ -183,28 +170,28 @@ class EstudiantesVentana:
         #                                                 fuente=var.Amaranth_small
         #                                                )
         self.var_nombres = self.crear_texto(texto=lista_datos[0],
-                                                        posicion_x=0.15,
-                                                        posicion_y=0.68,
+                                                        posicion_x=0.14,
+                                                        posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_apellidos = self.crear_texto(texto=lista_datos[1],
                                                         posicion_x=0.27,
-                                                        posicion_y=0.68,
+                                                        posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
-        self.var_cedula = self.crear_texto(texto=lista_datos[2],
+        self.var_cedula = self.crear_texto(texto=f"V{lista_datos[2]}",
                                                         posicion_x=0.38,
-                                                        posicion_y=0.68,
+                                                        posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_edad = self.crear_texto(texto=lista_datos[3],
-                                                        posicion_x=0.49,
-                                                        posicion_y=0.68,
+                                                        posicion_x=0.47,
+                                                        posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_fecha = self.crear_texto(texto=lista_datos[4],
-                                                        posicion_x=0.60,
-                                                        posicion_y=0.68,
+                                                        posicion_x=0.61,
+                                                        posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
         # Llamada a la función con valores específicos
@@ -238,40 +225,84 @@ class EstudiantesVentana:
         # datos # nombre Apellido Cedula Edad 
         lista_datos_representante = (
             # identificador="123",
-            "Juan",
-            "Pérez",
-            "V12345678",
-            "Masculino",
-            "2024-06-23"
+            "Juan Jose",
+            "Pérez Marruecos",
+            "12345678",
+            "juanjoseperez@hotmail.com",
+            "Unidad vecinal"
         )
         # self.var_id = self.crear_texto(texto=f"{identificador}",
         #                                                 posicion_x=0.085,
         #                                                 posicion_y=0.68,
         #                                                 fuente=var.Amaranth_small
         #                                                )
+        self.texto_Datos_del_estudiante = self.crear_texto(texto="Datos Del Representante",
+                                                        posicion_x=0.12,
+                                                        posicion_y=0.76,
+                                                        fuente=var.Amaranth_medium_small
+                                                       )
+        self.texto_nombres = self.crear_texto(texto="Nombres",
+                                                        posicion_x=0.12,
+                                                        posicion_y=0.82,
+                                                        fuente=var.Amaranth_small             
+                                                       )
+        self.texto_apellidos = self.crear_texto(texto="Apellidos",
+                                                        posicion_x=0.24,
+                                                        posicion_y=0.82,
+                                                        fuente=var.Amaranth_small             
+                                                       )
+        self.texto_cedula = self.crear_texto(texto="Cedula",
+                                                        posicion_x=0.38,
+                                                        posicion_y=0.82,
+                                                        fuente=var.Amaranth_small             
+                                                       )
+        self.texto_edad = self.crear_texto(texto="Correo Electronico",
+                                                        posicion_x=0.52,
+                                                        posicion_y=0.82,
+                                                        fuente=var.Amaranth_small             
+                                                       )
+        self.texto_fecha = self.crear_texto(texto="Direccion",
+                                                        posicion_x=0.76,
+                                                        posicion_y=0.82,
+                                                        fuente=var.Amaranth_small             
+                                                       )
+        self.texto_acciones = self.crear_texto(texto="Acciones",
+                                                        posicion_x=0.88,
+                                                        posicion_y=0.82,
+                                                        fuente=var.Amaranth_small             
+                                                       )
+        self.boton_modificar_representante = self.crear_boton_simple(texto="Editar",
+                                                        color_boton=var.button_transparent,
+                                                        color_text=var.text_blue,
+                                                        comando=lambda: self.cargar_ventana_modificar_representante(self.input_buscar_estudiantes.get()),
+                                                        posicion_x=0.91,
+                                                        posicion_y=0.89
+                                                       )
+        
+        # variables seleccion representantes
         self.var_nombres = self.crear_texto(texto=lista_datos_representante[0],
-                                                        posicion_x=0.15,
-                                                        posicion_y=0.85,
+                                                        posicion_x=0.12,
+                                                        posicion_y=0.89,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_apellidos = self.crear_texto(texto=lista_datos_representante[1],
-                                                        posicion_x=0.27,
-                                                        posicion_y=0.85,
+                                                        posicion_x=0.22,
+                                                        posicion_y=0.89,
                                                         fuente=var.Amaranth_small             
                                                        )
-        self.var_cedula = self.crear_texto(texto=lista_datos_representante[2],
-                                                        posicion_x=0.38,
-                                                        posicion_y=0.85,
+        self.var_cedula = self.crear_texto(texto=f"V{lista_datos_representante[2]}",
+                                                        posicion_x=0.37,
+                                                        posicion_y=0.89,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_edad = self.crear_texto(texto=lista_datos_representante[3],
                                                         posicion_x=0.49,
-                                                        posicion_y=0.85,
+                                                        posicion_y=0.89,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_fecha = self.crear_texto(texto=lista_datos_representante[4],
-                                                        posicion_x=0.60,
-                                                        posicion_y=0.85,
+                                                        posicion_x=0.74,
+                                                        posicion_y=0.89,
                                                         fuente=var.Amaranth_small             
                                                        )
 
