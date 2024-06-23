@@ -5,8 +5,9 @@ from modulos.secciones_modulares.inicio.inicio import InicioVentana
 import sqlite3
 
 class ModificarGradoVentana():
-    def __init__(self, master):
+    def __init__(self, master, cedula):
         self.master = master
+        self.cedula = cedula
     
     
     def mostrar(self):
@@ -37,21 +38,40 @@ class ModificarGradoVentana():
         c = conn.cursor()
 
         # Insertar valores en la tabla
-        c.execute(f"SELECT id_grado FROM Representante WHERE cedula = {self.cedula_a_modificar};")
+        c.execute(f"SELECT id_grado FROM Estudiante WHERE cedula = {self.cedula};")
 
         info = c.fetchall()
 
         for element in info:
-          opcion = info[0]
+          grado = info[0][0]
         
-        print(opcion)
         # Confirmar los cambios y cerrar la conexión
         conn.commit()
         conn.close()
         
+        if grado == 1:
+            opcion = "Simoncito"
+        elif grado == 2:
+            opcion = "Inicial A"
+        elif grado == 3:
+            opcion = "Inicial B"
+        elif grado == 4:
+            opcion = "Inicial C"
+        elif grado == 5:
+            opcion = "1er Grado"
+        elif grado == 6:
+            opcion = "2do Grado"
+        elif grado == 7:
+            opcion = "3er Grado"
+        elif grado == 8:
+            opcion = "4to Grado"
+        elif grado == 9:
+            opcion = "5to Grado"
+        elif grado == 10:
+            opcion = "6to Grado"
+        
         #---------------aqui modifica ANTHONY
-        grado_viejo = lista_grados[opcion-1]
-        print(grado_viejo)
+        grado_viejo = opcion
         
         #contenedor principal de los inputs
         self.contenedor_input = ctk.CTkFrame(master=self.master,
@@ -115,7 +135,7 @@ class ModificarGradoVentana():
         conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
         c = conn.cursor()
           
-        c.execute("UPDATE Estudiante SET id_grado = ? WHERE cedula = ?", (opcion, ))
+        c.execute("UPDATE Estudiante SET id_grado = ? WHERE cedula = ?", (opcion, self.cedula))
           
         # Confirmar los cambios y cerrar la conexión
         conn.commit()
