@@ -9,6 +9,58 @@ class ModificarEstudianteVentana():
         self.master = master
         self.cedula_a_modificar = cedula
     
+    def obtener_info_estudiante(self):
+      # Conectarse a la base de datos
+      conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+      c = conn.cursor()
+
+      # Insertar valores en la tabla
+      c.execute(f"SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, fecha_nacimiento, genero FROM Estudiante WHERE cedula = {self.cedula_a_modificar}")
+
+      info = c.fetchall()
+
+      for tupla in info:
+        nombres = f"{tupla[0]} {tupla[1]}"
+        apellidos = f"{tupla[2]} {tupla[3]}"
+        cedula = tupla[4]
+        fecha_nacimiento = tupla[5]
+        genero = tupla[6]
+
+      año, mes, dia = fecha_nacimiento.split("/")
+      
+      if mes == 1 or mes == "1":
+        mes = "Enero"
+      elif mes == 2 or mes == "2":
+        mes = "Febrero"
+      elif mes == 3 or mes == "3":
+        mes = "Marzo"
+      elif mes == 4 or mes == "4":
+        mes = "Abril"
+      elif mes == 5 or mes == "5":
+        mes = "Mayo"
+      elif mes == 6 or mes == "6":
+        mes =  "Junio"
+      elif mes == 7 or mes == "7":
+        mes = "Julio"
+      elif mes == 8 or mes == "8":
+        mes = "Agosto"
+      elif mes == 9 or mes == "9":
+        mes = "Septiembre"
+      elif mes == 10 or mes == "10":
+        mes = "Octubre"
+      elif mes == 11 or mes == "11":
+        mes = "Noviembre"
+      elif mes == 12 or mes == "12":
+        mes = "Diciembre"
+
+      lista = [nombres, apellidos, cedula, año, mes, dia, genero]
+
+      # Confirmar los cambios y cerrar la conexión
+      conn.commit()
+      conn.close()
+      
+      return lista
+
     
     def mostrar(self):
         # Eliminar widgets anteriores en el área de contenido
@@ -28,8 +80,9 @@ class ModificarEstudianteVentana():
         
         self.texto_seleccion.place(relx=0.5, rely=0.06, anchor="center")
     
-    
     def area_input(self):
+        lista = self.obtener_info_estudiante()
+      
         #LISTA para opciones del input desplegable
         # Se llama al metodo lista_str para pasar los valores numeros a str
         lista_dias = list(range(1, 32))
@@ -40,14 +93,14 @@ class ModificarEstudianteVentana():
         lista_genero = ["Masculino", "Femenino"]
         
         #Variables para colocar a los entry
-        nombre_estudiante = ctk.StringVar(value="angel david")
-        apellido_estudiante = ctk.StringVar(value="vivas perez")
+        nombre_estudiante = ctk.StringVar(value=lista[0])
+        apellido_estudiante = ctk.StringVar(value=lista[1])
         #cedula estudiante no hay necedidad de buscarlo en la BD
         cedula_estudiante = ctk.StringVar(value=self.cedula_a_modificar)
-        dia_nacimiento = "12"
-        mes_nacimiento = "Enero"
-        año_nacimiento = "2004"
-        genero_estudiante = "Masculino"
+        dia_nacimiento = lista[5]
+        mes_nacimiento = lista[4]
+        año_nacimiento = lista[3]
+        genero_estudiante = lista[6]
         
         #contenedor principal de los inputs
         self.contenedor_input = ctk.CTkFrame(master=self.master,
@@ -167,7 +220,6 @@ class ModificarEstudianteVentana():
                                               texto="Genero:"
                                              )
     
-    
     def verificar_espacios(self):
         nombres = self.input_nombres_estudiante.get()
         apellidos = self.input_apellidos_estudiante.get()
@@ -184,19 +236,17 @@ class ModificarEstudianteVentana():
         else:
             print("Los campos deben comenzar con una letra/numero")
     
-    
     def continuar(self):
       nombres = self.input_nombres_estudiante.get()
-      
       nombre_1, nombre_2 = nombres.split()
       
       apellidos = self.input_apellidos_estudiante.get()
-      
       apellido_1, apellido_2 = apellidos.split()
-      
+  
       cedula = self.input_cedula_estudiante.get()
       dia_nacimiento = self.input_dia_nacimiento_estudiante.get()
       mes_nacimiento = self.input_mes_nacimiento_estudiante.get()
+
       
       if mes_nacimiento == "Enero":
         opcion = 1
@@ -223,10 +273,8 @@ class ModificarEstudianteVentana():
       elif mes_nacimiento == "Diciembre":
         opcion = 12
       
-      año_nacimiento = self.input_año_nacimiento_estudiante.get()
-      
+      año_nacimiento = self.input_año_nacimiento_estudiante.get()   
       fecha_nacimiento = f"{año_nacimiento}/{opcion}/{dia_nacimiento}"
-      
       genero = self.input_genero_estudiante.get()
       
       # Conectarse a la base de datos
@@ -234,13 +282,16 @@ class ModificarEstudianteVentana():
       c = conn.cursor()
 
       # Insertar valores en la tabla
-      c.execute("INSERT INTO Estudiante (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, fecha_nacimiento, genero) VALUES (?, ?, ?, ?, ?, ?, ?)", (nombre_1, nombre_2, apellido_1, apellido_2, cedula, fecha_nacimiento, genero))
-
+      c.execute("""UPDATE Estudiante SET primer_nombre = ?, segundo_nombre = ?, primer_apellido = ?, segundo_apellido = ?, cedula = ?, fecha_nacimiento = ?, genero = ? WHERE cedula = ?;""",(nombre_1, nombre_2, apellido_1, apellido_2, cedula, fecha_nacimiento, genero, self.cedula_a_modificar))
+      
+      c.execute(f"SELECT * FROM Estudiante WHERE cedula = {self.cedula_a_modificar}")
+      info = c.fetchall()
+      
       # Confirmar los cambios y cerrar la conexión
       conn.commit()
       conn.close()
       
-      texto_emergente = "Estudiante registrado correctamente"
+      texto_emergente = "Estudiante Modificado correctamente"
       CTkMessagebox(title="Información", message=texto_emergente)
       ventana_inicio = InicioVentana(self.master)
       ventana_inicio.mostrar()
@@ -267,7 +318,6 @@ class ModificarEstudianteVentana():
     def lista_str(self, lista):
         opciones_str = [str(opcion) for opcion in lista]
         return opciones_str
-    
     
     #Metodo para crear botones
     def crear_botones_estudiantes(self, texto, comando, color_boton, posicion_x, posicion_y):
