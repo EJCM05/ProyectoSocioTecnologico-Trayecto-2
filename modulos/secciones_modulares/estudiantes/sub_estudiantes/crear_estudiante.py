@@ -214,59 +214,58 @@ class CrearEstudianteVentana():
       
       apellido_2 = " ".join(apellidos_2)
       
-      if len(apellidos_2) >= 3 or len(nombres_2) >= 3:
+      if len(apellidos_2) >= 3:
+          texto_emergente = "Cantidad excesiva de apellidos."
+      elif len(nombres_2) >= 3:
           texto_emergente = "Cantidad excesiva de nombres."
-          CTkMessagebox(title="Error", message=texto_emergente,font=("calibri",16),icon="warning")
+      else:
+        dia_nacimiento = self.input_dia_nacimiento_estudiante.get()
+        mes_nacimiento = self.input_mes_nacimiento_estudiante.get()
+        if mes_nacimiento == "Enero":
+            opcion = 1
+        elif mes_nacimiento == "Febrero":
+            opcion = 2
+        elif mes_nacimiento == "Marzo":
+            opcion = 3
+        elif mes_nacimiento == "Abril":
+            opcion = 4
+        elif mes_nacimiento == "Mayo":
+            opcion = 5
+        elif mes_nacimiento == "Junio":
+            opcion = 6
+        elif mes_nacimiento == "Julio":
+            opcion = 7
+        elif mes_nacimiento == "Agosto":
+            opcion = 8
+        elif mes_nacimiento == "Septiembre":
+            opcion = 9
+        elif mes_nacimiento == "Octubre":
+            opcion = 10
+        elif mes_nacimiento == "Noviembre":
+            opcion = 11
+        elif mes_nacimiento == "Diciembre":
+            opcion = 12
+        
+        año_nacimiento = self.input_año_nacimiento_estudiante.get()
+        
+        fecha_nacimiento = f"{año_nacimiento}/{opcion}/{dia_nacimiento}"
+        
+        genero = self.input_genero_estudiante.get()
+        
+        # Conectarse a la base de datos
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        c = conn.cursor()
 
-      dia_nacimiento = self.input_dia_nacimiento_estudiante.get()
-      mes_nacimiento = self.input_mes_nacimiento_estudiante.get()
-      
-      if mes_nacimiento == "Enero":
-        opcion = 1
-      elif mes_nacimiento == "Febrero":
-        opcion = 2
-      elif mes_nacimiento == "Marzo":
-        opcion = 3
-      elif mes_nacimiento == "Abril":
-        opcion = 4
-      elif mes_nacimiento == "Mayo":
-        opcion = 5
-      elif mes_nacimiento == "Junio":
-        opcion = 6
-      elif mes_nacimiento == "Julio":
-        opcion = 7
-      elif mes_nacimiento == "Agosto":
-        opcion = 8
-      elif mes_nacimiento == "Septiembre":
-        opcion = 9
-      elif mes_nacimiento == "Octubre":
-        opcion = 10
-      elif mes_nacimiento == "Noviembre":
-        opcion = 11
-      elif mes_nacimiento == "Diciembre":
-        opcion = 12
-      
-      año_nacimiento = self.input_año_nacimiento_estudiante.get()
-      
-      fecha_nacimiento = f"{año_nacimiento}/{opcion}/{dia_nacimiento}"
-      
-      genero = self.input_genero_estudiante.get()
-      
-      # Conectarse a la base de datos
-      conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
-      c = conn.cursor()
+        # Insertar valores en la tabla
+        c.execute("INSERT INTO Estudiante (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, fecha_nacimiento, genero) VALUES (?, ?, ?, ?, ?, ?, ?)", (nombre_1, nombre_2, apellido_1, apellido_2, self.cedula, fecha_nacimiento, genero))
 
-      # Insertar valores en la tabla
-      c.execute("INSERT INTO Estudiante (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, fecha_nacimiento, genero) VALUES (?, ?, ?, ?, ?, ?, ?)", (nombre_1, nombre_2, apellido_1, apellido_2, self.cedula, fecha_nacimiento, genero))
-
-      # Confirmar los cambios y cerrar la conexión
-      conn.commit()
-      conn.close()
-      
-      ventana_representante = DatosRepresentanteVentana(self.master)
-          
-      ventana_representante.mostrar()
-    
+        # Confirmar los cambios y cerrar la conexión
+        conn.commit()
+        conn.close()
+        
+        ventana_representante = DatosRepresentanteVentana(self.master)
+        ventana_representante.mostrar()
+      CTkMessagebox(title="Error", message=texto_emergente,font=("calibri",16),icon="warning")
     
     def solo_numeros(self, char):
         return char.isdigit() # solo numeros
