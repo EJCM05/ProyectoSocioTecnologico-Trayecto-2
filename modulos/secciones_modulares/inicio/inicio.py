@@ -50,21 +50,21 @@ class InicioVentana:
     
     def texto_datos_generales(self):
         self.texto_estudiantes = self.crear_rectangulo_texto(nombre_texto="Estudiante",
-                                                            dato_texto=self.sumar_estudiante_lista(),
+                                                            dato_texto=self.sumar_estudiante_total(),
                                                             color_frame=var.est_color_blue,
                                                             posicion_x=0.1,
                                                             posicion_y=0.2
                                                             )
         
         self.texto_docentes = self.crear_rectangulo_texto(nombre_texto="Docentes",
-                                                         dato_texto="10",
+                                                         dato_texto=self.obtener_lista_maestros(),
                                                          color_frame=var.est_color_gray,
                                                          posicion_x=0.3,
                                                          posicion_y=0.2
                                                          )
         
         self.texto_obreros = self.crear_rectangulo_texto(nombre_texto="Obreros",
-                                                        dato_texto="10",
+                                                        dato_texto=self.obtener_lista_obreros(),
                                                         color_frame=var.est_color_pink,
                                                         posicion_x=0.5,
                                                         posicion_y=0.2
@@ -78,7 +78,7 @@ class InicioVentana:
                                                       )
         
         self.texto_especialistas = self.crear_rectangulo_texto(nombre_texto="Especialistas",
-                                                              dato_texto="10",
+                                                              dato_texto=self.obtener_lista_especialista(),
                                                               color_frame=var.est_color_grayBlack,
                                                               posicion_x=0.9,
                                                               posicion_y=0.2
@@ -118,19 +118,92 @@ class InicioVentana:
         c.execute(f"""SELECT G.grado_nombre, COUNT(E.id_estudiante) AS cantidad_alumnos FROM Grado G LEFT JOIN Estudiante E ON G.id_grado = E.id_grado GROUP BY G.id_grado, G.grado_nombre ORDER BY G.id_grado LIMIT 10;""")
         result = c.fetchall()
 
-        print(result)
-
         lista = []
                 
         for element in result:
             lista.append(element[1])
-        print(lista)
 
         # Confirmar los cambios y cerrar la conexión
         conn.commit()
         conn.close()
         return lista
         
+    def obtener_lista_estudiante(self):    
+      # Conectarse a la base de datos
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        c = conn.cursor()
+
+        # Insertar valores en la tabla
+        c.execute(f"""SELECT id_estudiante, COUNT(*) AS count FROM estudiante;""")
+        result = c.fetchall()
+
+        lista = []
+                
+        for element in result:
+            lista.append(element[1])
+
+        # Confirmar los cambios y cerrar la conexión
+        conn.commit()
+        conn.close()
+        return lista
+        
+    def obtener_lista_maestros(self):    
+      # Conectarse a la base de datos
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        c = conn.cursor()
+
+        # Insertar valores en la tabla
+        c.execute(f"""SELECT id_personal, COUNT(*) AS count FROM Personal WHERE id_personal = 2 GROUP BY id_personal;""")
+        result = c.fetchall()
+
+        lista = []
+                
+        for element in result:
+            lista.append(element[1])
+
+        # Confirmar los cambios y cerrar la conexión
+        conn.commit()
+        conn.close()
+        return lista
+    
+    def obtener_lista_obreros(self):    
+      # Conectarse a la base de datos
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        c = conn.cursor()
+
+        # Insertar valores en la tabla
+        c.execute(f"""SELECT id_personal, COUNT(*) AS count FROM Personal WHERE id_personal = 1 GROUP BY id_personal;""")
+        result = c.fetchall()
+
+        lista = []
+                
+        for element in result:
+            lista.append(element[1])
+
+        # Confirmar los cambios y cerrar la conexión
+        conn.commit()
+        conn.close()
+        return lista
+      
+    def obtener_lista_especialista(self):    
+      # Conectarse a la base de datos
+      conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+      c = conn.cursor()
+
+      # Insertar valores en la tabla
+      c.execute(f"""SELECT id_personal, COUNT(*) AS count FROM Personal WHERE id_personal = 3 GROUP BY id_personal;""")
+      result = c.fetchall()
+      
+      lista = []
+                
+      for element in result:
+          lista.append(element[1])
+
+      # Confirmar los cambios y cerrar la conexión
+      conn.commit()
+      conn.close()
+      return lista
+    
     def sumar_estudiante_lista(self):
       lista = self.obtener_lista_grados()
       
@@ -138,4 +211,12 @@ class InicioVentana:
       suma_total = sum(lista)
 
       return suma_total
- 
+
+    def sumar_estudiante_total(self):
+          lista = self.obtener_lista_estudiante()
+          
+          # Usamos la función sum para sumar todos los elementos de la lista
+          suma_total = sum(lista)
+
+          return suma_total
+          

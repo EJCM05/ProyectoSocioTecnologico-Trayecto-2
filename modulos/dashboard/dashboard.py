@@ -160,7 +160,7 @@ class Dashboard:
                                 text="",
                                 )
         self.texto_usuario = ctk.CTkLabel(master=self.panel_superior,
-                                text=f"Bienvenido {self.cargo[0][1]} - {self.cargo[0][0]}",
+                                text=f"Bienvenido {self.cargo[0]} - {self.cargo[1]}",
                                 text_color=var.text_white,
                                 font=var.Amaranth_small
                                 )
