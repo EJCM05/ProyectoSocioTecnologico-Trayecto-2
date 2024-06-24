@@ -5,6 +5,8 @@ from modulos.variables import variables as var
 from modulos.controlador import controlador
 from PIL import ImageTk, Image
 from modulos.dashboard.dashboard import Dashboard
+from CTkMessagebox import CTkMessagebox
+
 
 class LoginApp:
     def __init__(self,master):
@@ -52,7 +54,7 @@ class LoginApp:
                                             corner_radius=0,
                                             fg_color=var.bg_white,
                                             border_color=var.border_black,
-                                            border_width=1
+                                            border_width=.5
                                             )
         
         # contenedor principal (azul)
@@ -197,8 +199,8 @@ class LoginApp:
             self.cargar_ventana_dashboard()
         else:
             # Credenciales incorrectas: muestra un mensaje de error
-            print("Error: Usuario o contraseña incorrectos")
-
+            texto_emergente = "Usuario o Contraseña incorrectos"
+            CTkMessagebox(title="Alerta", message=texto_emergente,font=("calibri",16),icon="cancel")
     def pasar_cargo(self, usuario):
         usuario = usuario
 
