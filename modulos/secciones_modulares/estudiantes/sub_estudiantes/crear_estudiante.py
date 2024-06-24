@@ -179,13 +179,10 @@ class CrearEstudianteVentana():
       # Insertar valores en la tabla
       c.execute(f"SELECT cedula FROM Estudiante")
       info = c.fetchall()
-      print(info)
       
       lista = []
       for tupla in info:
         lista.append(str(tupla[0]))
-        
-      print(lista)
       
       # Confirmar los cambios y cerrar la conexión
       conn.commit()
@@ -202,9 +199,23 @@ class CrearEstudianteVentana():
     
     def continuar_registro(self):
       nombres = self.input_nombres_estudiante.get()
-      nombre_1, nombre_2 = nombres.split()
+      nombre_1, *nombres_2 = nombres.split()
+      # print(nombres_2)
+
+      # Unir todos los elementos de la lista en un solo string, sin separador
+      nombre_2 = " ".join(nombres_2)
+
+      # Mostrar el resultado
+      # print(nombre_2)
+
       apellidos = self.input_apellidos_estudiante.get()
-      apellido_1, apellido_2 = apellidos.split()
+      apellido_1, *apellidos_2 = apellidos.split()
+      
+      apellido_2 = " ".join(apellidos_2)
+      
+      if len(apellidos_2) >= 3 or len(nombres_2) >= 3:
+        print("Cantidad excesiva de nombres, ni que fueras simon bolivar")
+          
       dia_nacimiento = self.input_dia_nacimiento_estudiante.get()
       mes_nacimiento = self.input_mes_nacimiento_estudiante.get()
       

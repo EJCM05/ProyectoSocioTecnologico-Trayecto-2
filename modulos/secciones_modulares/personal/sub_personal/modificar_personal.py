@@ -240,11 +240,22 @@ class ModificarPersonalVentana():
     
     def continuar(self):
       nombres = self.input_nombres_personal.get()
-      nombre_1, nombre_2 = nombres.split()
+      nombre_1, *nombres_2 = nombres.split()
+      # print(nombres_2)
+
+      # Unir todos los elementos de la lista en un solo string, sin separador
+      nombre_2 = " ".join(nombres_2)
+      # Mostrar el resultado
+      # print(nombre_2)
       
       apellidos = self.input_apellidos_personal.get()
-      apellido_1, apellido_2 = apellidos.split()
-  
+      apellido_1, *apellidos_2 = apellidos.split()
+        
+      apellido_2 = " ".join(apellidos_2)
+          
+      if len(apellidos_2) >= 3 or len(nombres_2) >= 3:
+        print("Cantidad excesiva de nombres, ni que fueras simon bolivar")
+        
       cedula = self.input_cedula_personal.get()
       dia_nacimiento = self.input_dia_nacimiento_personal.get()
       mes_nacimiento = self.input_mes_nacimiento_personal.get()
