@@ -153,7 +153,7 @@ class EstudiantesVentana:
                                                         posicion_y=0.64
                                                        )
         self.boton_eliminar_estudiante = self.crear_boton_simple(texto="Borrar",
-                                                        comando=lambda: eliminar_estudiante(self.input_buscar_estudiantes.get()),
+                                                        comando=lambda: self.eliminar_usuario_funcion(),
                                                         color_boton=var.button_transparent,
                                                         color_text=var.text_blue,
                                                         posicion_x=0.87,
@@ -422,4 +422,7 @@ class EstudiantesVentana:
     def solo_numeros(self, char):
         return char.isdigit() # solo numeros
     
-    
+    def eliminar_usuario_funcion(self):
+        eliminar_estudiante(self.input_buscar_estudiantes.get())
+        self.frame_texto_blanco()
+        self.imagen_de_usuario()
