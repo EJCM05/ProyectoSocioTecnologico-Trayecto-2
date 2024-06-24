@@ -16,7 +16,7 @@ class ModificarPersonalVentana():
       c = conn.cursor()
 
       # Insertar valores en la tabla
-      c.execute(f"SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, fecha_nacimiento, genero FROM Estudiante WHERE cedula = {self.cedula_a_modificar}")
+      c.execute(f"SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, fecha_nacimiento, genero FROM Personal WHERE cedula = {self.cedula_a_modificar}")
 
       info = c.fetchall()
 
@@ -28,6 +28,7 @@ class ModificarPersonalVentana():
         genero = tupla[6]
 
       año, mes, dia = fecha_nacimiento.split("/")
+      int(mes)
       
       if mes == 1 or mes == "1":
         mes = "Enero"
@@ -283,7 +284,7 @@ class ModificarPersonalVentana():
       c = conn.cursor()
 
       # Insertar valores en la tabla
-      c.execute("""UPDATE Estudiante SET primer_nombre = ?, segundo_nombre = ?, primer_apellido = ?, segundo_apellido = ?, cedula = ?, fecha_nacimiento = ?, genero = ? WHERE cedula = ?;""",(nombre_1, nombre_2, apellido_1, apellido_2, cedula, fecha_nacimiento, genero, self.cedula_a_modificar))
+      c.execute("""UPDATE Personal SET primer_nombre = ?, segundo_nombre = ?, primer_apellido = ?, segundo_apellido = ?, cedula = ?, fecha_nacimiento = ?, genero = ? WHERE cedula = ?;""",(nombre_1, nombre_2, apellido_1, apellido_2, cedula, fecha_nacimiento, genero, self.cedula_a_modificar))
       
       c.execute(f"SELECT * FROM Estudiante WHERE cedula = {self.cedula_a_modificar}")
       info = c.fetchall()

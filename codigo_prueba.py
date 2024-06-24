@@ -1,30 +1,21 @@
 # import sqlite3
 
-# def asignar_representante_repetido(cedula):
-#       # Conectarse a la base de datos
-#         conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
-#         c = conn.cursor()
+# # Conectarse a la base de datos
+# conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+# c = conn.cursor()
 
-#         # Insertar valores en la tabla
-#         c.execute(f"SELECT id_representante FROM Representante WHERE cedula = {cedula}")
-#         info = c.fetchall()
-        
-#         print(info)
+# # Insertar valores en la tabla
+# c.execute(f"""SELECT G.grado_nombre, COUNT(E.id_estudiante) AS cantidad_alumnos FROM Grado G LEFT JOIN Estudiante E ON G.id_grado = E.id_grado GROUP BY G.id_grado, G.grado_nombre ORDER BY G.id_grado;""")
+# result = c.fetchall()
 
-#         for tupla in info:
-#           id_representante = (str(tupla[0]))
-          
-#         print(id_representante)
+# print(result)
+
+# lista = []
         
-#         c.execute(f"SELECT id_estudiante FROM Estudiante ORDER BY id_estudiante DESC LIMIT 1;")
-#         result = c.fetchall()
-#         valor = result[0][0]
-#         print(valor)
-        
-#         c.execute(f"UPDATE Estudiante SET id_representante = {id_representante} WHERE id_estudiante = {valor};")
-        
-#         # Confirmar los cambios y cerrar la conexión
-#         conn.commit()
-#         conn.close()
-        
-# asignar_representante_repetido(555)
+# for element in result:
+#   lista.append(element[1])
+# print(lista)
+
+# # Confirmar los cambios y cerrar la conexión
+# conn.commit()
+# conn.close()
