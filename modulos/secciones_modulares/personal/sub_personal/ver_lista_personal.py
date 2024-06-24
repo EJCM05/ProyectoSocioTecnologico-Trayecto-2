@@ -85,4 +85,4 @@ class VerListaPersonalVentana:
                                 corner_radius=10,
                                 command=lambda: descargar_pdf(nombre_archivo=self.nombre_personal)
                                 )
-            boton.place(relx=0.5, rely=0.8, anchor="center")
+            boton.place(relx=0.5, rely=0.94, anchor="center")
