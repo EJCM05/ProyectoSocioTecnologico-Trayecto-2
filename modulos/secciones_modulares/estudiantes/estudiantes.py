@@ -111,37 +111,37 @@ class EstudiantesVentana:
     def texto_seleccion_estudiantes(self):
         # variables: nombres Apellidos Cedula Edad fecha 
         self.texto_Datos_del_estudiante = self.crear_texto(texto="Datos Del Estudiante",
-                                                        posicion_x=0.10,
+                                                        posicion_x=0.2,
                                                         posicion_y=0.50,
                                                         fuente=var.Amaranth_medium_small
                                                        )
         self.texto_nombres = self.crear_texto(texto="Nombres",
-                                                        posicion_x=0.13,
+                                                        posicion_x=0.12,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.texto_apellidos = self.crear_texto(texto="Apellidos",
-                                                        posicion_x=0.26,
+                                                        posicion_x=0.28,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.texto_cedula = self.crear_texto(texto="Cedula",
-                                                        posicion_x=0.38,
+                                                        posicion_x=0.42,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.texto_edad = self.crear_texto(texto="Genero",
-                                                        posicion_x=0.48,
+                                                        posicion_x=0.52,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.texto_fecha = self.crear_texto(texto="Fecha De Nacimiento",
-                                                        posicion_x=0.57,
+                                                        posicion_x=0.67,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.texto_acciones = self.crear_texto(texto="Acciones",
-                                                        posicion_x=0.79,
+                                                        posicion_x=0.84,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
@@ -149,14 +149,14 @@ class EstudiantesVentana:
                                                         comando=lambda: self.cargar_ventana_modificar_estudiante(self.input_buscar_estudiantes.get()),
                                                         color_boton=var.button_transparent,
                                                         color_text=var.text_blue,
-                                                        posicion_x=0.79,
+                                                        posicion_x=0.81,
                                                         posicion_y=0.64
                                                        )
         self.boton_eliminar_estudiante = self.crear_boton_simple(texto="Borrar",
                                                         comando=lambda: eliminar_estudiante(self.input_buscar_estudiantes.get()),
                                                         color_boton=var.button_transparent,
                                                         color_text=var.text_blue,
-                                                        posicion_x=0.85,
+                                                        posicion_x=0.87,
                                                         posicion_y=0.64
                                                        )
         
@@ -202,22 +202,22 @@ class EstudiantesVentana:
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_apellidos = self.crear_texto(texto=lista_datos[1],
-                                                        posicion_x=0.25,
+                                                        posicion_x=0.28,
                                                         posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_cedula = self.crear_texto(texto=f"V{lista_datos[2]}",
-                                                        posicion_x=0.38,
+                                                        posicion_x=0.42,
                                                         posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_edad = self.crear_texto(texto=lista_datos[3],
-                                                        posicion_x=0.47,
+                                                        posicion_x=0.52,
                                                         posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_fecha = self.crear_texto(texto=lista_datos[4],
-                                                        posicion_x=0.61,
+                                                        posicion_x=0.67,
                                                         posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
@@ -264,32 +264,32 @@ class EstudiantesVentana:
         #                                                 fuente=var.Amaranth_small
         #                                                )
         self.texto_Datos_del_estudiante = self.crear_texto(texto="Datos Del Representante",
-                                                        posicion_x=0.10,
+                                                        posicion_x=0.2,
                                                         posicion_y=0.76,
                                                         fuente=var.Amaranth_medium_small
                                                        )
         self.texto_nombres = self.crear_texto(texto="Nombres",
-                                                        posicion_x=0.12,
+                                                        posicion_x=0.14,
                                                         posicion_y=0.82,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.texto_apellidos = self.crear_texto(texto="Apellidos",
-                                                        posicion_x=0.24,
+                                                        posicion_x=0.31,
                                                         posicion_y=0.82,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.texto_cedula = self.crear_texto(texto="Cedula",
-                                                        posicion_x=0.38,
+                                                        posicion_x=0.44,
                                                         posicion_y=0.82,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.texto_edad = self.crear_texto(texto="Correo Electronico",
-                                                        posicion_x=0.52,
+                                                        posicion_x=0.61,
                                                         posicion_y=0.82,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.texto_fecha = self.crear_texto(texto="Direccion",
-                                                        posicion_x=0.75,
+                                                        posicion_x=0.77,
                                                         posicion_y=0.82,
                                                         fuente=var.Amaranth_small             
                                                        )
@@ -302,33 +302,33 @@ class EstudiantesVentana:
                                                         color_boton=var.button_transparent,
                                                         color_text=var.text_blue,
                                                         comando=lambda: self.cargar_ventana_modificar_representante(cedula),
-                                                        posicion_x=0.91,
+                                                        posicion_x=0.88,
                                                         posicion_y=0.89
                                                        )
         
         # variables seleccion representantes
         self.var_nombres = self.crear_texto(texto=lista_datos_representante[0],
-                                                        posicion_x=0.10,
+                                                        posicion_x=0.14,
                                                         posicion_y=0.89,
                                                         fuente=var.Amaranth_small                                          
                                                        )
         self.var_apellidos = self.crear_texto(texto=lista_datos_representante[1],
-                                                        posicion_x=0.22,
+                                                        posicion_x=0.31,
                                                         posicion_y=0.89,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_cedula = self.crear_texto(texto=f"V{lista_datos_representante[2]}",
-                                                        posicion_x=0.37,
+                                                        posicion_x=0.44,
                                                         posicion_y=0.89,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_edad = self.crear_texto(texto=lista_datos_representante[3],
-                                                        posicion_x=0.49,
+                                                        posicion_x=0.61,
                                                         posicion_y=0.89,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_fecha = self.crear_texto(texto=lista_datos_representante[4],
-                                                        posicion_x=0.74,
+                                                        posicion_x=0.77,
                                                         posicion_y=0.89,
                                                         fuente=var.Amaranth_small             
                                                        )
@@ -341,9 +341,11 @@ class EstudiantesVentana:
                                             text=texto,
                                             text_color=var.text_black,
                                             font=fuente,
-                                            fg_color="white"
+                                            fg_color="white",
+                                            compound="center",
+                                            justify="center"
                                             )
-        palabras.place(relx=posicion_x, rely=posicion_y,anchor="w")
+        palabras.place(relx=posicion_x, rely=posicion_y,anchor="center")
 
         
     #Metodo para crear botones

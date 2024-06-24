@@ -160,7 +160,8 @@ class CrearEstudianteVentana():
 
         # Verificar si hay espacios vacíos
         if not nombres.strip() or not apellidos.strip() or not cedula.strip():
-            print("Hay campos vacíos. Por favor, ingrese todos los datos.")
+            texto_emergente = "Hay campos vacíos. Por favor, ingrese todos los datos."
+            CTkMessagebox(title="Error", message=texto_emergente,font=("calibri",16),icon="warning")
 
         # Verificar si todos los campos comienzan con una letra y cedula con numero
         elif nombres[0].isalpha() and apellidos[0].isalpha() and cedula[0].isdigit():
@@ -214,8 +215,9 @@ class CrearEstudianteVentana():
       apellido_2 = " ".join(apellidos_2)
       
       if len(apellidos_2) >= 3 or len(nombres_2) >= 3:
-        print("Cantidad excesiva de nombres, ni que fueras simon bolivar")
-          
+          texto_emergente = "Cantidad excesiva de nombres."
+          CTkMessagebox(title="Error", message=texto_emergente,font=("calibri",16),icon="warning")
+
       dia_nacimiento = self.input_dia_nacimiento_estudiante.get()
       mes_nacimiento = self.input_mes_nacimiento_estudiante.get()
       

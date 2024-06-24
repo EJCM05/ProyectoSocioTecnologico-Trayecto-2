@@ -168,14 +168,16 @@ class DatosRepresentanteVentana():
 
         # Verificar si hay espacios vacíos
         if not nombres.strip() or not apellidos.strip() or not cedula.strip() or not correo.strip() or not telefono.strip() or not direccion.strip():
-            print("Hay campos vacíos. Por favor, ingrese todos los datos.")
+            texto_emergente = "Hay campos vacíos. Por favor, ingrese todos los datos."
+            CTkMessagebox(title="Error", message=texto_emergente,font=("calibri",16),icon="warning")
 
         # Verificar si todos los campos comienzan con una letra y cedula con numero
         elif nombres[0].isalpha() and apellidos[0].isalpha() and cedula[0].isdigit() and telefono[0].isdigit():
             self.continuar()  # Ejecutar self.continuar() si todo está correcto
 
         else:
-            print("Los campos deben comenzar con una letra/numero")
+            texto_emergente = "Los campos deben comenzar con una Letra/Numero."
+            CTkMessagebox(title="Error", message=texto_emergente,font=("calibri",16),icon="warning")
     
     
     def continuar(self):
@@ -248,7 +250,8 @@ class DatosRepresentanteVentana():
         apellido_2 = " ".join(apellidos_2)
         
         if len(apellidos_2) >= 3 or len(nombres_2) >= 3:
-          print("Cantidad excesiva de nombres, ni que fueras simon bolivar")
+          texto_emergente = "Cantidad excesiva de nombres."
+          CTkMessagebox(title="Error", message=texto_emergente,font=("calibri",16),icon="warning")
         
         correo = self.input_correo_representante.get()
         telefono = self.input_telefono_representante.get()

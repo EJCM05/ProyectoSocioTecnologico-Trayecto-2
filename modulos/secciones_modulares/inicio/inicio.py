@@ -24,7 +24,7 @@ class InicioVentana:
         self.frame_graficos = ctk.CTkFrame(master=self.master,
                                            width=700,
                                            height=500)
-        self.frame_graficos.place(relx=0.5, rely=1, anchor="s")
+        self.frame_graficos.place(relx=0.5, rely=0.95, anchor="s")
     
     
     def graficos(self):

@@ -9,3 +9,4 @@ sqlite3
 CTkMessagebox
 fpdf
 shutil
+matplotlib
