@@ -4,6 +4,7 @@ from modulos.secciones_modulares.personal.sub_personal.sub_personal import SubPe
 from modulos.crear_descargar_pdf.crear_pdf_personal import CrearPDFPersonal
 import sqlite3
 from datetime import datetime, date
+from PIL import ImageTk, Image
 
 def calcular_edad(fecha_nacimiento):
     año, mes, dia = fecha_nacimiento.split("/")
@@ -69,6 +70,8 @@ class PersonalVentana:
         
         self.texto_titulo()
         self.botones_seleccion_personal()
+        self.importar_img_ico()
+        self.imagen_de_personal()
     
     
     def cargar_ventana_sub_personal(self, nombre_personal):
@@ -92,29 +95,29 @@ class PersonalVentana:
         self.boton_obrero = self.crear_botones_personal(texto="Obrero",
                                                         comando=lambda: self.cargar_ventana_sub_personal(nombre_personal="Obrero"),
                                                         color_boton=var.btn_gold,
-                                                        posicion_x=0.2,
-                                                        posicion_y=0.5
+                                                        posicion_x=0.74,
+                                                        posicion_y=0.3
                                                        )
         self.boton_docente = self.crear_botones_personal(texto="Docente",
                                                         comando=lambda: self.cargar_ventana_sub_personal(nombre_personal="Docente"),
                                                         color_boton=var.btn_green,
-                                                        posicion_x=0.5,
+                                                        posicion_x=0.74,
                                                         posicion_y=0.5
                                                        )
         self.boton_especialista = self.crear_botones_personal(texto="Especialista",
                                                         comando=lambda: self.cargar_ventana_sub_personal(nombre_personal="Especialista"),
                                                         color_boton=var.btn_blueosc,
-                                                        posicion_x=0.8,
-                                                        posicion_y=0.5
+                                                        posicion_x=0.74,
+                                                        posicion_y=0.7
                                                        )
     
     
     def crear_botones_personal(self, texto, comando, color_boton, posicion_x, posicion_y):
         boton = ctk.CTkButton(master=self.master,
                              text=texto,
-                             width=250,
-                             height=100,
-                             font=var.Amaranth_small,
+                             width=220,
+                             height=70,
+                             font=var.Amaranth_medium,
                              fg_color=color_boton,
                              hover_color=var.hover_buttons_color,
                              corner_radius=10,
@@ -122,3 +125,15 @@ class PersonalVentana:
                              )
         
         boton.place(relx=posicion_x, rely=posicion_y, anchor="center")
+    
+    
+    def importar_img_ico(self):
+        self.icono_user_original = Image.open("imagenes/imagen_teamwork.png")
+        self.icono_user_ajustada = self.icono_user_original.resize((500, 380), Image.LANCZOS)
+        self.img_icono_user = ImageTk.PhotoImage(self.icono_user_ajustada)
+
+    def imagen_de_personal(self):
+        self.carga_imagen_personal = ctk.CTkLabel(master=self.master,
+                                                    image=self.img_icono_user,
+                                                    text="")
+        self.carga_imagen_personal.place(relx=0.3,rely=0.5,anchor="center")
