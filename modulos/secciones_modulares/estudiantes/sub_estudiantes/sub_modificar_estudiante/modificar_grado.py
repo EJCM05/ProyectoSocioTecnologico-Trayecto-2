@@ -49,6 +49,8 @@ class ModificarGradoVentana():
         conn.commit()
         conn.close()
         
+        int(grado)
+        
         if grado == 1:
             opcion = "Simoncito"
         elif grado == 2:

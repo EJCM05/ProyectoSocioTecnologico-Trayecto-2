@@ -236,9 +236,20 @@ class DatosRepresentanteVentana():
     
     def continuar_registro(self):
         nombres = self.input_nombres_representante.get()
-        nombre_1, nombre_2 = nombres.split()
+        nombre_1, *nombres_2 = nombres.split()
+        # print(nombres_2)
+
+        # Unir todos los elementos de la lista en un solo string, sin separador
+        nombre_2 = " ".join(nombres_2)
+      
         apellidos = self.input_apellidos_representante.get()
-        apellido_1, apellido_2 = apellidos.split()
+        apellido_1, *apellidos_2 = apellidos.split()
+        
+        apellido_2 = " ".join(apellidos_2)
+        
+        if len(apellidos_2) >= 3 or len(nombres_2) >= 3:
+          print("Cantidad excesiva de nombres, ni que fueras simon bolivar")
+        
         correo = self.input_correo_representante.get()
         telefono = self.input_telefono_representante.get()
         direccion = self.input_direcion_representante.get()
