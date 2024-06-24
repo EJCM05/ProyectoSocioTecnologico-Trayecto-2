@@ -9,7 +9,7 @@ def eliminar_personal(cedula):
     c = conn.cursor()
 
     # Insertar valores en la tabla
-    c.execute(f"DELETE FROM Estudiante WHERE cedula = {cedula}")
+    c.execute(f"DELETE FROM Personal WHERE cedula = {cedula}")
 
     # Confirmar los cambios y cerrar la conexión
     conn.commit()

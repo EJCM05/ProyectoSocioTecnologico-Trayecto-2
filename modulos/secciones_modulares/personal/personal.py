@@ -28,17 +28,18 @@ def obtener_lista_personal(id_personal):
     c = conn.cursor()
 
     # Insertar valores en la tabla
-    c.execute(f"SELECT cedula, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, genero FROM Estudiante WHERE id_grado = {id_personal}")
+    c.execute(f"SELECT id_personal, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, cedula, genero FROM Personal WHERE id_personal = {id_personal}")
     result = c.fetchall()
 
     lista_prueba = []
     
     for element in result:
-        cedula = str(element[0])
+        personal_id = str(element[0])
         nombre = f"{element[1]} {element[2]} {element[3]} {element[4]}"
         edad = str(calcular_edad(element[5]))
         fecha_nacimiento = str(element[5])
-        genero = element[6]
+        cedula = str(element[6])
+        genero = element[7]
         lista = (cedula, nombre, edad, fecha_nacimiento, genero)
         lista_prueba.append(lista)
 
@@ -53,9 +54,9 @@ class PersonalVentana:
     def __init__(self, master):
         self.master = master
         #cuando se cargue la ventana de grados se crean todos los pdf necesarios
-        self.creacion_pdf(nombre="obrero", lista=obtener_lista_personal(id_personal=1))
-        self.creacion_pdf(nombre="docente", lista=obtener_lista_personal(id_personal=2))
-        self.creacion_pdf(nombre="especialista", lista=obtener_lista_personal(id_personal=3))
+        self.creacion_pdf(nombre="obrero", lista=obtener_lista_personal(id_personal='1'))
+        self.creacion_pdf(nombre="docente", lista=obtener_lista_personal(id_personal='2'))
+        self.creacion_pdf(nombre="especialista", lista=obtener_lista_personal(id_personal="3"))
     
     
     def creacion_pdf(self, nombre, lista):

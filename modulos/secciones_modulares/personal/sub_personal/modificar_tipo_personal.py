@@ -38,12 +38,14 @@ class ModificarTipoPersonalVentana():
         c = conn.cursor()
 
         # Insertar valores en la tabla
-        c.execute(f"SELECT id_grado FROM Estudiante WHERE cedula = {self.cedula};")
+        c.execute(f"SELECT id_personal FROM Personal WHERE cedula = {self.cedula};")
 
         info = c.fetchall()
+        print(info)
 
         for element in info:
           tipo = info[0][0]
+        print(tipo)
         
         # Confirmar los cambios y cerrar la conexión
         conn.commit()
@@ -106,7 +108,7 @@ class ModificarTipoPersonalVentana():
         conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
         c = conn.cursor()
           
-        c.execute("UPDATE Estudiante SET id_grado = ? WHERE cedula = ?", (opcion, self.cedula))
+        c.execute("UPDATE Personal SET id_personal = ? WHERE cedula = ?", (opcion, self.cedula))
           
         # Confirmar los cambios y cerrar la conexión
         conn.commit()
@@ -128,7 +130,7 @@ class ModificarTipoPersonalVentana():
     
     
     #Metodo para crear botones
-    def crear_botones_estudiantes(self, texto, comando, color_boton, posicion_x, posicion_y):
+    def crear_botones_personal(self, texto, comando, color_boton, posicion_x, posicion_y):
         boton = ctk.CTkButton(master=self.master,
                              text=texto,
                              width=330,

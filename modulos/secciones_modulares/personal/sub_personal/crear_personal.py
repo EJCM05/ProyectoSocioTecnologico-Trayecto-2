@@ -161,7 +161,7 @@ class CrearPersonalVentana:
       c = conn.cursor()
 
       # Insertar valores en la tabla
-      c.execute(f"SELECT cedula FROM Estudiante")
+      c.execute(f"SELECT cedula FROM Personal")
       info = c.fetchall()
       print(info)
       
@@ -227,7 +227,7 @@ class CrearPersonalVentana:
       c = conn.cursor()
 
       # Insertar valores en la tabla
-      c.execute("INSERT INTO Estudiante (primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, fecha_nacimiento, genero) VALUES (?, ?, ?, ?, ?, ?, ?)", (nombre_1, nombre_2, apellido_1, apellido_2, self.cedula, fecha_nacimiento, genero))
+      c.execute("INSERT INTO Personal (id_personal, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, cedula, genero) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", (self.tipo_personal, nombre_1, nombre_2, apellido_1, apellido_2, fecha_nacimiento,  self.cedula, genero))
 
       # Confirmar los cambios y cerrar la conexión
       conn.commit()

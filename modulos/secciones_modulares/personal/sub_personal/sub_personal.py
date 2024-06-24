@@ -133,16 +133,15 @@ class SubPersonalVentana:
         c = conn.cursor()
 
         # Insertar valores en la tabla
-        c.execute(f"SELECT primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, cedula, fecha_nacimiento, genero FROM Estudiante WHERE cedula = {cedula}")
+        c.execute(f"SELECT cedula, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, genero, fecha_nacimiento FROM Personal WHERE cedula = {cedula} AND id_personal = {self.tipo_personal}")
         info = c.fetchall()
-        print(info)
         
         for element in info:
-          nombres = f"{element[0]} {element[1]}"
-          apellidos = f"{element[2]} {element[3]}"
-          cedula = element[4]
-          fecha_nacimiento = element[5]
-          genero = element[6]
+          nombres = f"{element[1]} {element[2]}"
+          apellidos = f"{element[3]} {element[4]}"
+          cedula = element[0]
+          genero = element[5]
+          fecha_nacimiento = element[6]
 
         # Confirmar los cambios y cerrar la conexión
         conn.commit()
@@ -316,7 +315,7 @@ class SubPersonalVentana:
         c = conn.cursor()
 
         # Insertar valores en la tabla
-        c.execute("SELECT cedula FROM Estudiante")
+        c.execute(f"SELECT cedula FROM Personal WHERE id_personal = {self.tipo_personal}")
         info = c.fetchall()
 
         # Confirmar los cambios y cerrar la conexión
@@ -327,9 +326,6 @@ class SubPersonalVentana:
         
         for element in info:
           lista_cedulas.append(element[0])
-        
-        print(cedula)
-        print(lista_cedulas)
         
         if cedula in lista_cedulas:
             self.texto_seleccion_personal()
