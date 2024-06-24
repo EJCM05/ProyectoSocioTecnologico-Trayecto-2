@@ -7,3 +7,5 @@ datetime
 time
 sqlite3
 CTkMessagebox
+fpdf
+shutil
