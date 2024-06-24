@@ -1,32 +1,43 @@
 import customtkinter as ctk
-import tkinter as tk
 import sqlite3
 from modulos.variables import variables as var
+from modulos.secciones_modulares.inicio.crear_estadistica_general import crear_estadistica_general
+from PIL import ImageTk, Image
 
 class InicioVentana:
     def __init__(self, master):
         self.master = master
+        self.lista = None
 
     def mostrar(self):
         # Eliminar widgets anteriores en el área de contenido
         for widget in self.master.winfo_children():
             widget.destroy()
+        self.lista = self.obtener_lista_grados()
+        crear_estadistica_general(self.lista)
         self.texto_titulo()
         self.texto_datos_generales()
-        self.obtener_lista_grados()
         self.frame_graficos()
+        self.graficos()
 
     def frame_graficos(self):
         self.frame_graficos = ctk.CTkFrame(master=self.master,
-                                           width=600,
-                                           height=400)
-        self.frame_graficos.place(relx=0.5, rely=0.65, anchor="center")
-        self.graficos()
-        
-
+                                           width=700,
+                                           height=500)
+        self.frame_graficos.place(relx=0.5, rely=1, anchor="s")
+    
+    
     def graficos(self):
-       pass
-       
+        img_estadistica_original = Image.open("matricula_pdf_img/img_estadistica_general/estadistica_general.png")
+        img_estadistica_ajustada = img_estadistica_original.resize((560, 420), Image.LANCZOS)
+        self.img_estadistica = ImageTk.PhotoImage(img_estadistica_ajustada)
+        # aca van los graficos
+        self.grafica = ctk.CTkLabel(master=self.frame_graficos,
+                                    image=self.img_estadistica,
+                                    text="")
+        self.grafica.pack()
+    
+    
     def texto_titulo(self):
         self.texto_estadisticas = ctk.CTkLabel(master=self.master,
                                            text="Estadisticas Generales",
@@ -38,7 +49,7 @@ class InicioVentana:
     
     
     def texto_datos_generales(self):
-        self.texto_estudiantes = self.crear_rectangulo_texto(nombre_texto="Estudiantes",
+        self.texto_estudiantes = self.crear_rectangulo_texto(nombre_texto="Estudiante",
                                                             dato_texto=self.sumar_estudiante_lista(),
                                                             color_frame=var.est_color_blue,
                                                             posicion_x=0.1,
@@ -77,7 +88,7 @@ class InicioVentana:
     def crear_rectangulo_texto(self, nombre_texto, dato_texto, color_frame, posicion_x, posicion_y):
         contenedor = ctk.CTkFrame(master=self.master,
                                  width=160,
-                                 height=90,
+                                 height=100,
                                  corner_radius=20,
                                  fg_color=color_frame,
                                  )
@@ -104,13 +115,16 @@ class InicioVentana:
         c = conn.cursor()
 
         # Insertar valores en la tabla
-        c.execute(f"SELECT id_grado, COUNT(*) AS cantidad_estudiantes FROM Estudiante GROUP BY id_grado;")
+        c.execute(f"""SELECT G.grado_nombre, COUNT(E.id_estudiante) AS cantidad_alumnos FROM Grado G LEFT JOIN Estudiante E ON G.id_grado = E.id_grado GROUP BY G.id_grado, G.grado_nombre ORDER BY G.id_grado LIMIT 10;""")
         result = c.fetchall()
-        
+
+        print(result)
+
         lista = []
-        
+                
         for element in result:
-          lista.append(element[1])
+            lista.append(element[1])
+        print(lista)
 
         # Confirmar los cambios y cerrar la conexión
         conn.commit()
