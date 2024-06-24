@@ -1,12 +1,15 @@
 import tkinter as tk
 from tkinter import ttk
 import customtkinter as ctk
+from CTkMessagebox import CTkMessagebox
 from modulos.variables import variables as var
 from modulos.secciones_modulares.estudiantes.sub_estudiantes.crear_estudiante import CrearEstudianteVentana
 from modulos.secciones_modulares.estudiantes.sub_estudiantes.modificar_estudiante import ModificarEstudianteVentana
 from modulos.secciones_modulares.estudiantes.sub_estudiantes.eliminar_estudiante import eliminar_estudiante
 from modulos.secciones_modulares.estudiantes.sub_estudiantes.modificar_representante import ModificarRepresentanteVentana
 import sqlite3
+from PIL import ImageTk, Image
+
 
 class EstudiantesVentana:
     def __init__(self, master):
@@ -16,9 +19,25 @@ class EstudiantesVentana:
         # Eliminar widgets anteriores en el área de contenido
         for widget in self.master.winfo_children():
             widget.destroy()
+            
+        self.frame_texto_blanco()
         self.texto_titulo()
+        self.importar_img_ico()
         self.botones_seleccion_estudiantes()
         self.input_seleccion_estudiantes()
+        self.imagen_de_usuario()
+    
+    def importar_img_ico(self):
+        self.icono_user_original = Image.open("imagenes/usuario-estudiante.png")
+        self.icono_user_ajustada = self.icono_user_original.resize((250, 250), Image.LANCZOS)
+        self.img_icono_user = ImageTk.PhotoImage(self.icono_user_ajustada)
+        
+    def imagen_de_usuario(self):
+        self.carga_imagen_estudiante = ctk.CTkLabel(master=self.master,
+                                                    image=self.img_icono_user,
+                                                    text="",
+                                                    fg_color="#FFFFFF")
+        self.carga_imagen_estudiante.place(relx=0.5,rely=0.70,anchor="center")
     
     def cargar_ventana_crear_estudiante(self):
         self.contenido_ventana_crear_estudiante = CrearEstudianteVentana(master=self.master)
@@ -364,7 +383,14 @@ class EstudiantesVentana:
     def consulta(self):
         self.frame_texto_blanco()
         cedula = self.input_buscar_estudiantes.get()
-        cedula = int(cedula)
+        if cedula:
+            try:
+                cedula = int(cedula)
+        # Resto de tu código aquí
+            except ValueError:
+                texto_emergente = "No se encuentra una cedula registrada"
+                CTkMessagebox(title="Error", message=texto_emergente,font=("calibri",16),icon="cancel")
+        # cedula = int(cedula)
         
         # Conectarse a la base de datos
         conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
@@ -385,13 +411,15 @@ class EstudiantesVentana:
         
         print(cedula)
         print(lista_cedulas)
-        
+
         if cedula in lista_cedulas:
             self.texto_seleccion_estudiantes()
             self.variables_seleccion_estudiantes()
-            self.variables_seleccion_representantes()
+            self.variables_seleccion_representantes() 
         else:
-            print("estudiante no registrado")
+            texto_emergente = "No se encuentra una cedula registrada"
+            CTkMessagebox(title="Error", message=texto_emergente,font=("calibri",16),icon="cancel")
+            self.imagen_de_usuario()
     
     def solo_numeros(self, char):
         return char.isdigit() # solo numeros
