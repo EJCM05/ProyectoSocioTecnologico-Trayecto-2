@@ -1,6 +1,10 @@
 import customtkinter as ctk
 from modulos.variables import variables as var
 import sqlite3
+import matplotlib.pyplot as plt
+from PIL import Image, ImageTk
+
+
 
 class InicioVentana:
     def __init__(self, master):
@@ -14,7 +18,19 @@ class InicioVentana:
         self.texto_titulo()
         self.texto_datos_generales()
         self.obtener_lista_grados()
+        self.frame_graficos()
     
+    def frame_graficos(self):
+        self.frame_graficos = ctk.CTkFrame(master=self.master,
+                                           width=900,
+                                           height=380,
+                                           fg_color="green"
+                                           )
+        self.frame_graficos.place(relx=0.5,rely=0.65,anchor="center")
+        self.graficos()
+        
+    def graficos(self):
+        pass
     
     def texto_titulo(self):
         self.texto_estadisticas = ctk.CTkLabel(master=self.master,
