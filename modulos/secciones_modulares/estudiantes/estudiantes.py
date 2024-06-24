@@ -111,17 +111,17 @@ class EstudiantesVentana:
     def texto_seleccion_estudiantes(self):
         # variables: nombres Apellidos Cedula Edad fecha 
         self.texto_Datos_del_estudiante = self.crear_texto(texto="Datos Del Estudiante",
-                                                        posicion_x=0.12,
+                                                        posicion_x=0.10,
                                                         posicion_y=0.50,
-                                                        fuente=var.Amaranth_medium
+                                                        fuente=var.Amaranth_medium_small
                                                        )
         self.texto_nombres = self.crear_texto(texto="Nombres",
-                                                        posicion_x=0.15,
+                                                        posicion_x=0.13,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.texto_apellidos = self.crear_texto(texto="Apellidos",
-                                                        posicion_x=0.27,
+                                                        posicion_x=0.26,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
@@ -149,14 +149,14 @@ class EstudiantesVentana:
                                                         comando=lambda: self.cargar_ventana_modificar_estudiante(self.input_buscar_estudiantes.get()),
                                                         color_boton=var.button_transparent,
                                                         color_text=var.text_blue,
-                                                        posicion_x=0.81,
+                                                        posicion_x=0.79,
                                                         posicion_y=0.64
                                                        )
         self.boton_eliminar_estudiante = self.crear_boton_simple(texto="Borrar",
                                                         comando=lambda: eliminar_estudiante(self.input_buscar_estudiantes.get()),
                                                         color_boton=var.button_transparent,
                                                         color_text=var.text_blue,
-                                                        posicion_x=0.86,
+                                                        posicion_x=0.85,
                                                         posicion_y=0.64
                                                        )
         
@@ -197,12 +197,12 @@ class EstudiantesVentana:
         #                                                 fuente=var.Amaranth_small
         #                                                )
         self.var_nombres = self.crear_texto(texto=lista_datos[0],
-                                                        posicion_x=0.14,
+                                                        posicion_x=0.12,
                                                         posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.var_apellidos = self.crear_texto(texto=lista_datos[1],
-                                                        posicion_x=0.27,
+                                                        posicion_x=0.25,
                                                         posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
@@ -264,7 +264,7 @@ class EstudiantesVentana:
         #                                                 fuente=var.Amaranth_small
         #                                                )
         self.texto_Datos_del_estudiante = self.crear_texto(texto="Datos Del Representante",
-                                                        posicion_x=0.12,
+                                                        posicion_x=0.10,
                                                         posicion_y=0.76,
                                                         fuente=var.Amaranth_medium_small
                                                        )
@@ -289,7 +289,7 @@ class EstudiantesVentana:
                                                         fuente=var.Amaranth_small             
                                                        )
         self.texto_fecha = self.crear_texto(texto="Direccion",
-                                                        posicion_x=0.76,
+                                                        posicion_x=0.75,
                                                         posicion_y=0.82,
                                                         fuente=var.Amaranth_small             
                                                        )
@@ -308,9 +308,9 @@ class EstudiantesVentana:
         
         # variables seleccion representantes
         self.var_nombres = self.crear_texto(texto=lista_datos_representante[0],
-                                                        posicion_x=0.12,
+                                                        posicion_x=0.10,
                                                         posicion_y=0.89,
-                                                        fuente=var.Amaranth_small             
+                                                        fuente=var.Amaranth_small                                          
                                                        )
         self.var_apellidos = self.crear_texto(texto=lista_datos_representante[1],
                                                         posicion_x=0.22,
@@ -419,3 +419,5 @@ class EstudiantesVentana:
     
     def solo_numeros(self, char):
         return char.isdigit() # solo numeros
+    
+    
