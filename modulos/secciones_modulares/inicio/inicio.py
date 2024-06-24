@@ -1,10 +1,7 @@
 import customtkinter as ctk
-from modulos.variables import variables as var
+import tkinter as tk
 import sqlite3
-import matplotlib.pyplot as plt
-from PIL import Image, ImageTk
-
-
+from modulos.variables import variables as var
 
 class InicioVentana:
     def __init__(self, master):
@@ -14,24 +11,28 @@ class InicioVentana:
         # Eliminar widgets anteriores en el área de contenido
         for widget in self.master.winfo_children():
             widget.destroy()
-        
         self.texto_titulo()
         self.texto_datos_generales()
         self.obtener_lista_grados()
         self.frame_graficos()
-    
+
     def frame_graficos(self):
         self.frame_graficos = ctk.CTkFrame(master=self.master,
-                                           width=900,
-                                           height=380,
-                                           fg_color="green"
-                                           )
-        self.frame_graficos.place(relx=0.5,rely=0.65,anchor="center")
+                                           width=600,
+                                           height=400)
+        self.frame_graficos.place(relx=0.5, rely=0.65, anchor="center")
         self.graficos()
         
+
     def graficos(self):
-        pass
-    
+        # aca van los graficos
+        self.frame_grafico = ctk.CTkFrame(master=self.master, width=600, height=400)
+        self.frame_grafico.place(relx=0.5, rely=0.65, anchor="center")
+
+        # Datos de ejemplo (puedes reemplazarlos con tus propios datos)
+        x = [1, 2, 3, 4, 5]
+        y = [10, 15, 7, 12, 20]
+        
     def texto_titulo(self):
         self.texto_estadisticas = ctk.CTkLabel(master=self.master,
                                            text="Estadisticas Generales",
