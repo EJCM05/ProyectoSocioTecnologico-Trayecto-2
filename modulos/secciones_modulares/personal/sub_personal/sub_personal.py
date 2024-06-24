@@ -3,6 +3,7 @@ from modulos.variables import variables as var
 from modulos.secciones_modulares.personal.sub_personal.crear_personal import CrearPersonalVentana
 from modulos.secciones_modulares.personal.sub_personal.ver_lista_personal import VerListaPersonalVentana
 from modulos.secciones_modulares.personal.sub_personal.modificar_personal import ModificarPersonalVentana
+from modulos.secciones_modulares.inicio.inicio import InicioVentana
 import sqlite3
 from modulos.secciones_modulares.personal.sub_personal.eliminar_personal import eliminar_personal
 from CTkMessagebox import CTkMessagebox
@@ -243,7 +244,7 @@ class SubPersonalVentana:
                                                         posicion_y=0.64
                                                        )
         self.boton_eliminar_personal = self.crear_boton_simple(texto="Borrar",
-                                                        comando=lambda: eliminar_personal(self.input_buscar_personal.get()),
+                                                        comando=lambda: self.eliminar_usuario_funcion(),
                                                         color_boton=var.button_transparent,
                                                         color_text=var.text_blue,
                                                         posicion_x=0.85,
@@ -348,3 +349,9 @@ class SubPersonalVentana:
     
     def solo_numeros(self, char):
         return char.isdigit() # solo numeros
+    
+    
+    def eliminar_usuario_funcion(self):
+        eliminar_personal(self.input_buscar_personal.get())
+        inicio = InicioVentana(self.master)
+        inicio.mostrar()
