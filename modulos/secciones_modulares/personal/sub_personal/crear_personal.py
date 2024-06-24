@@ -163,13 +163,10 @@ class CrearPersonalVentana:
       # Insertar valores en la tabla
       c.execute(f"SELECT cedula FROM Personal")
       info = c.fetchall()
-      print(info)
       
       lista = []
       for tupla in info:
         lista.append(str(tupla[0]))
-        
-      print(lista)
       
       # Confirmar los cambios y cerrar la conexión
       conn.commit()

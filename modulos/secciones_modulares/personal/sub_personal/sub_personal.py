@@ -155,28 +155,28 @@ class SubPersonalVentana:
             genero,
             fecha_nacimiento
         )
-        self.var_nombres = self.crear_texto(texto=lista_datos[0],
-                                                        posicion_x=0.14,
+        self.var_nombres = self.crear_texto_center(texto=lista_datos[0],
+                                                        posicion_x=0.15,
                                                         posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
-        self.var_apellidos = self.crear_texto(texto=lista_datos[1],
-                                                        posicion_x=0.27,
+        self.var_apellidos = self.crear_texto_center(texto=lista_datos[1],
+                                                        posicion_x=0.28,
                                                         posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
-        self.var_cedula = self.crear_texto(texto=f"V{lista_datos[2]}",
-                                                        posicion_x=0.38,
+        self.var_cedula = self.crear_texto_center(texto=f"V{lista_datos[2]}",
+                                                        posicion_x=0.41,
                                                         posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
-        self.var_edad = self.crear_texto(texto=lista_datos[3],
-                                                        posicion_x=0.47,
+        self.var_edad = self.crear_texto_center(texto=lista_datos[3],
+                                                        posicion_x=0.51,
                                                         posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
-        self.var_fecha = self.crear_texto(texto=lista_datos[4],
-                                                        posicion_x=0.61,
+        self.var_fecha = self.crear_texto_center(texto=lista_datos[4],
+                                                        posicion_x=0.65,
                                                         posicion_y=0.64,
                                                         fuente=var.Amaranth_small             
                                                        )
@@ -206,12 +206,12 @@ class SubPersonalVentana:
                                                         fuente=var.Amaranth_medium
                                                        )
         self.texto_nombres = self.crear_texto(texto="Nombres",
-                                                        posicion_x=0.15,
+                                                        posicion_x=0.12,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
         self.texto_apellidos = self.crear_texto(texto="Apellidos",
-                                                        posicion_x=0.27,
+                                                        posicion_x=0.25,
                                                         posicion_y=0.58,
                                                         fuente=var.Amaranth_small             
                                                        )
@@ -239,14 +239,14 @@ class SubPersonalVentana:
                                                         comando=lambda: self.cargar_ventana_modificar_personal(self.input_buscar_personal.get()),
                                                         color_boton=var.button_transparent,
                                                         color_text=var.text_blue,
-                                                        posicion_x=0.81,
+                                                        posicion_x=0.80,
                                                         posicion_y=0.64
                                                        )
         self.boton_eliminar_personal = self.crear_boton_simple(texto="Borrar",
                                                         comando=lambda: eliminar_personal(self.input_buscar_personal.get()),
                                                         color_boton=var.button_transparent,
                                                         color_text=var.text_blue,
-                                                        posicion_x=0.86,
+                                                        posicion_x=0.85,
                                                         posicion_y=0.64
                                                        )
     
@@ -260,6 +260,15 @@ class SubPersonalVentana:
                                             fg_color="white"
                                             )
         palabras.place(relx=posicion_x, rely=posicion_y,anchor="w")
+    
+    def crear_texto_center(self, posicion_x, posicion_y, texto,fuente):
+        palabras = ctk.CTkLabel(master=self.master,
+                                            text=texto,
+                                            text_color=var.text_black,
+                                            font=fuente,
+                                            fg_color="white"
+                                            )
+        palabras.place(relx=posicion_x, rely=posicion_y,anchor="center")
     
     
     def crear_botones_personal(self, texto, comando, color_boton, posicion_x, posicion_y, tamaño):

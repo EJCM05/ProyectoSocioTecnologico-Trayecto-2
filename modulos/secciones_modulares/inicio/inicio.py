@@ -25,14 +25,8 @@ class InicioVentana:
         
 
     def graficos(self):
-        # aca van los graficos
-        self.frame_grafico = ctk.CTkFrame(master=self.master, width=600, height=400)
-        self.frame_grafico.place(relx=0.5, rely=0.65, anchor="center")
-
-        # Datos de ejemplo (puedes reemplazarlos con tus propios datos)
-        x = [1, 2, 3, 4, 5]
-        y = [10, 15, 7, 12, 20]
-        
+       pass
+       
     def texto_titulo(self):
         self.texto_estadisticas = ctk.CTkLabel(master=self.master,
                                            text="Estadisticas Generales",
@@ -44,7 +38,7 @@ class InicioVentana:
     
     
     def texto_datos_generales(self):
-        self.texto_estudiantes = self.crear_rectangulo_texto(nombre_texto="Estudiante",
+        self.texto_estudiantes = self.crear_rectangulo_texto(nombre_texto="Estudiantes",
                                                             dato_texto=self.sumar_estudiante_lista(),
                                                             color_frame=var.est_color_blue,
                                                             posicion_x=0.1,
@@ -83,7 +77,7 @@ class InicioVentana:
     def crear_rectangulo_texto(self, nombre_texto, dato_texto, color_frame, posicion_x, posicion_y):
         contenedor = ctk.CTkFrame(master=self.master,
                                  width=160,
-                                 height=100,
+                                 height=90,
                                  corner_radius=20,
                                  fg_color=color_frame,
                                  )
