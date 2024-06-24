@@ -201,29 +201,37 @@ class LoginApp:
             # Credenciales incorrectas: muestra un mensaje de error
             texto_emergente = "Usuario o Contraseña incorrectos"
             CTkMessagebox(title="Alerta", message=texto_emergente,font=("calibri",16),icon="cancel")
+            
     def pasar_cargo(self, usuario):
         usuario = usuario
 
-        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
-        cursor = conn.cursor()
+        if usuario == "admin":
+          result = ["Administrador", "Admin"]
+        elif usuario == "simoncito":
+          result = ["Docente", "Simoncito"]
+        elif usuario == "inicial_a":
+          result = ["Docente", "Inicial A"]
+        elif usuario == "inicial_b":
+          result = ["Docente", "Inicial B"]
+        elif usuario == "inicial_c":
+          result = ["Docente", "Inicial C"]
+        elif usuario == "grado_1":
+          result = ["Docente", "1er Grado"]
+        elif usuario == "grado_2":
+          result = ["Docente", "2do Grado"]
+        elif usuario == "grado_3":
+          result = ["Docente", "3er Grado"]
+        elif usuario == "grado_4":
+          result = ["Docente", "4to Grado"]
+        elif usuario == "grado_5":
+          result = ["Docente", "5to Grado"]
+        elif usuario == "grado_6":
+          result = ["Docente", "6to Grado"]
+        elif usuario == "director":
+          result = ["Director", "Director"]
 
-        if usuario == "docIB":
-          id_grado = 3
-          query = f'SELECT g.grado_nombre, p.primer_nombre  FROM Docente as d INNER JOIN Grado as g on g.id_grado = d.id_grado INNER JOIN personal as p on p.id_personal = d.id_personal WHERE g.id_grado = {id_grado}'
-          cursor.execute(query)
-          
-        elif usuario == "admin":
-          cursor.execute(f"SELECT * FROM Ingreso WHERE usuario = 'admin'")
-
-        # Consulta SQL para verificar las credenciales
-        result = cursor.fetchall()
-        # print(result)
-        
-        conn.close()
-          
         return result
 
     def cargar_ventana_dashboard(self):
-      
         self.contenido_dashboard = Dashboard(self.master, self.pasar_cargo(self.input_usuario.get()))
         self.contenido_dashboard.mostrar()

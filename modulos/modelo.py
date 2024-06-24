@@ -26,7 +26,6 @@ class Modelo():
         cursor.execute(consulta_sql)
         info = cursor.fetchall()
         con.close()
-        print(info)
         
 modelo = Modelo()  # Crear una instancia de la clase
 
