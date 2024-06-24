@@ -186,13 +186,10 @@ class DatosRepresentanteVentana():
         # Insertar valores en la tabla
         c.execute(f"SELECT cedula FROM Representante")
         info = c.fetchall()
-        print(info)
         
         lista = []
         for tupla in info:
           lista.append(str(tupla[0]))
-          
-        print(lista)
         
         # Confirmar los cambios y cerrar la conexión
         conn.commit()
@@ -201,12 +198,40 @@ class DatosRepresentanteVentana():
         #-------------------------aqui
         self.cedula = self.input_cedula_representante.get()
         if self.cedula in lista:
+            self.asignar_representante_repetido(self.cedula)
             texto_emergente = "Representante Ya Registrado"
             CTkMessagebox(title="Información", message=texto_emergente)
             ventana_grados_registar = GradoRegistrarVentana(self.master)
             ventana_grados_registar.mostrar()
         else:
             self.continuar_registro()
+    
+    def asignar_representante_repetido(self, cedula):
+      # Conectarse a la base de datos
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        c = conn.cursor()
+
+        # Insertar valores en la tabla
+        c.execute(f"SELECT id_representante FROM Representante WHERE cedula = {cedula}")
+        info = c.fetchall()
+        
+        print(info)
+
+        for tupla in info:
+          id_representante = (str(tupla[0]))
+          
+        print(id_representante)
+        
+        c.execute(f"SELECT id_estudiante FROM Estudiante ORDER BY id_estudiante DESC LIMIT 1;")
+        result = c.fetchall()
+        valor = result[0][0]
+        print(valor)
+        
+        c.execute(f"UPDATE Estudiante SET id_representante = {id_representante} WHERE id_estudiante = {valor};")
+        
+        # Confirmar los cambios y cerrar la conexión
+        conn.commit()
+        conn.close()
     
     
     def continuar_registro(self):

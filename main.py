@@ -11,4 +11,4 @@ vista.set_controlador(controlador) #Establecemos el controlador para la vista
 
 #Programa principal
 if __name__ == '__main__':
-    vista.run() 
+    vista.run()
