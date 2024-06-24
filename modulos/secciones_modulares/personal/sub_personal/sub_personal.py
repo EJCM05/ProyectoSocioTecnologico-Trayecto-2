@@ -5,6 +5,8 @@ from modulos.secciones_modulares.personal.sub_personal.ver_lista_personal import
 from modulos.secciones_modulares.personal.sub_personal.modificar_personal import ModificarPersonalVentana
 import sqlite3
 from modulos.secciones_modulares.personal.sub_personal.eliminar_personal import eliminar_personal
+from CTkMessagebox import CTkMessagebox
+from PIL import ImageTk, Image
 
 class SubPersonalVentana:
     def __init__(self, master, nombre_personal):
@@ -18,18 +20,37 @@ class SubPersonalVentana:
         for widget in self.master.winfo_children():
             widget.destroy()
         
+        self.frame_texto_blanco()
         self.texto_titulo()
         self.botones_personal()
+        self.importar_img_ico()
         self.input_seleccion_personal()
+        self.imagen_de_usuario()
     
     
     def decidir_personal(self):
         if self.nombre_personal == "Obrero":
             self.tipo_personal = 1
+            self.nombre_imagen = "obrero"
         elif self.nombre_personal == "Docente":
             self.tipo_personal = 2
+            self.nombre_imagen = "docente"
         elif self.nombre_personal == "Especialista":
             self.tipo_personal = 3
+            self.nombre_imagen = "especialista"
+    
+    
+    def importar_img_ico(self):
+        self.icono_user_original = Image.open(f"imagenes/imagen_{self.nombre_imagen}.png")
+        self.icono_user_ajustada = self.icono_user_original.resize((250, 250), Image.LANCZOS)
+        self.img_icono_user = ImageTk.PhotoImage(self.icono_user_ajustada)
+
+    def imagen_de_usuario(self):
+        self.carga_imagen_estudiante = ctk.CTkLabel(master=self.master,
+                                                    image=self.img_icono_user,
+                                                    text="",
+                                                    fg_color="#FFFFFF")
+        self.carga_imagen_estudiante.place(relx=0.5,rely=0.6,anchor="center")
     
     
     def cargar_ventana_crar_personal(self, nombre_personal):
@@ -282,7 +303,13 @@ class SubPersonalVentana:
     def consulta(self):
         self.frame_texto_blanco()
         cedula = self.input_buscar_personal.get()
-        cedula = int(cedula)
+        if cedula:
+            try:
+                cedula = int(cedula)
+        # Resto de tu código aquí
+            except ValueError:
+                texto_emergente = "No se encuentra una cedula registrada"
+                CTkMessagebox(title="Error", message=texto_emergente,font=("calibri",16),icon="cancel")
         
         # Conectarse a la base de datos
         conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
@@ -309,7 +336,9 @@ class SubPersonalVentana:
             self.variables_seleccion_personal()
             self.variables_seleccion_personal()
         else:
-            print("personal no registrado")
+            texto_emergente = "No se encuentra una cedula registrada"
+            CTkMessagebox(title="Error", message=texto_emergente,font=("calibri",16),icon="cancel")
+            self.imagen_de_usuario()
     
     
     def solo_numeros(self, char):
