@@ -65,7 +65,7 @@ class EstudiantesVentana:
         
     def texto_titulo(self):
         self.texto_seleccion = ctk.CTkLabel(master=self.master,
-                                           text="Estudiantes",
+                                           text="Informacion de Estudiantes",
                                            text_color=var.text_black,
                                            font=var.Andika_large
                                            )
