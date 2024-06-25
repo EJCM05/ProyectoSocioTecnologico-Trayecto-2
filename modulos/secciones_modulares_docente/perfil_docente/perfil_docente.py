@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from modulos.variables import variables as var
 from PIL import ImageTk, Image
+from CTkMessagebox import CTkMessagebox
 import sqlite3
 
 class PerfilDocenteVentana:
@@ -110,7 +111,7 @@ class PerfilDocenteVentana:
                                         fg_color=var.buttons_color,
                                         hover_color=var.hover_buttons_color,
                                         corner_radius=30,
-                                        command=self.cambiar_contraseña
+                                        command=lambda: self.verificar_espacios()
                                         )
         self.boton_aceptar.place(relx=0.83,rely=0.85,anchor="e")
         
@@ -127,8 +128,23 @@ class PerfilDocenteVentana:
                                             )
         palabras.place(relx=posicion_x, rely=posicion_y,anchor="e")
     
+    
+    def verificar_espacios(self):
+        actual = self.input_actual_contraseña.get()
+        nueva = self.input_nueva_contraseña.get()
+        confirmar_nueva = self.input_repita_contraseña.get()
+
+        # Verificar si hay espacios vacíos
+        if not actual.strip() or not nueva.strip() or not confirmar_nueva.strip():
+            texto_emergente = "Hay campos vacíos. Por favor, ingrese todos los datos."
+            CTkMessagebox(title="Error", message=texto_emergente,font=("calibri",16),icon="warning")
+
+        else:
+            self.cambiar_contraseña()
+    
+    
     def cambiar_contraseña(self):
-        nombre_usuario = self.cargo[2]
+        nombre_usuario = self.cargo
         actual = self.input_actual_contraseña.get()
         nueva = self.input_nueva_contraseña.get()
         confirmar_nueva = self.input_repita_contraseña.get()
@@ -147,15 +163,18 @@ class PerfilDocenteVentana:
             
             conn.commit()
             conn.close()
-            print("Usuario Modificado correctamente")
+            texto_emergente = "Constraseña Modificada Correctamente"
+            CTkMessagebox(title="Cambio Exitoso", message=texto_emergente,font=("calibri",16),icon="check")
           else:
-            print("Error la contrasena no coincide, asegurese de colocar la misma en contrasena nueva y en confirmar contrasena")
+            texto_emergente = "Error la contraseña no coincide."
+            CTkMessagebox(title="Alerta", message=texto_emergente,font=("calibri",16),icon="warning")
         else:
-          print("Error contrasena incorrecta, verifiquela y vuelva a intentarlo")  
-        
-        
+            texto_emergente = "Error contraseña incorrecta, verifiquela y vuelva a intentarlo"
+            CTkMessagebox(title="Alerta", message=texto_emergente,font=("calibri",16),icon="cancel")
+
     def consultar_contrasena(self):
-        nombre_usuario = self.cargo[2]
+        nombre_usuario = self.cargo
+        print(nombre_usuario)
 
         conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
         cursor = conn.cursor()
