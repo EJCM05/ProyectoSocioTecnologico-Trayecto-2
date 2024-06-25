@@ -1,7 +1,7 @@
 import customtkinter as ctk
 import sqlite3
 from modulos.variables import variables as var
-from modulos.secciones_modulares.inicio.crear_estadistica_general import crear_estadistica_general
+from modulos.secciones_modulares_docente.inicio_docente.crear_estadistica_general_docente import crear_estadistica_general
 from PIL import ImageTk, Image
 
 class InicioDocenteVentana:
