@@ -202,7 +202,7 @@ class Dashboard:
     
     
     def cargar_ventana_perfil(self):
-        contenido_perfil = PerfilVentana(self.area_contenido)
+        contenido_perfil = PerfilVentana(self.area_contenido, self.cargo)
         contenido_perfil.mostrar()
     
     
