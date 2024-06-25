@@ -215,9 +215,11 @@ class CrearEstudianteVentana():
       apellido_2 = " ".join(apellidos_2)
       
       if len(apellidos_2) >= 3:
-          texto_emergente = "Cantidad excesiva de apellidos."
+        texto_emergente = "Cantidad excesiva de apellidos."
+        CTkMessagebox(title="Error", message=texto_emergente,font=("calibri",16),icon="warning")
       elif len(nombres_2) >= 3:
-          texto_emergente = "Cantidad excesiva de nombres."
+        texto_emergente = "Cantidad excesiva de nombres."
+        CTkMessagebox(title="Error", message=texto_emergente,font=("calibri",16),icon="warning")
       else:
         dia_nacimiento = self.input_dia_nacimiento_estudiante.get()
         mes_nacimiento = self.input_mes_nacimiento_estudiante.get()
@@ -265,7 +267,7 @@ class CrearEstudianteVentana():
         
         ventana_representante = DatosRepresentanteVentana(self.master)
         ventana_representante.mostrar()
-      CTkMessagebox(title="Error", message=texto_emergente,font=("calibri",16),icon="warning")
+        
     
     def solo_numeros(self, char):
         return char.isdigit() # solo numeros
