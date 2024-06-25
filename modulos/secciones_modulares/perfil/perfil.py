@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from modulos.variables import variables as var
 from PIL import ImageTk, Image
+from CTkMessagebox import CTkMessagebox
 import sqlite3
 
 class PerfilVentana:
@@ -147,13 +148,15 @@ class PerfilVentana:
             
             conn.commit()
             conn.close()
-            print("Usuario Modificado correctamente")
+            texto_emergente = "Constraseña Modificada Correctamente"
+            CTkMessagebox(title="Cambio Exitoso", message=texto_emergente,font=("calibri",16),icon="check")
           else:
-            print("Error la contrasena no coincide, asegurese de colocar la misma en contrasena nueva y en confirmar contrasena")
+            texto_emergente = "Error la contraseña no coincide."
+            CTkMessagebox(title="Alerta", message=texto_emergente,font=("calibri",16),icon="warning")
         else:
-          print("Error contrasena incorrecta, verifiquela y vuelva a intentarlo")  
-        
-        
+            texto_emergente = "Error contraseña incorrecta, verifiquela y vuelva a intentarlo"
+            CTkMessagebox(title="Alerta", message=texto_emergente,font=("calibri",16),icon="cancel")
+
     def consultar_contrasena(self):
         nombre_usuario = self.cargo[2]
 
