@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from modulos.variables import variables as var
 from PIL import ImageTk, Image
+import sqlite3
 
 class PerfilVentana:
     def __init__(self, master):
@@ -130,7 +131,28 @@ class PerfilVentana:
         nueva = self.input_nueva_contraseña.get()
         confirmar_nueva = self.input_repita_contraseña.get()
         
-        print(actual)
-        print(nueva)
-        print(confirmar_nueva)
+        contrasena_verificada = self.consultar_contrasena()
+        
+        print(type(actual))
+        print(type(nueva))
+        print(type(confirmar_nueva))
+        print(type(contrasena_verificada))
+        
+        if actual == contrasena_verificada and nueva == confirmar_nueva:
+           cursor.execute(f'UPDATE Ingreso SET contrasena = {nueva} WHERE usuario = "director";')
+          
+        
+        
+    def consultar_contrasena(self):
+        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+        cursor = conn.cursor()
+
+        # Consulta SQL para verificar las credenciales
+        # cursor.execute(f'SELECT contraseña FROM Ingreso WHERE usuario = {usuario}')
+        cursor.execute(f'SELECT contrasena FROM Ingreso WHERE usuario = "director"')
+        result = cursor.fetchone()
+        
+        conn.close()
+        
+        return result[0]
         
