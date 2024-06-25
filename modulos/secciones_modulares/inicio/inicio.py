@@ -23,13 +23,14 @@ class InicioVentana:
     def frame_graficos(self):
         self.frame_graficos = ctk.CTkFrame(master=self.master,
                                            width=1000,
-                                           height=500)
-        self.frame_graficos.place(relx=0.5, rely=0.95, anchor="s")
+                                           height=550
+                                           )
+        self.frame_graficos.place(relx=0.5, rely=0.94, anchor="s")
     
     
     def graficos(self):
         img_estadistica_original = Image.open("matricula_pdf_img/img_estadistica_general/estadistica_general.png")
-        img_estadistica_ajustada = img_estadistica_original.resize((560, 420), Image.LANCZOS)
+        img_estadistica_ajustada = img_estadistica_original.resize((800, 420), Image.LANCZOS)
         self.img_estadistica = ImageTk.PhotoImage(img_estadistica_ajustada)
         # aca van los graficos
         self.grafica = ctk.CTkLabel(master=self.frame_graficos,
