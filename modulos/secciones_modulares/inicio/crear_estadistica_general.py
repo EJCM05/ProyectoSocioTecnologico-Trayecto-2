@@ -26,28 +26,6 @@ def crear_estadistica_general(lista_datos):
     fig.savefig('matricula_pdf_img/img_estadistica_general/estadistica_general.png')
     plt.close(fig)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #                               grafica de pastel
 # import matplotlib.pyplot as plt
 # import numpy as np
