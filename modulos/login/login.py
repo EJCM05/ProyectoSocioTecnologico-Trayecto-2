@@ -5,6 +5,7 @@ from modulos.variables import variables as var
 from modulos.controlador import controlador
 from PIL import ImageTk, Image
 from modulos.dashboard.dashboard import Dashboard
+from modulos.dashboard.dashboard_docente import DashboardDocente
 from CTkMessagebox import CTkMessagebox
 
 
@@ -195,8 +196,13 @@ class LoginApp:
         conn.close()
 
         if result:
-            # Credenciales válidas: carga la ventana del panel de control
-            self.cargar_ventana_dashboard()
+            # Credenciales válidas: carga la ventana principal
+            tipo_usuario = self.pasar_cargo(self.input_usuario.get())
+            if tipo_usuario[1] == "Director" or tipo_usuario[1] == "Admin":
+                self.cargar_ventana_dashboard_director()
+            else:
+                self.cargar_ventana_dashboard_docente()
+            
         else:
             # Credenciales incorrectas: muestra un mensaje de error
             texto_emergente = "Usuario o Contraseña incorrectos"
@@ -204,34 +210,37 @@ class LoginApp:
             
     def pasar_cargo(self, usuario):
         usuario = usuario
-
         if usuario == "admin":
-          result = ["Administrador", "Admin"]
+          result = ["Administrador", "Admin", usuario]
         elif usuario == "simoncito":
-          result = ["Docente", "Simoncito"]
+          result = ["Docente", "Simoncito", usuario]
         elif usuario == "inicial_a":
-          result = ["Docente", "Inicial A"]
+          result = ["Docente", "Inicial A", usuario]
         elif usuario == "inicial_b":
-          result = ["Docente", "Inicial B"]
+          result = ["Docente", "Inicial B", usuario]
         elif usuario == "inicial_c":
-          result = ["Docente", "Inicial C"]
+          result = ["Docente", "Inicial C", usuario]
         elif usuario == "grado_1":
-          result = ["Docente", "1er Grado"]
+          result = ["Docente", "1er Grado", usuario]
         elif usuario == "grado_2":
-          result = ["Docente", "2do Grado"]
+          result = ["Docente", "2do Grado", usuario]
         elif usuario == "grado_3":
-          result = ["Docente", "3er Grado"]
+          result = ["Docente", "3er Grado", usuario]
         elif usuario == "grado_4":
-          result = ["Docente", "4to Grado"]
+          result = ["Docente", "4to Grado", usuario]
         elif usuario == "grado_5":
-          result = ["Docente", "5to Grado"]
+          result = ["Docente", "5to Grado", usuario]
         elif usuario == "grado_6":
-          result = ["Docente", "6to Grado"]
+          result = ["Docente", "6to Grado", usuario]
         elif usuario == "director":
-          result = ["Director", "Director"]
-
+          result = ["Director", "Director", usuario]
         return result
 
-    def cargar_ventana_dashboard(self):
+    def cargar_ventana_dashboard_director(self):
         self.contenido_dashboard = Dashboard(self.master, self.pasar_cargo(self.input_usuario.get()))
+        self.contenido_dashboard.mostrar()
+    
+    
+    def cargar_ventana_dashboard_docente(self):
+        self.contenido_dashboard = DashboardDocente(self.master, self.pasar_cargo(self.input_usuario.get()))
         self.contenido_dashboard.mostrar()
