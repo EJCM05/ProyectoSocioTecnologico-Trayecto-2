@@ -10,3 +10,4 @@ CTkMessagebox
 fpdf
 shutil
 matplotlib
+numpy

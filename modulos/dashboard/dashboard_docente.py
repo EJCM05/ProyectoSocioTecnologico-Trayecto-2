@@ -1,19 +1,64 @@
-import tkinter as tk
 import customtkinter as ctk
+from datetime import date
 import datetime
-import time
+import sqlite3
 from modulos.variables import variables as var
 from PIL import ImageTk, Image
-from modulos.secciones_modulares.estudiantes.estudiantes import EstudiantesVentana
-from modulos.secciones_modulares.grados.grados import GradosVentana
-from modulos.secciones_modulares.inicio.inicio import InicioVentana
-from modulos.secciones_modulares.perfil.perfil import PerfilVentana
-from modulos.secciones_modulares.personal.personal import PersonalVentana
+from modulos.crear_descargar_pdf.crear_pdf import CrearPDF
+from modulos.secciones_modulares_docente.estudiantes_docente.estudiantes_docente import EstudiantesDocenteVentana
+from modulos.secciones_modulares_docente.inicio_docente.inicio import InicioVentana
+from modulos.secciones_modulares_docente.perfil_docente.perfil import PerfilVentana
 
-class Dashboard:
+def calcular_edad(fecha_nacimiento):
+    año, mes, dia = fecha_nacimiento.split("/")
+    año = int(año)
+    mes = int(mes)
+    dia = int(dia)
+    
+    fecha_nacimiento = date(año, mes, dia)
+    
+    # Obtener la fecha actual
+    hoy = date.today()
+    
+    # Calcular la edad en años
+    edad = hoy.year - fecha_nacimiento.year - ((hoy.month, hoy.day) < (fecha_nacimiento.month, fecha_nacimiento.day))
+    
+    return edad
+
+def obtener_lista_estudiantes(id_grado):
+    # Conectarse a la base de datos
+    conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+    c = conn.cursor()
+
+    # Insertar valores en la tabla
+    c.execute(f"SELECT cedula, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, fecha_nacimiento, genero FROM Estudiante WHERE id_grado = {id_grado}")
+    result = c.fetchall()
+
+    lista_prueba = []
+    
+    for element in result:
+        cedula = str(element[0])
+        nombre = f"{element[1]} {element[2]} {element[3]} {element[4]}"
+        edad = str(calcular_edad(element[5]))
+        fecha_nacimiento = str(element[5])
+        genero = element[6]
+        lista = (cedula, nombre, edad, fecha_nacimiento, genero)
+        lista_prueba.append(lista)
+
+    # Confirmar los cambios y cerrar la conexión
+    conn.commit()
+    conn.close()
+    
+    return lista_prueba
+
+
+class DashboardDocente:
     def __init__(self, master, cargo):
         self.master = master
         self.cargo = cargo
+        self.nombre_archivo = self.cargo[2]
+        id = self.decidir_id(self.nombre_archivo)
+        self.creacion_pdf(nombre=self.nombre_archivo, lista=obtener_lista_estudiantes(id_grado=id))
     
     def mostrar(self):
         # Eliminar widgets anteriores en el área de contenido
@@ -82,26 +127,6 @@ class Dashboard:
                                         command=self.cargar_ventana_inicio
                                         )
         
-        self.boton_grados = ctk.CTkButton(master=self.panel_izquierdo,
-                                        text="Grados",
-                                        width=185,
-                                        font=var.Andika_small,
-                                        hover_color=var.bg_blue,
-                                        fg_color=var.bg_gray,
-                                        anchor="sw",
-                                        command=self.cargar_ventana_grados
-                                        )
-        
-        self.boton_personal = ctk.CTkButton(master=self.panel_izquierdo,
-                                        text="Personal",
-                                        width=185,
-                                        font=var.Andika_small,
-                                        hover_color=var.bg_blue,
-                                        fg_color=var.bg_gray,
-                                        anchor="sw",
-                                        command=self.cargar_ventana_personal
-                                        )
-        
         self.boton_estudiantes = ctk.CTkButton(master=self.panel_izquierdo,
                                         text="Estudiantes",
                                         width=185,
@@ -136,8 +161,6 @@ class Dashboard:
         self.icono_menu.place(relx=0.25, rely=0.01, anchor="n")
         self.texto_menu.place(relx=0.7,rely=0.030,anchor="n",)
         self.boton_inicio.place(relx=0.5,rely=0.31,anchor="center")
-        self.boton_grados.place(relx=0.5,rely=0.37,anchor="center")
-        self.boton_personal.place(relx=0.5,rely=0.43,anchor="center")
         self.boton_estudiantes.place(relx=0.5,rely=0.49,anchor="center")
         self.boton_perfil.place(relx=0.5,rely=0.55,anchor="center")
         self.boton_salir.place(relx=0.5,rely=0.91,anchor="s")
@@ -187,13 +210,11 @@ class Dashboard:
     
     #funcionalidad de los botones
     def cargar_ventana_estudiantes(self):
-        contenido_estudiantes = EstudiantesVentana(self.area_contenido)
+        contenido_estudiantes = EstudiantesDocenteVentana(master=self.area_contenido,
+                                                          nombre_grado=self.cargo[1]
+                                                         )
+        contenido_estudiantes.pdf_a_img(nombre_archivo=self.nombre_archivo)
         contenido_estudiantes.mostrar()
-    
-    
-    def cargar_ventana_grados(self):
-        contenido_grados = GradosVentana(self.area_contenido)
-        contenido_grados.mostrar()
     
     
     def cargar_ventana_inicio(self):
@@ -202,13 +223,8 @@ class Dashboard:
     
     
     def cargar_ventana_perfil(self):
-        contenido_perfil = PerfilVentana(self.area_contenido, self.cargo)
+        contenido_perfil = PerfilVentana(self.area_contenido)
         contenido_perfil.mostrar()
-    
-    
-    def cargar_ventana_personal(self):
-        contenido_personal = PersonalVentana(self.area_contenido)
-        contenido_personal.mostrar()
     
     
     def datetime(self):
@@ -219,5 +235,33 @@ class Dashboard:
     
     def kill(self):
         self.master.destroy()
-
-
+    
+    
+    def creacion_pdf(self, nombre, lista):
+        self.pdf_matricula = CrearPDF()
+        self.pdf_matricula.creacion(nombre_pdf=nombre, lista=lista)
+    
+    
+    def decidir_id(self, usuario):
+        usuario = usuario
+        if usuario == "simoncito":
+          result = 1
+        elif usuario == "inicial_a":
+          result = 2
+        elif usuario == "inicial_b":
+          result = 3
+        elif usuario == "inicial_c":
+          result = 4
+        elif usuario == "grado_1":
+          result = 5
+        elif usuario == "grado_2":
+          result = 6
+        elif usuario == "grado_3":
+          result = 7
+        elif usuario == "grado_4":
+          result = 8
+        elif usuario == "grado_5":
+          result = 9
+        elif usuario == "grado_6":
+          result = 10
+        return result

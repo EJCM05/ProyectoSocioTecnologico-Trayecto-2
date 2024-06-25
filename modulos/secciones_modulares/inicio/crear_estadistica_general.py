@@ -1,3 +1,4 @@
+# grafico de barras
 import matplotlib.pyplot as plt
 from modulos.variables import variables as var
 
@@ -24,3 +25,28 @@ def crear_estadistica_general(lista_datos):
     # Guardar la figura como una imagen
     fig.savefig('matricula_pdf_img/img_estadistica_general/estadistica_general.png')
     plt.close(fig)
+
+#                               grafica de pastel
+# import matplotlib.pyplot as plt
+# import numpy as np
+# from modulos.variables import variables as var
+
+# # Datos para el gráfico de pastel
+# ingredientes = ['Simoncito', 'Inicial A', 'Inicial B', 'Inicial C', '1er Grado', '2do Grado', '3er Grado', '4to Grado', '5to Grado', '6to Grado']
+# cantidades = [10, 20, 15, 30, 25, 18, 22, 28, 35, 40]  # Cambia estos valores según tus datos reales
+
+# def func(pct, allvals):
+#     absolute = int(np.round(pct/100.*np.sum(allvals)))
+#     return f"{pct:.1f}%\n({absolute:d} estudiantes)"
+
+# # Crear una figura y un eje para el gráfico de pastel
+# fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect="equal"))
+# wedges, texts, autotexts = ax.pie(cantidades, autopct=lambda pct: func(pct, cantidades), textprops=dict(color="w"))
+
+# # Etiquetas para el gráfico de pastel
+# ax.legend(wedges, ingredientes, title="Grados", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
+# plt.setp(autotexts, size=8, weight="bold")
+# ax.set_title("Distribución de Estudiantes por Grado")
+
+# # Guardar la figura como una imagen
+# fig.savefig('matricula_pdf_img/img_estadistica_general/estadistica_general_pastel.png')  # Cambia el nombre del archivo según tu preferencia

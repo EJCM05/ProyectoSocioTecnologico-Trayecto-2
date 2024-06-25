@@ -4,8 +4,9 @@ from PIL import ImageTk, Image
 import sqlite3
 
 class PerfilVentana:
-    def __init__(self, master):
+    def __init__(self, master, cargo):
         self.master = master
+        self.cargo = cargo
 
     def mostrar(self):
         # Eliminar widgets anteriores en el área de contenido
@@ -127,32 +128,52 @@ class PerfilVentana:
         palabras.place(relx=posicion_x, rely=posicion_y,anchor="e")
     
     def cambiar_contraseña(self):
+        nombre_usuario = self.cargo[2]
         actual = self.input_actual_contraseña.get()
         nueva = self.input_nueva_contraseña.get()
         confirmar_nueva = self.input_repita_contraseña.get()
         
+        
         contrasena_verificada = self.consultar_contrasena()
         
-        print(type(actual))
-        print(type(nueva))
-        print(type(confirmar_nueva))
-        print(type(contrasena_verificada))
+        actual = int(actual)
+        nueva = int(nueva)
+        confirmar_nueva = int(confirmar_nueva)
+        contrasena_verificada = int(contrasena_verificada)
         
-        if actual == contrasena_verificada and nueva == confirmar_nueva:
-           cursor.execute(f'UPDATE Ingreso SET contrasena = {nueva} WHERE usuario = "director";')
-          
+        # print(str(nombre_usuario))
+        # print(type(actual))
+        # print(type(nueva))
+        # print(type(confirmar_nueva))
+        # print(type(contrasena_verificada))
+        
+        if actual == contrasena_verificada:
+          if nueva == confirmar_nueva:
+            conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
+            cursor = conn.cursor()
+            
+            cursor.execute(f'UPDATE Ingreso SET contrasena = ? WHERE usuario = ?;', (confirmar_nueva, nombre_usuario))
+            
+            conn.commit()
+            conn.close()
+            print("Usuario Modificado correctamente")
+          else:
+            print("Error la contrasena no coincide, asegurese de colocar la misma en contrasena nueva y en confirmar contrasena")
+        else:
+          print("Error contrasena incorrecta, verifiquela y vuelva a intentarlo")  
         
         
     def consultar_contrasena(self):
+        nombre_usuario = self.cargo[2]
+
         conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
         cursor = conn.cursor()
 
         # Consulta SQL para verificar las credenciales
         # cursor.execute(f'SELECT contraseña FROM Ingreso WHERE usuario = {usuario}')
-        cursor.execute(f'SELECT contrasena FROM Ingreso WHERE usuario = "director"')
+        cursor.execute(f'SELECT contrasena FROM Ingreso WHERE usuario = "{nombre_usuario}"')
         result = cursor.fetchone()
         
         conn.close()
         
         return result[0]
-        
