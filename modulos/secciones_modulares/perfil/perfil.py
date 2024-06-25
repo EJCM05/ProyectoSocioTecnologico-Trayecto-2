@@ -135,22 +135,13 @@ class PerfilVentana:
         
         
         contrasena_verificada = self.consultar_contrasena()
-        
-        actual = int(actual)
-        nueva = int(nueva)
-        confirmar_nueva = int(confirmar_nueva)
-        contrasena_verificada = int(contrasena_verificada)
-        
-        # print(str(nombre_usuario))
-        # print(type(actual))
-        # print(type(nueva))
-        # print(type(confirmar_nueva))
-        # print(type(contrasena_verificada))
+        contrasena_verificada = str(contrasena_verificada)
         
         if actual == contrasena_verificada:
           if nueva == confirmar_nueva:
             conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
             cursor = conn.cursor()
+            
             
             cursor.execute(f'UPDATE Ingreso SET contrasena = ? WHERE usuario = ?;', (confirmar_nueva, nombre_usuario))
             
@@ -170,7 +161,6 @@ class PerfilVentana:
         cursor = conn.cursor()
 
         # Consulta SQL para verificar las credenciales
-        # cursor.execute(f'SELECT contraseña FROM Ingreso WHERE usuario = {usuario}')
         cursor.execute(f'SELECT contrasena FROM Ingreso WHERE usuario = "{nombre_usuario}"')
         result = cursor.fetchone()
         
