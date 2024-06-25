@@ -6,8 +6,8 @@ from modulos.variables import variables as var
 from PIL import ImageTk, Image
 from modulos.crear_descargar_pdf.crear_pdf import CrearPDF
 from modulos.secciones_modulares_docente.estudiantes_docente.estudiantes_docente import EstudiantesDocenteVentana
-from modulos.secciones_modulares_docente.inicio_docente.inicio import InicioVentana
-from modulos.secciones_modulares_docente.perfil_docente.perfil import PerfilVentana
+from modulos.secciones_modulares_docente.inicio_docente.inicio_docente import InicioDocenteVentana
+from modulos.secciones_modulares_docente.perfil_docente.perfil_docente import PerfilVentana
 
 def calcular_edad(fecha_nacimiento):
     año, mes, dia = fecha_nacimiento.split("/")
@@ -160,9 +160,9 @@ class DashboardDocente:
         #------------------posicionamiento------------------------------------
         self.icono_menu.place(relx=0.25, rely=0.01, anchor="n")
         self.texto_menu.place(relx=0.7,rely=0.030,anchor="n",)
-        self.boton_inicio.place(relx=0.5,rely=0.31,anchor="center")
-        self.boton_estudiantes.place(relx=0.5,rely=0.49,anchor="center")
-        self.boton_perfil.place(relx=0.5,rely=0.55,anchor="center")
+        self.boton_inicio.place(relx=0.5,rely=0.4,anchor="center")
+        self.boton_estudiantes.place(relx=0.5,rely=0.5,anchor="center")
+        self.boton_perfil.place(relx=0.5,rely=0.6,anchor="center")
         self.boton_salir.place(relx=0.5,rely=0.91,anchor="s")
     
     
@@ -218,7 +218,7 @@ class DashboardDocente:
     
     
     def cargar_ventana_inicio(self):
-        contenido_inicio = InicioVentana(self.area_contenido)
+        contenido_inicio = InicioDocenteVentana(self.area_contenido, self.cargo[1])
         contenido_inicio.mostrar()
     
     

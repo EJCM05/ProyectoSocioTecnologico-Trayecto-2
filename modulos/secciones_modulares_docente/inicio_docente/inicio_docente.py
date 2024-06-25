@@ -4,9 +4,10 @@ from modulos.variables import variables as var
 from modulos.secciones_modulares.inicio.crear_estadistica_general import crear_estadistica_general
 from PIL import ImageTk, Image
 
-class InicioVentana:
-    def __init__(self, master):
+class InicioDocenteVentana:
+    def __init__(self, master, nombre_grado):
         self.master = master
+        self.nombre_grado = nombre_grado
         self.lista = None
 
     def mostrar(self):
@@ -52,40 +53,21 @@ class InicioVentana:
         self.texto_estudiantes = self.crear_rectangulo_texto(nombre_texto="Estudiante",
                                                             dato_texto=self.sumar_estudiante_total(),
                                                             color_frame=var.est_color_blue,
-                                                            posicion_x=0.1,
-                                                            posicion_y=0.2
+                                                            posicion_x=0.4,
+                                                            posicion_y=0.2,
+                                                            tipo_posicion="normal"
                                                             )
         
-        self.texto_docentes = self.crear_rectangulo_texto(nombre_texto="Docentes",
-                                                         dato_texto=self.obtener_lista_maestros(),
-                                                         color_frame=var.est_color_gray,
-                                                         posicion_x=0.3,
-                                                         posicion_y=0.2
-                                                         )
-        
-        self.texto_obreros = self.crear_rectangulo_texto(nombre_texto="Obreros",
-                                                        dato_texto=self.obtener_lista_obreros(),
-                                                        color_frame=var.est_color_pink,
-                                                        posicion_x=0.5,
-                                                        posicion_y=0.2
-                                                        )
-        
-        self.texto_aulas = self.crear_rectangulo_texto(nombre_texto="Aulas",
-                                                      dato_texto="10",
+        self.texto_aulas = self.crear_rectangulo_texto(nombre_texto="",
+                                                      dato_texto=self.nombre_grado,
                                                       color_frame=var.est_color_orange,
-                                                      posicion_x=0.7,
-                                                      posicion_y=0.2
+                                                      posicion_x=0.6,
+                                                      posicion_y=0.2,
+                                                      tipo_posicion="central"
                                                       )
-        
-        self.texto_especialistas = self.crear_rectangulo_texto(nombre_texto="Especialistas",
-                                                              dato_texto=self.obtener_lista_especialista(),
-                                                              color_frame=var.est_color_grayBlack,
-                                                              posicion_x=0.9,
-                                                              posicion_y=0.2
-                                                              )
     
     
-    def crear_rectangulo_texto(self, nombre_texto, dato_texto, color_frame, posicion_x, posicion_y):
+    def crear_rectangulo_texto(self, nombre_texto, dato_texto, color_frame, posicion_x, posicion_y, tipo_posicion):
         contenedor = ctk.CTkFrame(master=self.master,
                                  width=160,
                                  height=100,
@@ -107,7 +89,11 @@ class InicioVentana:
         
         contenedor.place(relx=posicion_x, rely=posicion_y, anchor="center")
         texto_nombre.place(relx=0.5, rely=0.32, anchor="center")
-        texto_dato.place(relx=0.5, rely=0.68, anchor="center")
+        if tipo_posicion == "normal":
+            texto_dato.place(relx=0.5, rely=0.68, anchor="center")
+        elif tipo_posicion == "central":
+            texto_dato.place(relx=0.5, rely=0.5, anchor="center")
+
 
     def obtener_lista_grados(self):
         # Conectarse a la base de datos
