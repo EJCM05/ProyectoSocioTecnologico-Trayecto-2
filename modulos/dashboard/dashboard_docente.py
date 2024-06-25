@@ -7,7 +7,7 @@ from PIL import ImageTk, Image
 from modulos.crear_descargar_pdf.crear_pdf import CrearPDF
 from modulos.secciones_modulares_docente.estudiantes_docente.estudiantes_docente import EstudiantesDocenteVentana
 from modulos.secciones_modulares_docente.inicio_docente.inicio_docente import InicioDocenteVentana
-from modulos.secciones_modulares_docente.perfil_docente.perfil_docente import PerfilVentana
+from modulos.secciones_modulares_docente.perfil_docente.perfil_docente import PerfilDocenteVentana
 
 def calcular_edad(fecha_nacimiento):
     año, mes, dia = fecha_nacimiento.split("/")
@@ -223,7 +223,7 @@ class DashboardDocente:
     
     
     def cargar_ventana_perfil(self):
-        contenido_perfil = PerfilVentana(self.area_contenido)
+        contenido_perfil = PerfilDocenteVentana(self.area_contenido, self.cargo[2])
         contenido_perfil.mostrar()
     
     
