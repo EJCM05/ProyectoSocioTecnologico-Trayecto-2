@@ -42,7 +42,7 @@ class InicioVentana:
         self.texto_estadisticas = ctk.CTkLabel(master=self.master,
                                            text="Estadisticas Generales",
                                            text_color=var.text_black,
-                                           font=var.Andika_large
+                                           font=var.Amaranth_medium_large
                                            )
         
         self.texto_estadisticas.place(relx=0.5, rely=0.06, anchor="center")

@@ -90,7 +90,7 @@ class GradosVentana:
         self.texto_seleccion = ctk.CTkLabel(master=self.master,
                                            text="Selecciona un Grado",
                                            text_color=var.text_black,
-                                           font=var.Andika_large
+                                           font=var.Amaranth_medium_large
                                            )
         
         self.texto_seleccion.place(relx=0.5, rely=0.06, anchor="center")
