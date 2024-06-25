@@ -5,10 +5,11 @@ from modulos.secciones_modulares_docente.inicio_docente.crear_estadistica_genera
 from PIL import ImageTk, Image
 
 class InicioDocenteVentana:
-    def __init__(self, master, nombre_grado):
+    def __init__(self, master, nombre_grado, id):
         self.master = master
         self.nombre_grado = nombre_grado
         self.lista = None
+        self.id = id
 
     def mostrar(self):
         # Eliminar widgets anteriores en el área de contenido
@@ -120,7 +121,7 @@ class InicioDocenteVentana:
         c = conn.cursor()
 
         # Insertar valores en la tabla
-        c.execute(f"""SELECT id_estudiante, COUNT(*) AS count FROM estudiante;""")
+        c.execute(f"""SELECT id_estudiante, COUNT(*) AS count FROM Estudiante WHERE id_grado = {self.id};""")
         result = c.fetchall()
 
         lista = []
@@ -132,63 +133,6 @@ class InicioDocenteVentana:
         conn.commit()
         conn.close()
         return lista
-        
-    def obtener_lista_maestros(self):    
-      # Conectarse a la base de datos
-        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
-        c = conn.cursor()
-
-        # Insertar valores en la tabla
-        c.execute(f"""SELECT id_personal, COUNT(*) AS count FROM Personal WHERE id_personal = 2 GROUP BY id_personal;""")
-        result = c.fetchall()
-
-        lista = []
-                
-        for element in result:
-            lista.append(element[1])
-
-        # Confirmar los cambios y cerrar la conexión
-        conn.commit()
-        conn.close()
-        return lista
-    
-    def obtener_lista_obreros(self):    
-      # Conectarse a la base de datos
-        conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
-        c = conn.cursor()
-
-        # Insertar valores en la tabla
-        c.execute(f"""SELECT id_personal, COUNT(*) AS count FROM Personal WHERE id_personal = 1 GROUP BY id_personal;""")
-        result = c.fetchall()
-
-        lista = []
-                
-        for element in result:
-            lista.append(element[1])
-
-        # Confirmar los cambios y cerrar la conexión
-        conn.commit()
-        conn.close()
-        return lista
-      
-    def obtener_lista_especialista(self):    
-      # Conectarse a la base de datos
-      conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
-      c = conn.cursor()
-
-      # Insertar valores en la tabla
-      c.execute(f"""SELECT id_personal, COUNT(*) AS count FROM Personal WHERE id_personal = 3 GROUP BY id_personal;""")
-      result = c.fetchall()
-      
-      lista = []
-                
-      for element in result:
-          lista.append(element[1])
-
-      # Confirmar los cambios y cerrar la conexión
-      conn.commit()
-      conn.close()
-      return lista
     
     def sumar_estudiante_lista(self):
       lista = self.obtener_lista_grados()

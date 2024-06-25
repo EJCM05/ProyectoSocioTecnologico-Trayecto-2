@@ -144,7 +144,7 @@ class PerfilDocenteVentana:
     
     
     def cambiar_contraseña(self):
-        nombre_usuario = self.cargo[2]
+        nombre_usuario = self.cargo
         actual = self.input_actual_contraseña.get()
         nueva = self.input_nueva_contraseña.get()
         confirmar_nueva = self.input_repita_contraseña.get()
@@ -173,7 +173,8 @@ class PerfilDocenteVentana:
             CTkMessagebox(title="Alerta", message=texto_emergente,font=("calibri",16),icon="cancel")
 
     def consultar_contrasena(self):
-        nombre_usuario = self.cargo[2]
+        nombre_usuario = self.cargo
+        print(nombre_usuario)
 
         conn = sqlite3.connect('./bd_rufino/bd_escuela.db')
         cursor = conn.cursor()
