@@ -57,8 +57,8 @@ class DashboardDocente:
         self.master = master
         self.cargo = cargo
         self.nombre_archivo = self.cargo[2]
-        id = self.decidir_id(self.nombre_archivo)
-        self.creacion_pdf(nombre=self.nombre_archivo, lista=obtener_lista_estudiantes(id_grado=id))
+        self.id = self.decidir_id(self.nombre_archivo)
+        self.creacion_pdf(nombre=self.nombre_archivo, lista=obtener_lista_estudiantes(id_grado=self.id))
     
     def mostrar(self):
         # Eliminar widgets anteriores en el área de contenido
@@ -218,7 +218,7 @@ class DashboardDocente:
     
     
     def cargar_ventana_inicio(self):
-        contenido_inicio = InicioDocenteVentana(self.area_contenido, self.cargo[1])
+        contenido_inicio = InicioDocenteVentana(self.area_contenido, self.cargo[1], self.id)
         contenido_inicio.mostrar()
     
     
