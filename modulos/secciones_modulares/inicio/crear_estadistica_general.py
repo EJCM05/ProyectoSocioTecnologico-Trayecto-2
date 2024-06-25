@@ -41,13 +41,13 @@ def crear_estadistica_general(lista_datos):
         return f"{pct:.1f}%\n({absolute:d} estudiantes)"
 
     # Crear una figura y un eje para el gráfico de pastel
-    fig, ax = plt.subplots(figsize=(6, 3), subplot_kw=dict(aspect="equal"))
+    fig, ax = plt.subplots(figsize=(6, 4), subplot_kw=dict(aspect="equal"))
     wedges, texts, autotexts = ax.pie(cantidades, autopct=lambda pct: func(pct, cantidades), textprops=dict(color="w"))
 
     # Etiquetas para el gráfico de pastel
+    # ax.set_title("Distribución de Estudiantes por Grado")
     ax.legend(wedges, ingredientes, title="Grados", loc="center left", bbox_to_anchor=(1, 0, 0.5, 1))
-    plt.setp(autotexts, size=8, weight="bold")
-    ax.set_title("Distribución de Estudiantes por Grado")
+    plt.setp(autotexts, size=10, weight="bold")
 
     # Guardar la figura como una imagen
     fig.savefig('matricula_pdf_img/img_estadistica_general/estadistica_general.png')  # Cambia el nombre del archivo según tu preferencia
