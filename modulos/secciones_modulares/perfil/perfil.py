@@ -3,6 +3,7 @@ from modulos.variables import variables as var
 from PIL import ImageTk, Image
 from CTkMessagebox import CTkMessagebox
 import sqlite3
+from modulos.secciones_modulares.inicio.inicio import InicioVentana
 
 class PerfilVentana:
     def __init__(self, master, cargo):
@@ -165,6 +166,8 @@ class PerfilVentana:
             conn.close()
             texto_emergente = "Constraseña Modificada Correctamente"
             CTkMessagebox(title="Cambio Exitoso", message=texto_emergente,font=("calibri",16),icon="check")
+            ventana = InicioVentana(self.master)
+            ventana.mostrar()
           else:
             texto_emergente = "Error la contraseña no coincide."
             CTkMessagebox(title="Alerta", message=texto_emergente,font=("calibri",16),icon="warning")
